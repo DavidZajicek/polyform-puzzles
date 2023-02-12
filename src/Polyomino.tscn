@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c16fk1fiop15j"]
+
+[ext_resource type="Script" path="res://Polyomino.gd" id="1_1tpi1"]
+
+[node name="Polyomino" type="CanvasGroup"]
+script = ExtResource("1_1tpi1")

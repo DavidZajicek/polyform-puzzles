@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://t6a4vln63jxa"]
+
+[ext_resource type="Script" path="res://Grid.gd" id="1_y7vcg"]
+
+[node name="Grid" type="CanvasGroup"]
+script = ExtResource("1_y7vcg")

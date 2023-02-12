@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8udt46afaivn"]
+
+[ext_resource type="PackedScene" uid="uid://t6a4vln63jxa" path="res://Grid.tscn" id="2_nkc1e"]
+[ext_resource type="PackedScene" uid="uid://c16fk1fiop15j" path="res://Polyomino.tscn" id="2_rgq52"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Grid" parent="." instance=ExtResource("2_nkc1e")]
+
+[node name="Polyomino" parent="." instance=ExtResource("2_rgq52")]
+position = Vector2(96, 224)
+
+[node name="Polyomino2" parent="." instance=ExtResource("2_rgq52")]
+position = Vector2(192, 192)
