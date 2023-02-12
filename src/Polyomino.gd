@@ -1,6 +1,7 @@
 extends CanvasGroup
 
 @onready var poly: PackedScene = preload("res://Poly.tscn")
+@onready var clickable_area: CollisionPolygon2D = $Area2D/ClickableArea
 
 #make this a resource
 var unique_polyominoes: Dictionary = {
@@ -28,12 +29,10 @@ var mouse_over: bool = false
 
 func _ready() -> void:
 	randomize()
-	generate_shape()
-	for child in get_children():
-		if child is Poly:
-			areas.append(child)
-			child.connect("mouse_entered", _on_child_mouse_entered)
-			child.connect("mouse_exited", _on_child_mouse_exited)
+	var points: PackedVector2Array = generate_shape()
+	connect_with_poly_children()
+	create_clickable_area(points)
+	
 
 func _physics_process(delta: float) -> void:
 	if dragging:
@@ -53,13 +52,14 @@ func _input(event: InputEvent) -> void:
 				position = original_position
 		dragging = false
 
-func generate_shape() -> void:
+func generate_shape() -> PackedVector2Array:
 	var grid = unique_polyominoes[unique_polyominoes.keys()[randi() % unique_polyominoes.size()]]
 	var y_index = 0
+	var points: PackedVector2Array
 	
 	for y in grid:
-		y_index += 1
 		var x_index = 0
+		y_index += 1
 		
 		for x in y:
 			x_index += 1
@@ -67,6 +67,26 @@ func generate_shape() -> void:
 				var new_poly = poly.instantiate()
 				add_child(new_poly)
 				new_poly.position = Vector2(x_index, y_index) * Globals.tile_size
+				points.append(new_poly.position)
+	return points
+
+func connect_with_poly_children() -> void:
+	for child in get_children():
+		if child is Poly:
+			areas.append(child)
+			child.connect("mouse_entered", _on_child_mouse_entered)
+			child.connect("mouse_exited", _on_child_mouse_exited)
+
+func create_clickable_area(points: PackedVector2Array) -> void:
+	var squares: PackedVector2Array
+	for point in points:
+		for corner in 4:
+			squares.append(point * (corner+1))
+	
+	clickable_area.set_polygon(squares)
+#	for point in points:
+#		clickable_area.points.append(point)
+	clickable_area.queue_redraw()
 
 func _on_child_mouse_entered() -> void:
 	mouse_over = true
