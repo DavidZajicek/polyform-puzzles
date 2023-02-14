@@ -2,6 +2,9 @@ extends CanvasGroup
 
 @onready var poly: PackedScene = preload("res://Poly.tscn")
 @onready var clickable_area: CollisionPolygon2D = $Area2D/ClickableArea
+@onready var polyforms: Polyforms = preload("res://Polyforms.tres")
+
+var array: BitMap = BitMap.new()
 
 #make this a resource
 var unique_polyominoes: Dictionary = {
@@ -28,10 +31,13 @@ var areas: Array
 var mouse_over: bool = false
 
 func _ready() -> void:
-	randomize()
-	var points: PackedVector2Array = generate_shape()
+#	randomize()
+#	var points: PackedVector2Array = generate_shape()
+	polyforms.generate_shape(4)
+	polyforms.generate_shape(4)
+#	create_clickable_area(points)
+	generate_shape()
 	connect_with_poly_children()
-	create_clickable_area(points)
 	
 
 func _physics_process(delta: float) -> void:
@@ -52,24 +58,37 @@ func _input(event: InputEvent) -> void:
 				position = original_position
 		dragging = false
 
-func generate_shape() -> PackedVector2Array:
-	var grid = unique_polyominoes[unique_polyominoes.keys()[randi() % unique_polyominoes.size()]]
-	var y_index = 0
-	var points: PackedVector2Array
-	
-	for y in grid:
-		var x_index = 0
-		y_index += 1
-		
-		for x in y:
-			x_index += 1
-			if x == 1:
+func generate_shape() -> void:
+	array.create(Vector2i(4, 4))
+	create_shape(1)
+	for x in array.get_size().x:
+		for y in array.get_size().y:
+			if array.get_bit(x, y):
 				var new_poly = poly.instantiate()
 				add_child(new_poly)
-				new_poly.position = Vector2(x_index, y_index) * Globals.tile_size
-				points.append(new_poly.position)
-	return points
+				new_poly.position = Vector2(x, y) * Globals.tile_size
 
+func create_shape(count: int) -> void:
+	for x in array.get_size().x:
+		array.set_bit(x, count, true)
+#func generate_shape() -> PackedVector2Array:
+#	var grid = unique_polyominoes[unique_polyominoes.keys()[randi() % unique_polyominoes.size()]]
+#	var y_index = 0
+#	var points: PackedVector2Array
+#
+#	for y in grid:
+#		var x_index = 0
+#		y_index += 1
+#
+#		for x in y:
+#			x_index += 1
+#			if x == 1:
+#				var new_poly = poly.instantiate()
+#				add_child(new_poly)
+#				new_poly.position = Vector2(x_index, y_index) * Globals.tile_size
+#				points.append(new_poly.position)
+#	return points
+#
 func connect_with_poly_children() -> void:
 	for child in get_children():
 		if child is Poly:
@@ -81,12 +100,12 @@ func create_clickable_area(points: PackedVector2Array) -> void:
 	var squares: PackedVector2Array
 	for point in points:
 		for corner in 4:
-			squares.append(point * (corner+1))
+			squares.append(point * (corner+1)) # this is multiplying all 4 corners, I instead need to ADD 3 corners per square
 	
-	clickable_area.set_polygon(squares)
+#	clickable_area.set_polygon(squares)
 #	for point in points:
 #		clickable_area.points.append(point)
-	clickable_area.queue_redraw()
+#	clickable_area.queue_redraw()
 
 func _on_child_mouse_entered() -> void:
 	mouse_over = true

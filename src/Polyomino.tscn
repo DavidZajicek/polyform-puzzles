@@ -1,12 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c16fk1fiop15j"]
+[gd_scene load_steps=2 format=3 uid="uid://c16fk1fiop15j"]
 
 [ext_resource type="Script" path="res://Polyomino.gd" id="1_1tpi1"]
-[ext_resource type="Script" path="res://ClickableArea.gd" id="2_1xgvj"]
 
 [node name="Polyomino" type="CanvasGroup"]
 script = ExtResource("1_1tpi1")
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="ClickableArea" type="CollisionPolygon2D" parent="Area2D"]
-script = ExtResource("2_1xgvj")
