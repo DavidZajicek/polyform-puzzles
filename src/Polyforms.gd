@@ -15,25 +15,17 @@ func generate_shape(_size) -> void:
 	
 	var bitmap: BitMap = BitMap.new()
 	bitmap.create(Vector2i(_size,_size))
+	var permutations: int = _size * _size ** 2
+	print(permutations)
 	for x in _size:
 		bitmap.set_bit(x, 0, true)
 	polyominoes["bitmap"] = bitmap
 	
 	
-	for turns in range(4):
-		bitmap = rotate(bitmap)
-		var packed_array = convert_bitmap_to_array(bitmap)
-		if packed_array not in array:
-			array.append(packed_array)
+	bitmap = rotate(bitmap)
 	bitmap = flip(bitmap)
 	
-	print(bitmap, "flip")
-	
-	for turns in range(4):
-		bitmap = rotate(bitmap)
-		var packed_array = convert_bitmap_to_array(bitmap)
-		if packed_array not in array:
-			array.append(packed_array)
+	bitmap = rotate(bitmap)
 	
 	
 	polyominoes["bitmap flipped  rotated"] = array
@@ -45,25 +37,27 @@ func generate_shape(_size) -> void:
 	
 
 
-func test(array):
-	if array not in polyominoes:
-		polyominoes["bitmap"] = array
-		save_shape()
-	
-	
-	print("tested")
-	return
+func add_to_array(bitmap):
+	var left_aligned_bitmap = shift_shape(bitmap)
+	var packed_array = convert_bitmap_to_array(left_aligned_bitmap)
+	if packed_array not in array:
+		array.append(packed_array)
 
 ###Works
-func rotate(_bitmap: BitMap) -> BitMap:
+func rotate(_bitmap: BitMap, _count: int = 4) -> BitMap:
+	if _count <= 0:
+		return _bitmap
+	
 	var _bitmap_rotated: BitMap = BitMap.new()
 	var size: Vector2i = _bitmap.get_size()
 	_bitmap_rotated.create(size)
+	
 	for x in size.x:
 		for y in size.y:
 			_bitmap_rotated.set_bit(size.y -y -1, x, _bitmap.get_bit(x, y))
 	
-	return _bitmap_rotated
+	add_to_array(_bitmap_rotated)
+	return rotate(_bitmap_rotated, _count - 1)
 
 ###Works
 func flip(_bitmap: BitMap) -> BitMap:
@@ -75,6 +69,7 @@ func flip(_bitmap: BitMap) -> BitMap:
 			_bitmap_flipped.set_bit(size.x -x -1,size.y -y -1, _bitmap.get_bit(x, y))
 	return _bitmap_flipped
 
+###Works
 func convert_bitmap_to_array(bitmap: BitMap) -> PackedVector2Array:
 	var packed_vector_array: PackedVector2Array
 	var size: Vector2i = bitmap.get_size()
@@ -89,3 +84,19 @@ func save_shape() -> void:
 
 func check_rotations_in_dictionary(shape: Array[PackedVector2Array], count: int) -> void:
 	pass
+
+func shift_shape(_bitmap: BitMap) -> BitMap:
+	
+	var size: Vector2i = _bitmap.get_size()
+	var _bitmap_shifted: BitMap = BitMap.new()
+	_bitmap_shifted.create(size)
+	for y in size.y:
+		if _bitmap.get_bit(0, y):
+			return _bitmap
+	
+	for x in size.x:
+		for y in size.y:
+			if _bitmap.get_bit(x, y):
+				if _bitmap_shifted.get_bit(x-1, y) != null:
+					_bitmap_shifted.set_bit(x-1, y, true)
+	return shift_shape(_bitmap_shifted)
