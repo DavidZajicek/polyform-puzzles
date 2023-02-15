@@ -3,7 +3,7 @@ extends Resource
 
 @export var polyominoes: Dictionary
 
-var array: Array = [[]]
+var array: Array = []
 var length: int = 1
 var location: Vector2i = Vector2i.ZERO
 var previous_location: Vector2i = Vector2i.ZERO
@@ -17,26 +17,26 @@ func generate_shape(_size) -> void:
 	bitmap.create(Vector2i(_size,_size))
 	for x in _size:
 		bitmap.set_bit(x, 0, true)
-	print(bitmap, "steve")
 	polyominoes["bitmap"] = bitmap
 	
-	var bitmap_array: Array[BitMap]
 	
 	for turns in range(4):
 		bitmap = rotate(bitmap)
-		bitmap_array.append_array(convert_bitmap_to_array(bitmap))
-		print(bitmap, "rotation", turns)
+		var packed_array = convert_bitmap_to_array(bitmap)
+		if packed_array not in array:
+			array.append(packed_array)
 	bitmap = flip(bitmap)
 	
 	print(bitmap, "flip")
 	
 	for turns in range(4):
 		bitmap = rotate(bitmap)
-		bitmap_array.append_array(convert_bitmap_to_array(bitmap))
-		print(bitmap, "rotation", turns, "flipped")
+		var packed_array = convert_bitmap_to_array(bitmap)
+		if packed_array not in array:
+			array.append(packed_array)
 	
 	
-	polyominoes["bitmap flipped  rotated"] = bitmap_array
+	polyominoes["bitmap flipped  rotated"] = array
 	print("Saved flipped rotated")
 	
 	convert_bitmap_to_array(bitmap)
