@@ -12,67 +12,77 @@ var steps: Array[Vector2i] = [Vector2i.LEFT, Vector2i.UP, Vector2i.DOWN, Vector2
 
 
 func generate_shape(_size) -> void:
-	print(location)
-	array.resize(_size)
-	array.fill([])
-	for y in _size:
-		array[y].resize(_size)
-		array[y].fill(0)
-	print(array)
-	for size in _size -1:
-		for step in steps:
-			if step + location == previous_location:
-				print("walking backwards")
-				continue
-			var next_location: Vector2i = location + step
-			next_location = next_location.clamp(Vector2i.ZERO, Vector2i(_size, _size))
-			if array[next_location.y][next_location.x] == 1:
-				print("moving right along, footloose and fancy free")
-				continue
-			for bit in range(2):
-				array[next_location.y][next_location.x] = bit
-				if bit == 1:
-					previous_location = location
-					next_location = location
-					print(array)
+	
+	var bitmap: BitMap = BitMap.new()
+	bitmap.create(Vector2i(_size,_size))
+	for x in _size:
+		bitmap.set_bit(x, 0, true)
+	print(bitmap, "steve")
+	polyominoes["bitmap"] = bitmap
+	
+	var bitmap_array: Array[BitMap]
+	
+	for turns in range(4):
+		bitmap = rotate(bitmap)
+		bitmap_array.append_array(convert_bitmap_to_array(bitmap))
+		print(bitmap, "rotation", turns)
+	bitmap = flip(bitmap)
+	
+	print(bitmap, "flip")
+	
+	for turns in range(4):
+		bitmap = rotate(bitmap)
+		bitmap_array.append_array(convert_bitmap_to_array(bitmap))
+		print(bitmap, "rotation", turns, "flipped")
 	
 	
+	polyominoes["bitmap flipped  rotated"] = bitmap_array
+	print("Saved flipped rotated")
 	
-#	array.resize(_size)
-#	for y in _size:
-#		array[y].resize(_size)
-#		for x in _size:
-#			if length == _size:
-#				test(array)
-#				return
-#			if array[y][x] == null:
-#				for dir in steps:
-#					match dir:
-#						0:
-#							pass
-#				for bit in range(2):
-#					array[y][x] = bit
-#
-#					if bit == 1:
-#						length += 1
-#						previous_location = Vector2i(x, y)
-#						print(array)
+	convert_bitmap_to_array(bitmap)
 	
-#	var new_array = rotate(array)
+	ResourceSaver.save(self, resource_path)
+	
+
+
 func test(array):
 	if array not in polyominoes:
 		polyominoes["bitmap"] = array
 		save_shape()
 	
 	
-
 	print("tested")
 	return
 
-func rotate(_array, _count):
+###Works
+func rotate(_bitmap: BitMap) -> BitMap:
+	var _bitmap_rotated: BitMap = BitMap.new()
+	var size: Vector2i = _bitmap.get_size()
+	_bitmap_rotated.create(size)
+	for x in size.x:
+		for y in size.y:
+			_bitmap_rotated.set_bit(size.y -y -1, x, _bitmap.get_bit(x, y))
 	
-	print("rotated")
-	return array
+	return _bitmap_rotated
+
+###Works
+func flip(_bitmap: BitMap) -> BitMap:
+	var _bitmap_flipped: BitMap = BitMap.new()
+	var size: Vector2i = _bitmap.get_size()
+	_bitmap_flipped.create(size)
+	for x in size.x:
+		for y in size.y:
+			_bitmap_flipped.set_bit(size.x -x -1,size.y -y -1, _bitmap.get_bit(x, y))
+	return _bitmap_flipped
+
+func convert_bitmap_to_array(bitmap: BitMap) -> PackedVector2Array:
+	var packed_vector_array: PackedVector2Array
+	var size: Vector2i = bitmap.get_size()
+	for x in size.x:
+		for y in size.y:
+			if bitmap.get_bit(x, y):
+				packed_vector_array.append(Vector2i(x, y))
+	return packed_vector_array
 
 func save_shape() -> void:
 	ResourceSaver.save(self, resource_path)

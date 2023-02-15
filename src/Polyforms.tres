@@ -1,9 +1,16 @@
-[gd_resource type="Resource" script_class="Polyforms" load_steps=2 format=3 uid="uid://cwrvdjw8ge7o3"]
+[gd_resource type="Resource" script_class="Polyforms" load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://Polyforms.gd" id="1_r7gog"]
+
+[sub_resource type="BitMap" id="BitMap_6oc8h"]
+data = {
+"data": PackedByteArray(15, 0),
+"size": Vector2i(4, 4)
+}
 
 [resource]
 script = ExtResource("1_r7gog")
 polyominoes = {
-"bitmap": Array[Array]([[1, 1, 1, 1], [1, 1, 1, 1], [null, null, null, null], []])
+"bitmap": SubResource("BitMap_6oc8h"),
+"bitmap flipped  rotated": Array[BitMap]([])
 }
