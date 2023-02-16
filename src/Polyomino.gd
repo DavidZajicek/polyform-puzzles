@@ -33,8 +33,9 @@ var mouse_over: bool = false
 func _ready() -> void:
 #	randomize()
 #	var points: PackedVector2Array = generate_shape()
+#	polyforms.generate_shape(2)
 	polyforms.generate_shape(4)
-	polyforms.generate_shape(4)
+#	polyforms.generate_shape(6)
 #	create_clickable_area(points)
 	generate_shape()
 	connect_with_poly_children()
@@ -59,14 +60,10 @@ func _input(event: InputEvent) -> void:
 		dragging = false
 
 func generate_shape() -> void:
-	array.create(Vector2i(4, 4))
-	create_shape(1)
-	for x in array.get_size().x:
-		for y in array.get_size().y:
-			if array.get_bit(x, y):
-				var new_poly = poly.instantiate()
-				add_child(new_poly)
-				new_poly.position = Vector2(x, y) * Globals.tile_size
+	for vector in polyforms.polyominoes[ polyforms.polyominoes.keys()[ randi() % polyforms.polyominoes.size() ] ]:
+		var new_poly = poly.instantiate()
+		add_child(new_poly)
+		new_poly.position = vector * Globals.tile_size
 
 func create_shape(count: int) -> void:
 	for x in array.get_size().x:

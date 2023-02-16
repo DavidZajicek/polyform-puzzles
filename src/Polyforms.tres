@@ -1,16 +1,21 @@
-[gd_resource type="Resource" script_class="Polyforms" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="Polyforms" load_steps=2 format=3]
 
 [ext_resource type="Script" path="res://Polyforms.gd" id="1_r7gog"]
-
-[sub_resource type="BitMap" id="BitMap_3e4o8"]
-data = {
-"data": PackedByteArray(15, 0),
-"size": Vector2i(4, 4)
-}
 
 [resource]
 script = ExtResource("1_r7gog")
 polyominoes = {
-"bitmap": SubResource("BitMap_3e4o8"),
-"bitmap flipped  rotated": [PackedVector2Array(0, 0, 0, 1, 0, 2, 0, 3), PackedVector2Array(0, 0, 1, 0, 2, 0, 3, 0)]
+"4_[(0, 0), (0, 1), (0, 2), (0, 3)]": PackedVector2Array(0, 0, 0, 1, 0, 2, 0, 3),
+"4_[(0, 0), (0, 1), (0, 2), (1, 2)]": PackedVector2Array(0, 0, 0, 1, 0, 2, 1, 2),
+"4_[(0, 0), (0, 1), (1, 0), (1, 1)]": PackedVector2Array(0, 0, 0, 1, 1, 0, 1, 1),
+"4_[(0, 0), (0, 1), (1, 1), (1, 2)]": PackedVector2Array(0, 0, 0, 1, 1, 1, 1, 2),
+"4_[(0, 0), (0, 1), (1, 1), (2, 1)]": PackedVector2Array(0, 0, 0, 1, 1, 1, 2, 1),
+"4_[(0, 0), (1, 0), (1, 1), (1, 2)]": PackedVector2Array(0, 0, 1, 0, 1, 1, 1, 2),
+"4_[(0, 0), (1, 0), (1, 1), (2, 1)]": PackedVector2Array(0, 0, 1, 0, 1, 1, 2, 1),
+"4_[(0, 0), (1, 0), (2, 0), (2, 1)]": PackedVector2Array(0, 0, 1, 0, 2, 0, 2, 1),
+"4_[(0, 0), (1, 0), (2, 0), (3, 0)]": PackedVector2Array(0, 0, 1, 0, 2, 0, 3, 0),
+"4_[(0, 1), (0, 2), (1, 0), (1, 1)]": PackedVector2Array(0, 1, 0, 2, 1, 0, 1, 1),
+"4_[(0, 1), (1, 0), (1, 1), (2, 0)]": PackedVector2Array(0, 1, 1, 0, 1, 1, 2, 0),
+"4_[(0, 1), (1, 1), (2, 0), (2, 1)]": PackedVector2Array(0, 1, 1, 1, 2, 0, 2, 1),
+"4_[(0, 2), (1, 0), (1, 1), (1, 2)]": PackedVector2Array(0, 2, 1, 0, 1, 1, 1, 2)
 }
