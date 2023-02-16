@@ -38,8 +38,9 @@ func generate_shape(_size) -> void:
 
 
 func add_to_array(bitmap):
-	var left_aligned_bitmap = shift_shape(bitmap)
-	var packed_array = convert_bitmap_to_array(left_aligned_bitmap)
+	var left_aligned_bitmap = align_shape_left(bitmap)
+	var top_aligned_bitmap = align_shape_top(left_aligned_bitmap)
+	var packed_array = convert_bitmap_to_array(top_aligned_bitmap)
 	if packed_array not in array:
 		array.append(packed_array)
 
@@ -85,8 +86,7 @@ func save_shape() -> void:
 func check_rotations_in_dictionary(shape: Array[PackedVector2Array], count: int) -> void:
 	pass
 
-func shift_shape(_bitmap: BitMap) -> BitMap:
-	
+func align_shape_left(_bitmap: BitMap) -> BitMap:
 	var size: Vector2i = _bitmap.get_size()
 	var _bitmap_shifted: BitMap = BitMap.new()
 	_bitmap_shifted.create(size)
@@ -99,4 +99,23 @@ func shift_shape(_bitmap: BitMap) -> BitMap:
 			if _bitmap.get_bit(x, y):
 				if _bitmap_shifted.get_bit(x-1, y) != null:
 					_bitmap_shifted.set_bit(x-1, y, true)
-	return shift_shape(_bitmap_shifted)
+	
+	return align_shape_left(_bitmap_shifted)
+
+func align_shape_top(_bitmap: BitMap) -> BitMap:
+	var size: Vector2i = _bitmap.get_size()
+	var _bitmap_shifted: BitMap = BitMap.new()
+	_bitmap_shifted.create(size)
+	for x in size.x:
+		if _bitmap.get_bit(x, 0):
+			return _bitmap
+	
+	for x in size.x:
+		for y in size.y:
+			if _bitmap.get_bit(x, y):
+				if _bitmap_shifted.get_bit(x, y-1) != null:
+					_bitmap_shifted.set_bit(x, y-1, true)
+	
+	return align_shape_top(_bitmap_shifted)
+
+
