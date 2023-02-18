@@ -1,7 +1,7 @@
 extends CanvasGroup
 
 @onready var poly: PackedScene = preload("res://Poly.tscn")
-@onready var clickable_area: CollisionPolygon2D = $Area2D/ClickableArea
+#@onready var clickable_area: CollisionPolygon2D = $Area2D/ClickableArea
 @onready var polyforms: Polyforms = preload("res://Polyforms.tres")
 
 var array: BitMap = BitMap.new()

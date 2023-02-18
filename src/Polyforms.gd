@@ -2,10 +2,12 @@ class_name Polyforms
 extends Resource
 
 @export var polyominoes: Dictionary
+@export var free_polyominoes: Dictionary
 
 
 var length: int = 1
 var previous_location: Vector2i = Vector2i.ZERO
+var location: Vector2i = Vector2i.ZERO
 var steps: Array[Vector2i] = [Vector2i.ZERO, Vector2i.LEFT, Vector2i.UP, Vector2i.DOWN, Vector2i.RIGHT]
 var size: int = 0
 var first_index_allow_empty: bool = true
@@ -24,29 +26,66 @@ func generate_shape(_size) -> void:
 	
 	var bitmap: BitMap = BitMap.new()
 	bitmap.create(Vector2i(size,size))
-	
+	location = Vector2i(Vector2(size, size).clamp(Vector2.ZERO, Vector2i(size, size)) / 2)
 	var _permutations: int = size * size ** 2
+	var iteration: int
+	var bitmap_array: Array[BitMap] = [bitmap]
 	
+	var time = Time.get_unix_time_from_system()
 	
-	var dict: Dictionary = {"next_bitmaps": [bitmap], "location": Vector2i.ZERO}
-	var array = walk(dict, size)
+	var broken_dicktionary: Dictionary
+	broken_dicktionary[location] = bitmap
+	for i in range(size * size):
+		broken_dicktionary = paint(bitmap_array)
 	
+	free_polyominoes = broken_dicktionary
 	
-	for _bitmap in array:
-		var left_aligned_bitmap = align_shape_left(_bitmap)
-		var top_aligned_bitmap = align_shape_top(left_aligned_bitmap)
-		rotate(top_aligned_bitmap)
-		if _rotated_bitmap_array.any(bitmap_in_polyominoes):
-			_rotated_bitmap_array.clear()
-		else:
-			add_to_array(top_aligned_bitmap, str(top_aligned_bitmap))
-	
-	
-	
-	
-	
+	print(Time.get_time_string_from_unix_time(Time.get_unix_time_from_system() - time)  )
+#
+#
+#	var dict: Dictionary = {"next_bitmaps": [bitmap], "location": Vector2i.ZERO}
+#	var array = walk(dict, size)
+#
+#
+#	for _bitmap in array:
+#		var aligned_bitmap = align_shape(_bitmap)
+#		rotate(aligned_bitmap)
+#		if _rotated_bitmap_array.any(func(_bitmap): return _bitmap in polyominoes.values()):
+#			_rotated_bitmap_array.clear()
+#		else:
+#			add_to_array(aligned_bitmap, str(aligned_bitmap))
+#
+#
+#
+#
+#
 	ResourceSaver.save(self, resource_path)
 	
+
+func paint(bitmap_array: Array[BitMap]):
+	var temp_dictionary: Dictionary
+	for bitmap in bitmap_array:
+		var first_steps: = check_next_steps(bitmap, location)
+		for step in first_steps:
+			var next_step_bitmap: BitMap = bitmap.duplicate()
+			if next_step_bitmap.get_true_bit_count() == size:
+				temp_dictionary[str(size) + "_" + str(size)] = [next_step_bitmap]
+				add_to_array(next_step_bitmap)
+			elif next_step_bitmap.get_true_bit_count() < size:
+				temp_dictionary[step] = next_step_bitmap
+			
+			for _step in first_steps:
+				var second_step_bitmap: BitMap = next_step_bitmap.duplicate()
+				second_step_bitmap.set_bitv(_step, true)
+				if second_step_bitmap.get_true_bit_count() == size:
+					temp_dictionary[str(size) + "_" + str(size) + "_" + str(_step)] = [second_step_bitmap]
+					add_to_array(second_step_bitmap)
+				elif second_step_bitmap.get_true_bit_count() < size:
+					temp_dictionary[_step] = second_step_bitmap
+	location = steps[randi() % steps.size()]
+	return temp_dictionary.duplicate()
+	
+
 
 func walk(bitmap_dictionary: Dictionary, count):
 	if count <= 0:
@@ -104,13 +143,8 @@ func paint_next_steps(_bitmap: BitMap, _next_steps: Array[Vector2i], _location: 
 	bitmaps_and_location["location"] = potential_next_locations[randi() % potential_next_locations.size()]
 	return bitmaps_and_location
 
-func in_array(_bitmap):
-	return _bitmap in polyominoes.values() 
 
-func check_size(_bitmap):
-	return _bitmap.get_true_bit_count() == size
-
-func add_to_array(_bitmap: BitMap, permutation):
+func add_to_array(_bitmap: BitMap):
 	if _bitmap.get_true_bit_count() == 0:
 		print("Cannot add an empty BitMap to Dictionary")
 		return
@@ -151,6 +185,10 @@ func convert_bitmap_to_array(_bitmap: BitMap) -> PackedVector2Array:
 				_packed_vector_array.append(Vector2i(x, y))
 	return _packed_vector_array
 
+func align_shape(_bitmap: BitMap) -> BitMap:
+		var left_aligned_bitmap = align_shape_left(_bitmap)
+		return align_shape_top(left_aligned_bitmap)
+
 func align_shape_left(_bitmap: BitMap) -> BitMap:
 	var _bitmap_shifted: BitMap = BitMap.new()
 	_bitmap_shifted.create(Vector2i(size, size))
@@ -181,7 +219,4 @@ func align_shape_top(_bitmap: BitMap) -> BitMap:
 	
 	return align_shape_top(_bitmap_shifted)
 
-
-func bitmap_in_polyominoes(_bitmap):
-	return _bitmap in polyominoes.values()
 

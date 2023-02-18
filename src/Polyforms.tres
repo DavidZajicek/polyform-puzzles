@@ -1,21 +1,40 @@
-[gd_resource type="Resource" script_class="Polyforms" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="Polyforms" load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://Polyforms.gd" id="1_r7gog"]
+
+[sub_resource type="BitMap" id="BitMap_jigcf"]
+data = {
+"data": PackedByteArray(16, 0),
+"size": Vector2i(4, 4)
+}
+
+[sub_resource type="BitMap" id="BitMap_hlptd"]
+data = {
+"data": PackedByteArray(1, 0),
+"size": Vector2i(4, 4)
+}
+
+[sub_resource type="BitMap" id="BitMap_m5gau"]
+data = {
+"data": PackedByteArray(0, 1),
+"size": Vector2i(4, 4)
+}
+
+[sub_resource type="BitMap" id="BitMap_x8rkn"]
+data = {
+"data": PackedByteArray(32, 0),
+"size": Vector2i(4, 4)
+}
 
 [resource]
 script = ExtResource("1_r7gog")
 polyominoes = {
-"4_[(0, 0), (0, 1), (0, 2), (0, 3)]": PackedVector2Array(0, 0, 0, 1, 0, 2, 0, 3),
-"4_[(0, 0), (0, 1), (0, 2), (1, 2)]": PackedVector2Array(0, 0, 0, 1, 0, 2, 1, 2),
-"4_[(0, 0), (0, 1), (1, 0), (1, 1)]": PackedVector2Array(0, 0, 0, 1, 1, 0, 1, 1),
-"4_[(0, 0), (0, 1), (1, 1), (1, 2)]": PackedVector2Array(0, 0, 0, 1, 1, 1, 1, 2),
-"4_[(0, 0), (0, 1), (1, 1), (2, 1)]": PackedVector2Array(0, 0, 0, 1, 1, 1, 2, 1),
-"4_[(0, 0), (1, 0), (1, 1), (1, 2)]": PackedVector2Array(0, 0, 1, 0, 1, 1, 1, 2),
-"4_[(0, 0), (1, 0), (1, 1), (2, 1)]": PackedVector2Array(0, 0, 1, 0, 1, 1, 2, 1),
-"4_[(0, 0), (1, 0), (2, 0), (2, 1)]": PackedVector2Array(0, 0, 1, 0, 2, 0, 2, 1),
-"4_[(0, 0), (1, 0), (2, 0), (3, 0)]": PackedVector2Array(0, 0, 1, 0, 2, 0, 3, 0),
-"4_[(0, 1), (0, 2), (1, 0), (1, 1)]": PackedVector2Array(0, 1, 0, 2, 1, 0, 1, 1),
-"4_[(0, 1), (1, 0), (1, 1), (2, 0)]": PackedVector2Array(0, 1, 1, 0, 1, 1, 2, 0),
-"4_[(0, 1), (1, 1), (2, 0), (2, 1)]": PackedVector2Array(0, 1, 1, 1, 2, 0, 2, 1),
-"4_[(0, 2), (1, 0), (1, 1), (1, 2)]": PackedVector2Array(0, 2, 1, 0, 1, 1, 1, 2)
+"4_[(1, 2), (2, 1), (2, 2), (2, 3)]": PackedVector2Array(1, 2, 2, 1, 2, 2, 2, 3),
+"4_[(1, 2), (2, 1), (2, 2), (3, 2)]": PackedVector2Array(1, 2, 2, 1, 2, 2, 3, 2)
+}
+free_polyominoes = {
+Vector2i(0, 0): SubResource("BitMap_hlptd"),
+Vector2i(0, 1): SubResource("BitMap_jigcf"),
+Vector2i(0, 2): SubResource("BitMap_m5gau"),
+Vector2i(1, 1): SubResource("BitMap_x8rkn")
 }
