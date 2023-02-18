@@ -36,7 +36,7 @@ func generate_shape(_size) -> void:
 	var broken_dicktionary: Dictionary
 	broken_dicktionary[location] = bitmap
 	for i in range(size * size):
-		broken_dicktionary = paint(bitmap_array)
+		broken_dicktionary = paint(broken_dicktionary)
 	
 	free_polyominoes = broken_dicktionary
 	
@@ -62,27 +62,19 @@ func generate_shape(_size) -> void:
 	ResourceSaver.save(self, resource_path)
 	
 
-func paint(bitmap_array: Array[BitMap]):
+func paint(broken_dicktionary: Dictionary):
 	var temp_dictionary: Dictionary
-	for bitmap in bitmap_array:
-		var first_steps: = check_next_steps(bitmap, location)
+	for _location in broken_dicktionary:
+		var first_steps: = check_next_steps(broken_dicktionary[_location], _location)
 		for step in first_steps:
-			var next_step_bitmap: BitMap = bitmap.duplicate()
+			var next_step_bitmap: BitMap = broken_dicktionary[_location].duplicate()
+			next_step_bitmap.set_bitv(step, true)
 			if next_step_bitmap.get_true_bit_count() == size:
-				temp_dictionary[str(size) + "_" + str(size)] = [next_step_bitmap]
+				temp_dictionary[_location] = next_step_bitmap
 				add_to_array(next_step_bitmap)
 			elif next_step_bitmap.get_true_bit_count() < size:
-				temp_dictionary[step] = next_step_bitmap
+				temp_dictionary[_location] = next_step_bitmap
 			
-			for _step in first_steps:
-				var second_step_bitmap: BitMap = next_step_bitmap.duplicate()
-				second_step_bitmap.set_bitv(_step, true)
-				if second_step_bitmap.get_true_bit_count() == size:
-					temp_dictionary[str(size) + "_" + str(size) + "_" + str(_step)] = [second_step_bitmap]
-					add_to_array(second_step_bitmap)
-				elif second_step_bitmap.get_true_bit_count() < size:
-					temp_dictionary[_step] = second_step_bitmap
-	location = steps[randi() % steps.size()]
 	return temp_dictionary.duplicate()
 	
 
