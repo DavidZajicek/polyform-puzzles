@@ -21,6 +21,9 @@ func _ready():
 func _process(delta):
 	pass
 
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("ui_accept"):
+		get_tree().reload_current_scene()
 
 func create_grid() -> void:
 	for x in grid_size.x:
