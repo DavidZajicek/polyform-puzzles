@@ -34,7 +34,7 @@ func generate_shape(_size) -> void:
 	var time = Time.get_unix_time_from_system()
 	
 	var broken_dicktionary: Dictionary
-	broken_dicktionary[location] = bitmap
+	broken_dicktionary[location] = [bitmap]
 	for i in range(size * size):
 		broken_dicktionary = paint(broken_dicktionary)
 	
@@ -65,15 +65,21 @@ func generate_shape(_size) -> void:
 func paint(broken_dicktionary: Dictionary):
 	var temp_dictionary: Dictionary
 	for _location in broken_dicktionary:
-		var first_steps: = check_next_steps(broken_dicktionary[_location], _location)
-		for step in first_steps:
-			var next_step_bitmap: BitMap = broken_dicktionary[_location].duplicate()
-			next_step_bitmap.set_bitv(step, true)
-			if next_step_bitmap.get_true_bit_count() == size:
-				temp_dictionary[_location] = next_step_bitmap
-				add_to_array(next_step_bitmap)
-			elif next_step_bitmap.get_true_bit_count() < size:
-				temp_dictionary[_location] = next_step_bitmap
+		for bitmap in broken_dicktionary[_location]:
+			var next_steps: = check_next_steps(bitmap, _location)
+			
+			for i in next_steps.size():
+				print(i % next_steps.size())
+			
+				for step in next_steps:
+					var next_step_bitmap: BitMap = bitmap.duplicate()
+					if i % next_steps.size() != 0:
+						next_step_bitmap.set_bitv(step, true)
+					if next_step_bitmap.get_true_bit_count() == size:
+						temp_dictionary[step] = [next_step_bitmap]
+						add_to_array(next_step_bitmap)
+					elif next_step_bitmap.get_true_bit_count() < size:
+						temp_dictionary[step] = [next_step_bitmap]
 			
 	return temp_dictionary.duplicate()
 	
