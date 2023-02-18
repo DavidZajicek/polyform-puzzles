@@ -1,7 +1,7 @@
 extends CanvasGroup
 
 @onready var poly: PackedScene = preload("res://Poly.tscn")
-@onready var clickable_area: CollisionPolygon2D = $Area2D/ClickableArea
+#@onready var clickable_area: CollisionPolygon2D = $Area2D/ClickableArea
 @onready var polyforms: Polyforms = preload("res://Polyforms.tres")
 
 var array: BitMap = BitMap.new()
@@ -34,12 +34,15 @@ func _ready() -> void:
 #	randomize()
 #	var points: PackedVector2Array = generate_shape()
 #	polyforms.generate_shape(2)
-	polyforms.generate_shape(4)
+#	polyforms.generate_shape(4)
+	polyforms.generate_shape(5)
 #	polyforms.generate_shape(6)
+#	polyforms.generate_shape(9)
 #	create_clickable_area(points)
 	generate_shape()
 	connect_with_poly_children()
 	
+
 
 func _physics_process(delta: float) -> void:
 	if dragging:
@@ -58,6 +61,7 @@ func _input(event: InputEvent) -> void:
 			if child.has_overlapping_areas():
 				position = original_position
 		dragging = false
+	
 
 func generate_shape() -> void:
 	for vector in polyforms.polyominoes[ polyforms.polyominoes.keys()[ randi() % polyforms.polyominoes.size() ] ]:
