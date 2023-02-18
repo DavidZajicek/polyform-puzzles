@@ -3,17 +3,19 @@ extends Resource
 
 @export var polyominoes: Dictionary
 @export var free_polyominoes: Dictionary
+@export var unfinished_polyominoes: Dictionary
 
 
 var length: int = 1
 var previous_location: Vector2i = Vector2i.ZERO
 var location: Vector2i = Vector2i.ZERO
-var steps: Array[Vector2i] = [Vector2i.LEFT, Vector2i.UP, Vector2i.DOWN, Vector2i.RIGHT]
+var steps: Array[Vector2i] = [Vector2i.LEFT, Vector2i.UP, Vector2i.DOWN, Vector2i.RIGHT, Vector2i.ZERO]
 var size: int = 0
 var first_index_allow_empty: bool = true
 
 var fixed_index: int = 0
 var free_index: int = 0
+var iteration: int = 0
 
 var _rotated_bitmap_array: Array[BitMap]
 
@@ -30,17 +32,16 @@ func generate_shape(_size) -> void:
 	bitmap.create(Vector2i(size,size))
 	location = Vector2i(Vector2(size, size).clamp(Vector2.ZERO, Vector2i(size, size)) / 2)
 	var _permutations: int = size * size ** 2
-	var iteration: int
 	var bitmap_array: Array[BitMap] = [bitmap]
 	
 	var time = Time.get_unix_time_from_system()
 	
 	var broken_dicktionary: Dictionary
 	broken_dicktionary[location] = [bitmap]
-	for i in range(size * size):
+	for i in range(_permutations):
 		broken_dicktionary = paint(broken_dicktionary)
 	
-	
+	print(iteration)
 	print(Time.get_time_string_from_unix_time(Time.get_unix_time_from_system() - time)  )
 #
 #
@@ -80,7 +81,14 @@ func paint(broken_dicktionary: Dictionary):
 #						add_to_free_dictionary(next_step_bitmap)
 						add_to_array(next_step_bitmap)
 					elif next_step_bitmap.get_true_bit_count() < size:
-						temp_dictionary[step] = [next_step_bitmap]
+						if temp_dictionary.has(step): #This breaks it? I think it's making it far too big
+							var temp = temp_dictionary[step]
+							temp.append(next_step_bitmap)
+						else:
+							temp_dictionary[step] = [next_step_bitmap]
+						
+#					unfinished_polyominoes[str(step) + str(iteration) ] = next_step_bitmap
+					iteration += 1
 			
 			first_index_allow_empty = false
 	return temp_dictionary.duplicate()

@@ -37,6 +37,7 @@ func _ready() -> void:
 #	polyforms.generate_shape(4)
 	polyforms.generate_shape(5)
 #	polyforms.generate_shape(6)
+#	polyforms.generate_shape(9)
 #	create_clickable_area(points)
 	generate_shape()
 	connect_with_poly_children()
