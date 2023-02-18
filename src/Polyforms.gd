@@ -38,24 +38,12 @@ func generate_shape(_size) -> void:
 	
 	var broken_dicktionary: Dictionary
 	broken_dicktionary[location] = [bitmap]
-	for i in range(_permutations):
+	for i in range(size+1):
 		broken_dicktionary = paint(broken_dicktionary)
 	
 	print(iteration)
 	print(Time.get_time_string_from_unix_time(Time.get_unix_time_from_system() - time)  )
 #
-#
-#	var dict: Dictionary = {"next_bitmaps": [bitmap], "location": Vector2i.ZERO}
-#	var array = walk(dict, size)
-#
-#
-#	for _bitmap in array:
-#		var aligned_bitmap = align_shape(_bitmap)
-#		rotate(aligned_bitmap)
-#		if _rotated_bitmap_array.any(func(_bitmap): return _bitmap in polyominoes.values()):
-#			_rotated_bitmap_array.clear()
-#		else:
-#			add_to_array(aligned_bitmap, str(aligned_bitmap))
 #
 #
 #
@@ -78,16 +66,10 @@ func paint(broken_dicktionary: Dictionary):
 						if touching_another_painted_space(next_step_bitmap, step) or first_index_allow_empty:
 							next_step_bitmap.set_bitv(step, true)
 					if next_step_bitmap.get_true_bit_count() == size:
-#						add_to_free_dictionary(next_step_bitmap)
 						add_to_array(next_step_bitmap)
 					elif next_step_bitmap.get_true_bit_count() < size:
-						if temp_dictionary.has(step): #This breaks it? I think it's making it far too big
-							var temp = temp_dictionary[step]
-							temp.append(next_step_bitmap)
-						else:
-							temp_dictionary[step] = [next_step_bitmap]
+						temp_dictionary[step] = [next_step_bitmap] #This overwrites, not adds so we aren't building every permutation
 						
-#					unfinished_polyominoes[str(step) + str(iteration) ] = next_step_bitmap
 					iteration += 1
 			
 			first_index_allow_empty = false
@@ -102,29 +84,6 @@ func touching_another_painted_space(_bitmap: BitMap, _location: Vector2i = Vecto
 	return adjacent_tiles
 
 
-func walk(bitmap_dictionary: Dictionary, count):
-	if count <= 0:
-		var final_array: Array[BitMap] = []
-		for bitmap in bitmap_dictionary["next_bitmaps"]:
-			if bitmap.get_true_bit_count() == size:
-				print("size matches size")
-				final_array.append(bitmap)
-		return final_array
-	var _location: Vector2i = bitmap_dictionary["location"]
-	var _next_bitmap_dictionary: Dictionary = bitmap_dictionary
-	
-	for _bitmap in bitmap_dictionary["next_bitmaps"]:
-		var _next_steps: Array[Vector2i] = check_next_steps(_bitmap, _location)
-		var _next_bitmap_dictionary_to_merge = paint_next_steps(_bitmap, _next_steps, _location)
-		if _next_bitmap_dictionary_to_merge.is_empty():
-			continue
-		_next_bitmap_dictionary["next_bitmaps"] += _next_bitmap_dictionary_to_merge["next_bitmaps"]
-		_next_bitmap_dictionary["location"] = _next_bitmap_dictionary_to_merge["location"]
-	
-	return walk(_next_bitmap_dictionary, count - 1)
-
-
-
 func check_next_steps(_bitmap: BitMap, _location: Vector2i = Vector2i.ZERO) -> Array[Vector2i]:
 	var unpainted_bits: Array[Vector2i] = []
 	for step in steps:
@@ -137,26 +96,6 @@ func check_next_steps(_bitmap: BitMap, _location: Vector2i = Vector2i.ZERO) -> A
 	
 	return unpainted_bits
 
-
-func paint_next_steps(_bitmap: BitMap, _next_steps: Array[Vector2i], _location: Vector2i) -> Dictionary:
-	var next_bitmaps: Array[BitMap] = []
-	var bitmaps_and_location: Dictionary = {}
-	var potential_next_locations: Array[Vector2i]
-	if not _bitmap.get_bitv(_location) and not first_index_allow_empty:
-		return bitmaps_and_location
-	
-	for _next_step in _next_steps:
-		var next_bitmap: BitMap = _bitmap.duplicate()
-		next_bitmap.set_bitv(_next_step, true)
-		next_bitmaps.append(next_bitmap)
-		potential_next_locations.append(_next_step)
-	
-	bitmaps_and_location["next_bitmaps"] = next_bitmaps
-	for _stop_using_location in potential_next_locations:
-		potential_next_locations.erase(Vector2i.ZERO)
-	first_index_allow_empty = false
-	bitmaps_and_location["location"] = potential_next_locations[randi() % potential_next_locations.size()]
-	return bitmaps_and_location
 
 
 func add_to_array(_bitmap: BitMap):
@@ -244,8 +183,3 @@ func align_shape_top(_bitmap: BitMap) -> BitMap:
 	return align_shape_top(_bitmap_shifted)
 
 
-func add_to_free_dictionary(_dictionary: BitMap):
-	if _dictionary not in free_polyominoes.values():
-		free_polyominoes[fixed_index] = align_shape(_dictionary)
-		fixed_index += 1
-	

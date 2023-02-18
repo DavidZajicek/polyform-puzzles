@@ -1,235 +1,163 @@
-[gd_resource type="Resource" script_class="Polyforms" load_steps=30 format=3 uid="uid://dn7d54x3t6sox"]
+[gd_resource type="Resource" script_class="Polyforms" load_steps=21 format=3]
 
 [ext_resource type="Script" path="res://Polyforms.gd" id="1_r7gog"]
 
-[sub_resource type="BitMap" id="BitMap_s14jx"]
+[sub_resource type="BitMap" id="BitMap_1a1f4"]
 data = {
-"data": PackedByteArray(35, 132, 0, 0),
-"size": Vector2i(5, 5)
+"data": PackedByteArray(17, 17),
+"size": Vector2i(4, 4)
 }
 
-[sub_resource type="BitMap" id="BitMap_5p76r"]
+[sub_resource type="BitMap" id="BitMap_4pbda"]
 data = {
-"data": PackedByteArray(33, 132, 1, 0),
-"size": Vector2i(5, 5)
+"data": PackedByteArray(19, 1),
+"size": Vector2i(4, 4)
 }
 
-[sub_resource type="BitMap" id="BitMap_yuhdw"]
+[sub_resource type="BitMap" id="BitMap_jhvw6"]
 data = {
-"data": PackedByteArray(99, 4, 0, 0),
-"size": Vector2i(5, 5)
+"data": PackedByteArray(49, 1),
+"size": Vector2i(4, 4)
 }
 
-[sub_resource type="BitMap" id="BitMap_bxl0d"]
+[sub_resource type="BitMap" id="BitMap_uca51"]
 data = {
-"data": PackedByteArray(35, 12, 0, 0),
-"size": Vector2i(5, 5)
+"data": PackedByteArray(17, 3),
+"size": Vector2i(4, 4)
 }
 
-[sub_resource type="BitMap" id="BitMap_0no3a"]
+[sub_resource type="BitMap" id="BitMap_nq0nw"]
 data = {
-"data": PackedByteArray(39, 4, 0, 0),
-"size": Vector2i(5, 5)
+"data": PackedByteArray(51, 0),
+"size": Vector2i(4, 4)
 }
 
-[sub_resource type="BitMap" id="BitMap_iyxgr"]
+[sub_resource type="BitMap" id="BitMap_bgngf"]
 data = {
-"data": PackedByteArray(97, 12, 0, 0),
-"size": Vector2i(5, 5)
+"data": PackedByteArray(23, 0),
+"size": Vector2i(4, 4)
 }
 
-[sub_resource type="BitMap" id="BitMap_a603m"]
+[sub_resource type="BitMap" id="BitMap_2namj"]
 data = {
-"data": PackedByteArray(33, 28, 0, 0),
-"size": Vector2i(5, 5)
+"data": PackedByteArray(49, 2),
+"size": Vector2i(4, 4)
 }
 
-[sub_resource type="BitMap" id="BitMap_4qq1p"]
+[sub_resource type="BitMap" id="BitMap_h1dr8"]
 data = {
-"data": PackedByteArray(99, 8, 0, 0),
-"size": Vector2i(5, 5)
+"data": PackedByteArray(113, 0),
+"size": Vector2i(4, 4)
 }
 
-[sub_resource type="BitMap" id="BitMap_1k1h6"]
+[sub_resource type="BitMap" id="BitMap_u2fuj"]
 data = {
-"data": PackedByteArray(103, 0, 0, 0),
-"size": Vector2i(5, 5)
+"data": PackedByteArray(35, 2),
+"size": Vector2i(4, 4)
 }
 
-[sub_resource type="BitMap" id="BitMap_4at1y"]
+[sub_resource type="BitMap" id="BitMap_tigh0"]
 data = {
-"data": PackedByteArray(227, 0, 0, 0),
-"size": Vector2i(5, 5)
+"data": PackedByteArray(39, 0),
+"size": Vector2i(4, 4)
 }
 
-[sub_resource type="BitMap" id="BitMap_wmyva"]
+[sub_resource type="BitMap" id="BitMap_uit8j"]
 data = {
-"data": PackedByteArray(167, 0, 0, 0),
-"size": Vector2i(5, 5)
+"data": PackedByteArray(99, 0),
+"size": Vector2i(4, 4)
 }
 
-[sub_resource type="BitMap" id="BitMap_ablso"]
+[sub_resource type="BitMap" id="BitMap_i1cdw"]
 data = {
-"data": PackedByteArray(47, 0, 0, 0),
-"size": Vector2i(5, 5)
+"data": PackedByteArray(71, 0),
+"size": Vector2i(4, 4)
 }
 
-[sub_resource type="BitMap" id="BitMap_lsl4g"]
+[sub_resource type="BitMap" id="BitMap_nm5mt"]
 data = {
-"data": PackedByteArray(229, 0, 0, 0),
-"size": Vector2i(5, 5)
+"data": PackedByteArray(15, 0),
+"size": Vector2i(4, 4)
 }
 
-[sub_resource type="BitMap" id="BitMap_d0a4f"]
+[sub_resource type="BitMap" id="BitMap_tkwy0"]
 data = {
-"data": PackedByteArray(225, 16, 0, 0),
-"size": Vector2i(5, 5)
+"data": PackedByteArray(50, 1),
+"size": Vector2i(4, 4)
 }
 
-[sub_resource type="BitMap" id="BitMap_m7vni"]
+[sub_resource type="BitMap" id="BitMap_yufuh"]
 data = {
-"data": PackedByteArray(225, 1, 0, 0),
-"size": Vector2i(5, 5)
+"data": PackedByteArray(50, 2),
+"size": Vector2i(4, 4)
 }
 
-[sub_resource type="BitMap" id="BitMap_rg8kr"]
+[sub_resource type="BitMap" id="BitMap_11ecy"]
 data = {
-"data": PackedByteArray(67, 12, 0, 0),
-"size": Vector2i(5, 5)
+"data": PackedByteArray(54, 0),
+"size": Vector2i(4, 4)
 }
 
-[sub_resource type="BitMap" id="BitMap_tp7mq"]
+[sub_resource type="BitMap" id="BitMap_rvc37"]
 data = {
-"data": PackedByteArray(67, 8, 1, 0),
-"size": Vector2i(5, 5)
+"data": PackedByteArray(114, 0),
+"size": Vector2i(4, 4)
 }
 
-[sub_resource type="BitMap" id="BitMap_ppksi"]
+[sub_resource type="BitMap" id="BitMap_ahbxs"]
 data = {
-"data": PackedByteArray(67, 24, 0, 0),
-"size": Vector2i(5, 5)
+"data": PackedByteArray(116, 0),
+"size": Vector2i(4, 4)
 }
 
-[sub_resource type="BitMap" id="BitMap_fjotm"]
+[sub_resource type="BitMap" id="BitMap_ghvyy"]
 data = {
-"data": PackedByteArray(199, 0, 0, 0),
-"size": Vector2i(5, 5)
-}
-
-[sub_resource type="BitMap" id="BitMap_5lwvy"]
-data = {
-"data": PackedByteArray(135, 16, 0, 0),
-"size": Vector2i(5, 5)
-}
-
-[sub_resource type="BitMap" id="BitMap_gp1k4"]
-data = {
-"data": PackedByteArray(15, 1, 0, 0),
-"size": Vector2i(5, 5)
-}
-
-[sub_resource type="BitMap" id="BitMap_qo1fr"]
-data = {
-"data": PackedByteArray(98, 12, 0, 0),
-"size": Vector2i(5, 5)
-}
-
-[sub_resource type="BitMap" id="BitMap_q8o5p"]
-data = {
-"data": PackedByteArray(228, 4, 0, 0),
-"size": Vector2i(5, 5)
-}
-
-[sub_resource type="BitMap" id="BitMap_pxs8w"]
-data = {
-"data": PackedByteArray(230, 0, 0, 0),
-"size": Vector2i(5, 5)
-}
-
-[sub_resource type="BitMap" id="BitMap_7kuoo"]
-data = {
-"data": PackedByteArray(232, 1, 0, 0),
-"size": Vector2i(5, 5)
-}
-
-[sub_resource type="BitMap" id="BitMap_ghn4c"]
-data = {
-"data": PackedByteArray(70, 12, 0, 0),
-"size": Vector2i(5, 5)
-}
-
-[sub_resource type="BitMap" id="BitMap_2uo7e"]
-data = {
-"data": PackedByteArray(132, 28, 0, 0),
-"size": Vector2i(5, 5)
-}
-
-[sub_resource type="BitMap" id="BitMap_2oovl"]
-data = {
-"data": PackedByteArray(66, 136, 1, 0),
-"size": Vector2i(5, 5)
+"data": PackedByteArray(34, 3),
+"size": Vector2i(4, 4)
 }
 
 [resource]
 script = ExtResource("1_r7gog")
 polyominoes = {
-"5_[(0, 0), (0, 1), (0, 2), (0, 3), (1, 0)]": PackedVector2Array(0, 0, 0, 1, 0, 2, 0, 3, 1, 0),
-"5_[(0, 0), (0, 1), (0, 2), (0, 3), (1, 3)]": PackedVector2Array(0, 0, 0, 1, 0, 2, 0, 3, 1, 3),
-"5_[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1)]": PackedVector2Array(0, 0, 0, 1, 0, 2, 1, 0, 1, 1),
-"5_[(0, 0), (0, 1), (0, 2), (1, 0), (1, 2)]": PackedVector2Array(0, 0, 0, 1, 0, 2, 1, 0, 1, 2),
-"5_[(0, 0), (0, 1), (0, 2), (1, 0), (2, 0)]": PackedVector2Array(0, 0, 0, 1, 0, 2, 1, 0, 2, 0),
-"5_[(0, 0), (0, 1), (0, 2), (1, 1), (1, 2)]": PackedVector2Array(0, 0, 0, 1, 0, 2, 1, 1, 1, 2),
-"5_[(0, 0), (0, 1), (0, 2), (1, 2), (2, 2)]": PackedVector2Array(0, 0, 0, 1, 0, 2, 1, 2, 2, 2),
-"5_[(0, 0), (0, 1), (1, 0), (1, 1), (1, 2)]": PackedVector2Array(0, 0, 0, 1, 1, 0, 1, 1, 1, 2),
-"5_[(0, 0), (0, 1), (1, 0), (1, 1), (2, 0)]": PackedVector2Array(0, 0, 0, 1, 1, 0, 1, 1, 2, 0),
-"5_[(0, 0), (0, 1), (1, 0), (1, 1), (2, 1)]": PackedVector2Array(0, 0, 0, 1, 1, 0, 1, 1, 2, 1),
-"5_[(0, 0), (0, 1), (1, 0), (2, 0), (2, 1)]": PackedVector2Array(0, 0, 0, 1, 1, 0, 2, 0, 2, 1),
-"5_[(0, 0), (0, 1), (1, 0), (2, 0), (3, 0)]": PackedVector2Array(0, 0, 0, 1, 1, 0, 2, 0, 3, 0),
-"5_[(0, 0), (0, 1), (1, 1), (2, 0), (2, 1)]": PackedVector2Array(0, 0, 0, 1, 1, 1, 2, 0, 2, 1),
-"5_[(0, 0), (0, 1), (1, 1), (2, 1), (2, 2)]": PackedVector2Array(0, 0, 0, 1, 1, 1, 2, 1, 2, 2),
-"5_[(0, 0), (0, 1), (1, 1), (2, 1), (3, 1)]": PackedVector2Array(0, 0, 0, 1, 1, 1, 2, 1, 3, 1),
-"5_[(0, 0), (0, 2), (1, 0), (1, 1), (1, 2)]": PackedVector2Array(0, 0, 0, 2, 1, 0, 1, 1, 1, 2),
-"5_[(0, 0), (1, 0), (1, 1), (1, 2), (1, 3)]": PackedVector2Array(0, 0, 1, 0, 1, 1, 1, 2, 1, 3),
-"5_[(0, 0), (1, 0), (1, 1), (1, 2), (2, 2)]": PackedVector2Array(0, 0, 1, 0, 1, 1, 1, 2, 2, 2),
-"5_[(0, 0), (1, 0), (1, 1), (2, 0), (2, 1)]": PackedVector2Array(0, 0, 1, 0, 1, 1, 2, 0, 2, 1),
-"5_[(0, 0), (1, 0), (2, 0), (2, 1), (2, 2)]": PackedVector2Array(0, 0, 1, 0, 2, 0, 2, 1, 2, 2),
-"5_[(0, 0), (1, 0), (2, 0), (3, 0), (3, 1)]": PackedVector2Array(0, 0, 1, 0, 2, 0, 3, 0, 3, 1),
-"5_[(0, 1), (0, 2), (1, 0), (1, 1), (1, 2)]": PackedVector2Array(0, 1, 0, 2, 1, 0, 1, 1, 1, 2),
-"5_[(0, 1), (0, 2), (1, 1), (2, 0), (2, 1)]": PackedVector2Array(0, 1, 0, 2, 1, 1, 2, 0, 2, 1),
-"5_[(0, 1), (1, 0), (1, 1), (2, 0), (2, 1)]": PackedVector2Array(0, 1, 1, 0, 1, 1, 2, 0, 2, 1),
-"5_[(0, 1), (1, 1), (2, 1), (3, 0), (3, 1)]": PackedVector2Array(0, 1, 1, 1, 2, 1, 3, 0, 3, 1),
-"5_[(0, 2), (1, 0), (1, 1), (1, 2), (2, 0)]": PackedVector2Array(0, 2, 1, 0, 1, 1, 1, 2, 2, 0),
-"5_[(0, 2), (1, 2), (2, 0), (2, 1), (2, 2)]": PackedVector2Array(0, 2, 1, 2, 2, 0, 2, 1, 2, 2),
-"5_[(0, 3), (1, 0), (1, 1), (1, 2), (1, 3)]": PackedVector2Array(0, 3, 1, 0, 1, 1, 1, 2, 1, 3)
+"4_[(0, 0), (0, 1), (0, 2), (0, 3)]": PackedVector2Array(0, 0, 0, 1, 0, 2, 0, 3),
+"4_[(0, 0), (0, 1), (0, 2), (1, 0)]": PackedVector2Array(0, 0, 0, 1, 0, 2, 1, 0),
+"4_[(0, 0), (0, 1), (0, 2), (1, 1)]": PackedVector2Array(0, 0, 0, 1, 0, 2, 1, 1),
+"4_[(0, 0), (0, 1), (0, 2), (1, 2)]": PackedVector2Array(0, 0, 0, 1, 0, 2, 1, 2),
+"4_[(0, 0), (0, 1), (1, 0), (1, 1)]": PackedVector2Array(0, 0, 0, 1, 1, 0, 1, 1),
+"4_[(0, 0), (0, 1), (1, 0), (2, 0)]": PackedVector2Array(0, 0, 0, 1, 1, 0, 2, 0),
+"4_[(0, 0), (0, 1), (1, 1), (1, 2)]": PackedVector2Array(0, 0, 0, 1, 1, 1, 1, 2),
+"4_[(0, 0), (0, 1), (1, 1), (2, 1)]": PackedVector2Array(0, 0, 0, 1, 1, 1, 2, 1),
+"4_[(0, 0), (1, 0), (1, 1), (1, 2)]": PackedVector2Array(0, 0, 1, 0, 1, 1, 1, 2),
+"4_[(0, 0), (1, 0), (1, 1), (2, 0)]": PackedVector2Array(0, 0, 1, 0, 1, 1, 2, 0),
+"4_[(0, 0), (1, 0), (1, 1), (2, 1)]": PackedVector2Array(0, 0, 1, 0, 1, 1, 2, 1),
+"4_[(0, 0), (1, 0), (2, 0), (2, 1)]": PackedVector2Array(0, 0, 1, 0, 2, 0, 2, 1),
+"4_[(0, 0), (1, 0), (2, 0), (3, 0)]": PackedVector2Array(0, 0, 1, 0, 2, 0, 3, 0),
+"4_[(0, 1), (0, 2), (1, 0), (1, 1)]": PackedVector2Array(0, 1, 0, 2, 1, 0, 1, 1),
+"4_[(0, 1), (1, 0), (1, 1), (1, 2)]": PackedVector2Array(0, 1, 1, 0, 1, 1, 1, 2),
+"4_[(0, 1), (1, 0), (1, 1), (2, 0)]": PackedVector2Array(0, 1, 1, 0, 1, 1, 2, 0),
+"4_[(0, 1), (1, 0), (1, 1), (2, 1)]": PackedVector2Array(0, 1, 1, 0, 1, 1, 2, 1),
+"4_[(0, 1), (1, 1), (2, 0), (2, 1)]": PackedVector2Array(0, 1, 1, 1, 2, 0, 2, 1),
+"4_[(0, 2), (1, 0), (1, 1), (1, 2)]": PackedVector2Array(0, 2, 1, 0, 1, 1, 1, 2)
 }
 free_polyominoes = {
-"5_[(0, 0), (0, 1), (0, 2), (0, 3), (1, 0)]": SubResource("BitMap_s14jx"),
-"5_[(0, 0), (0, 1), (0, 2), (0, 3), (1, 3)]": SubResource("BitMap_5p76r"),
-"5_[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1)]": SubResource("BitMap_yuhdw"),
-"5_[(0, 0), (0, 1), (0, 2), (1, 0), (1, 2)]": SubResource("BitMap_bxl0d"),
-"5_[(0, 0), (0, 1), (0, 2), (1, 0), (2, 0)]": SubResource("BitMap_0no3a"),
-"5_[(0, 0), (0, 1), (0, 2), (1, 1), (1, 2)]": SubResource("BitMap_iyxgr"),
-"5_[(0, 0), (0, 1), (0, 2), (1, 2), (2, 2)]": SubResource("BitMap_a603m"),
-"5_[(0, 0), (0, 1), (1, 0), (1, 1), (1, 2)]": SubResource("BitMap_4qq1p"),
-"5_[(0, 0), (0, 1), (1, 0), (1, 1), (2, 0)]": SubResource("BitMap_1k1h6"),
-"5_[(0, 0), (0, 1), (1, 0), (1, 1), (2, 1)]": SubResource("BitMap_4at1y"),
-"5_[(0, 0), (0, 1), (1, 0), (2, 0), (2, 1)]": SubResource("BitMap_wmyva"),
-"5_[(0, 0), (0, 1), (1, 0), (2, 0), (3, 0)]": SubResource("BitMap_ablso"),
-"5_[(0, 0), (0, 1), (1, 1), (2, 0), (2, 1)]": SubResource("BitMap_lsl4g"),
-"5_[(0, 0), (0, 1), (1, 1), (2, 1), (2, 2)]": SubResource("BitMap_d0a4f"),
-"5_[(0, 0), (0, 1), (1, 1), (2, 1), (3, 1)]": SubResource("BitMap_m7vni"),
-"5_[(0, 0), (0, 2), (1, 0), (1, 1), (1, 2)]": SubResource("BitMap_rg8kr"),
-"5_[(0, 0), (1, 0), (1, 1), (1, 2), (1, 3)]": SubResource("BitMap_tp7mq"),
-"5_[(0, 0), (1, 0), (1, 1), (1, 2), (2, 2)]": SubResource("BitMap_ppksi"),
-"5_[(0, 0), (1, 0), (1, 1), (2, 0), (2, 1)]": SubResource("BitMap_fjotm"),
-"5_[(0, 0), (1, 0), (2, 0), (2, 1), (2, 2)]": SubResource("BitMap_5lwvy"),
-"5_[(0, 0), (1, 0), (2, 0), (3, 0), (3, 1)]": SubResource("BitMap_gp1k4"),
-"5_[(0, 1), (0, 2), (1, 0), (1, 1), (1, 2)]": SubResource("BitMap_qo1fr"),
-"5_[(0, 1), (0, 2), (1, 1), (2, 0), (2, 1)]": SubResource("BitMap_q8o5p"),
-"5_[(0, 1), (1, 0), (1, 1), (2, 0), (2, 1)]": SubResource("BitMap_pxs8w"),
-"5_[(0, 1), (1, 1), (2, 1), (3, 0), (3, 1)]": SubResource("BitMap_7kuoo"),
-"5_[(0, 2), (1, 0), (1, 1), (1, 2), (2, 0)]": SubResource("BitMap_ghn4c"),
-"5_[(0, 2), (1, 2), (2, 0), (2, 1), (2, 2)]": SubResource("BitMap_2uo7e"),
-"5_[(0, 3), (1, 0), (1, 1), (1, 2), (1, 3)]": SubResource("BitMap_2oovl")
+"4_[(0, 0), (0, 1), (0, 2), (0, 3)]": SubResource("BitMap_1a1f4"),
+"4_[(0, 0), (0, 1), (0, 2), (1, 0)]": SubResource("BitMap_4pbda"),
+"4_[(0, 0), (0, 1), (0, 2), (1, 1)]": SubResource("BitMap_jhvw6"),
+"4_[(0, 0), (0, 1), (0, 2), (1, 2)]": SubResource("BitMap_uca51"),
+"4_[(0, 0), (0, 1), (1, 0), (1, 1)]": SubResource("BitMap_nq0nw"),
+"4_[(0, 0), (0, 1), (1, 0), (2, 0)]": SubResource("BitMap_bgngf"),
+"4_[(0, 0), (0, 1), (1, 1), (1, 2)]": SubResource("BitMap_2namj"),
+"4_[(0, 0), (0, 1), (1, 1), (2, 1)]": SubResource("BitMap_h1dr8"),
+"4_[(0, 0), (1, 0), (1, 1), (1, 2)]": SubResource("BitMap_u2fuj"),
+"4_[(0, 0), (1, 0), (1, 1), (2, 0)]": SubResource("BitMap_tigh0"),
+"4_[(0, 0), (1, 0), (1, 1), (2, 1)]": SubResource("BitMap_uit8j"),
+"4_[(0, 0), (1, 0), (2, 0), (2, 1)]": SubResource("BitMap_i1cdw"),
+"4_[(0, 0), (1, 0), (2, 0), (3, 0)]": SubResource("BitMap_nm5mt"),
+"4_[(0, 1), (0, 2), (1, 0), (1, 1)]": SubResource("BitMap_tkwy0"),
+"4_[(0, 1), (1, 0), (1, 1), (1, 2)]": SubResource("BitMap_yufuh"),
+"4_[(0, 1), (1, 0), (1, 1), (2, 0)]": SubResource("BitMap_11ecy"),
+"4_[(0, 1), (1, 0), (1, 1), (2, 1)]": SubResource("BitMap_rvc37"),
+"4_[(0, 1), (1, 1), (2, 0), (2, 1)]": SubResource("BitMap_ahbxs"),
+"4_[(0, 2), (1, 0), (1, 1), (1, 2)]": SubResource("BitMap_ghvyy")
 }
 unfinished_polyominoes = {}
