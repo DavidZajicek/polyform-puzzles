@@ -42,6 +42,7 @@ func generate_shape(_size) -> void:
 	for i in range(size):
 		broken_dicktionary = paint(broken_dicktionary)
 	
+	
 	print(iteration)
 	print(Time.get_time_string_from_unix_time(Time.get_unix_time_from_system() - time)  )
 	
@@ -63,7 +64,7 @@ func paint(broken_dicktionary: Dictionary):
 					if touching_another_painted_space(next_step_PolyBitMap, step) or first_index_allow_empty:
 						next_step_PolyBitMap.set_bitv(step, true)
 					if next_step_PolyBitMap.get_true_bit_count() == size:
-						add_to_array(next_step_PolyBitMap)
+						add_to_polyominoes_dictionary(next_step_PolyBitMap)
 					elif next_step_PolyBitMap.get_true_bit_count() < size:
 						temp_dictionary[str(step) + str(i)] = [next_step_PolyBitMap] #This overwrites, not adds so we aren't building every permutation
 						
@@ -95,26 +96,38 @@ func check_next_steps(_polyBitMap: PolyBitMap, _location: Vector2i = Vector2i.ZE
 
 
 
-func add_to_array(_polyBitMap: PolyBitMap):
+func add_to_polyominoes_dictionary(_polyBitMap: PolyBitMap):
+	
 	if _polyBitMap.get_true_bit_count() == 0:
 		print("Cannot add an empty PolyBitMap to Dictionary")
 		return
+	var poly_in_polyominoes: bool = false
 	var rotated_PolyBitMaps: Array[PolyBitMap] = rotate(_polyBitMap)
 	var fixed_PolyBitMaps: Array[PolyBitMap] = rotated_PolyBitMaps.duplicate()
+	
 	for PolyBitMap in rotated_PolyBitMaps:
 		fixed_PolyBitMaps.append(flip(PolyBitMap))
 	for fixed_PolyBitMap in fixed_PolyBitMaps:
 		var packed_array = convert_PolyBitMap_to_array(fixed_PolyBitMap)
-		if not packed_array in free_polyominoes.values():
-			var block_name: String = str(size) + "_" + str(packed_array)
-			free_polyominoes[block_name] = packed_array
-			if free_polyominoes.values().find(packed_array) != 0 and polyominoes.values().find(packed_array) == 0:
-				polyominoes[block_name] = packed_array
+		if not packed_array in polyominoes.keys():
+			polyominoes[packed_array] = fixed_PolyBitMap
+		if packed_array in free_polyominoes.keys():
+			poly_in_polyominoes = true
+	
+	var packed_array = convert_PolyBitMap_to_array(fixed_PolyBitMaps[0])
+	if not poly_in_polyominoes:
+		free_polyominoes[packed_array] = fixed_PolyBitMaps[0]
+#
+#	var packed_array = convert_PolyBitMap_to_array(align_shape(_polyBitMap))
+#	if poly_in_polyominoes and not packed_array in free_polyominoes.keys():
+##		var free_polyomino: PolyBitMap = align_shape(_polyBitMap)
+#		free_polyominoes[packed_array] = align_shape(_polyBitMap)
+		
 
 ###Works
-func rotate(_PolyBitMap: PolyBitMap, rotations: int = 4) -> Array[PolyBitMap]:
-	var rotated_PolyBitMaps: Array[PolyBitMap]
+func rotate(_PolyBitMap: PolyBitMap, rotations: int = 3) -> Array[PolyBitMap]:
 	var _new_PolyBitMap: PolyBitMap = _PolyBitMap.duplicate()
+	var rotated_PolyBitMaps: Array[PolyBitMap] = [align_shape(_new_PolyBitMap)]
 	for rotation in rotations:
 		var _polyBitMap_rotated: PolyBitMap = PolyBitMap.new()
 		_polyBitMap_rotated.create(Vector2i(size, size))
@@ -179,5 +192,3 @@ func align_shape_top(_polyBitMap: PolyBitMap) -> PolyBitMap:
 					_polyBitMap_shifted.set_bit(x, y-1, true)
 	
 	return align_shape_top(_polyBitMap_shifted)
-
-
