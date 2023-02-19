@@ -3,7 +3,7 @@ extends BitMap
 
 #var inner_walls: PackedVector2Array : get = get_all_inner_walls
 
-var orthogonally_adjacent_directions: Array[Vector2i] = [Vector2i.LEFT, Vector2i.UP, Vector2i.DOWN, Vector2i.RIGHT]
+var orthogonally_adjacent_directions: Array[Vector2i] = [Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN, Vector2i.LEFT]
 
 func get_all_inner_walls(must_be_connected_orthogonally: bool = true) -> PackedVector2Array:
 	var points: PackedVector2Array

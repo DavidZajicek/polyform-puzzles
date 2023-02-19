@@ -1,420 +1,448 @@
-[gd_resource type="Resource" script_class="Polyforms" load_steps=62 format=3]
+[gd_resource type="Resource" script_class="Polyforms" load_steps=66 format=3]
 
-[ext_resource type="Script" path="res://PolyBitMap.gd" id="1_ehdrs"]
 [ext_resource type="Script" path="res://Polyforms.gd" id="1_r7gog"]
+[ext_resource type="Script" path="res://PolyBitMap.gd" id="1_vygfp"]
 
-[sub_resource type="BitMap" id="BitMap_no85a"]
-data = {
-"data": PackedByteArray(70, 12, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_jas6y"]
-data = {
-"data": PackedByteArray(225, 16, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_86vyu"]
-data = {
-"data": PackedByteArray(67, 24, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_n6r0w"]
-data = {
-"data": PackedByteArray(228, 4, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_c4jju"]
-data = {
-"data": PackedByteArray(67, 12, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_6fhml"]
-data = {
-"data": PackedByteArray(229, 0, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_inyfq"]
-data = {
-"data": PackedByteArray(35, 12, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_lp28c"]
-data = {
-"data": PackedByteArray(167, 0, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_b8gob"]
-data = {
-"data": PackedByteArray(194, 12, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_cfwnu"]
-data = {
-"data": PackedByteArray(225, 8, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_snjdk"]
-data = {
-"data": PackedByteArray(102, 8, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_vjsqq"]
-data = {
-"data": PackedByteArray(226, 16, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_8qvak"]
-data = {
-"data": PackedByteArray(98, 24, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_jcfqq"]
-data = {
-"data": PackedByteArray(228, 8, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_74cb1"]
-data = {
-"data": PackedByteArray(195, 8, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_0pbch"]
-data = {
-"data": PackedByteArray(226, 4, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_7gnsg"]
-data = {
-"data": PackedByteArray(98, 12, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_j265q"]
-data = {
-"data": PackedByteArray(227, 0, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_4l57f"]
-data = {
-"data": PackedByteArray(99, 4, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_hfe68"]
-data = {
-"data": PackedByteArray(199, 0, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_xw3px"]
-data = {
-"data": PackedByteArray(97, 12, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_qfg1p"]
-data = {
-"data": PackedByteArray(230, 0, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_fpc1u"]
-data = {
-"data": PackedByteArray(99, 8, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_kvvbi"]
-data = {
-"data": PackedByteArray(103, 0, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_s46nu"]
-data = {
-"data": PackedByteArray(66, 28, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_gbd36"]
-data = {
-"data": PackedByteArray(225, 4, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_1a0a1"]
-data = {
-"data": PackedByteArray(71, 8, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_aa24w"]
-data = {
-"data": PackedByteArray(228, 16, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_601vo"]
-data = {
-"data": PackedByteArray(66, 12, 1, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_1gppc"]
-data = {
-"data": PackedByteArray(226, 1, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_eafm7"]
-data = {
-"data": PackedByteArray(97, 132, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_kqxtp"]
-data = {
-"data": PackedByteArray(143, 0, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_b48h6"]
-data = {
-"data": PackedByteArray(33, 140, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_qkywe"]
-data = {
-"data": PackedByteArray(228, 1, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_60oi3"]
-data = {
-"data": PackedByteArray(98, 8, 1, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_dfjsn"]
-data = {
-"data": PackedByteArray(79, 0, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_af2fm"]
-data = {
-"data": PackedByteArray(132, 28, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_5rtyd"]
-data = {
-"data": PackedByteArray(33, 28, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_kq3ip"]
-data = {
-"data": PackedByteArray(39, 4, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_drmim"]
-data = {
-"data": PackedByteArray(135, 16, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_p0gwb"]
-data = {
-"data": PackedByteArray(66, 140, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_er8l6"]
-data = {
-"data": PackedByteArray(195, 1, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_ao4t7"]
-data = {
-"data": PackedByteArray(98, 132, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_8hfmq"]
-data = {
-"data": PackedByteArray(135, 1, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_3x68g"]
-data = {
-"data": PackedByteArray(33, 12, 1, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_iua6g"]
-data = {
-"data": PackedByteArray(236, 0, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_oafwi"]
-data = {
-"data": PackedByteArray(97, 8, 1, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_mgl4a"]
-data = {
-"data": PackedByteArray(110, 0, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_s603m"]
-data = {
-"data": PackedByteArray(35, 132, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_ooyew"]
-data = {
-"data": PackedByteArray(15, 1, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_3dtpj"]
-data = {
-"data": PackedByteArray(66, 136, 1, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_gfm3a"]
-data = {
-"data": PackedByteArray(225, 1, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_vivhd"]
-data = {
-"data": PackedByteArray(67, 8, 1, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_l8n7c"]
-data = {
-"data": PackedByteArray(47, 0, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_r2o2s"]
-data = {
-"data": PackedByteArray(33, 132, 1, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_u2om2"]
-data = {
-"data": PackedByteArray(232, 1, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_kqsfi"]
-data = {
-"data": PackedByteArray(226, 8, 0, 0),
-"size": Vector2i(5, 5)
-}
-script = ExtResource("1_ehdrs")
-
-[sub_resource type="BitMap" id="BitMap_kt6cc"]
+[sub_resource type="BitMap" id="BitMap_7dg5i"]
 data = {
 "data": PackedByteArray(33, 132, 16, 0),
 "size": Vector2i(5, 5)
 }
-script = ExtResource("1_ehdrs")
+script = ExtResource("1_vygfp")
 
-[sub_resource type="BitMap" id="BitMap_shv6h"]
+[sub_resource type="BitMap" id="BitMap_4c68r"]
+data = {
+"data": PackedByteArray(35, 132, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_k4owc"]
+data = {
+"data": PackedByteArray(97, 132, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_k6gk3"]
+data = {
+"data": PackedByteArray(33, 140, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_ykhcj"]
+data = {
+"data": PackedByteArray(33, 132, 1, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_0e1jm"]
+data = {
+"data": PackedByteArray(99, 4, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_f24p1"]
+data = {
+"data": PackedByteArray(35, 12, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_yxrhm"]
+data = {
+"data": PackedByteArray(39, 4, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_up7n7"]
+data = {
+"data": PackedByteArray(97, 12, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_cnv15"]
+data = {
+"data": PackedByteArray(225, 4, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_qjxux"]
+data = {
+"data": PackedByteArray(33, 12, 1, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_8f1q5"]
+data = {
+"data": PackedByteArray(33, 28, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_pp7yi"]
+data = {
+"data": PackedByteArray(99, 8, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_r0ix7"]
+data = {
+"data": PackedByteArray(103, 0, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_n5wue"]
+data = {
+"data": PackedByteArray(227, 0, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_jlhq4"]
+data = {
+"data": PackedByteArray(167, 0, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_n83kp"]
+data = {
+"data": PackedByteArray(47, 0, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_6i0gh"]
+data = {
+"data": PackedByteArray(97, 8, 1, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_pcyr7"]
+data = {
+"data": PackedByteArray(225, 8, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_pjat5"]
+data = {
+"data": PackedByteArray(229, 0, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_q4d03"]
+data = {
+"data": PackedByteArray(225, 16, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_o4v5m"]
+data = {
+"data": PackedByteArray(225, 1, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_3r7hm"]
+data = {
+"data": PackedByteArray(67, 12, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_inlko"]
+data = {
+"data": PackedByteArray(67, 8, 1, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_r0vsa"]
+data = {
+"data": PackedByteArray(71, 8, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_htcfr"]
+data = {
+"data": PackedByteArray(195, 8, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_xooli"]
+data = {
+"data": PackedByteArray(67, 24, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_yfevo"]
+data = {
+"data": PackedByteArray(199, 0, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_l2mi5"]
+data = {
+"data": PackedByteArray(79, 0, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_t5xgv"]
+data = {
+"data": PackedByteArray(195, 1, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_3sf4i"]
+data = {
+"data": PackedByteArray(135, 16, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_28de0"]
+data = {
+"data": PackedByteArray(143, 0, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_607wq"]
+data = {
+"data": PackedByteArray(135, 1, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_12e2m"]
+data = {
+"data": PackedByteArray(15, 1, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_rvvmo"]
 data = {
 "data": PackedByteArray(31, 0, 0, 0),
 "size": Vector2i(5, 5)
 }
-script = ExtResource("1_ehdrs")
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_li16h"]
+data = {
+"data": PackedByteArray(98, 132, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_vgg1x"]
+data = {
+"data": PackedByteArray(98, 12, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_tke7t"]
+data = {
+"data": PackedByteArray(226, 4, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_5os0v"]
+data = {
+"data": PackedByteArray(228, 4, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_5m8p4"]
+data = {
+"data": PackedByteArray(98, 8, 1, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_rmpy0"]
+data = {
+"data": PackedByteArray(102, 8, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_mio56"]
+data = {
+"data": PackedByteArray(226, 8, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_jio5x"]
+data = {
+"data": PackedByteArray(98, 24, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_574o0"]
+data = {
+"data": PackedByteArray(230, 0, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_44i8m"]
+data = {
+"data": PackedByteArray(110, 0, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_in212"]
+data = {
+"data": PackedByteArray(226, 16, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_yh57e"]
+data = {
+"data": PackedByteArray(226, 1, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_1ukfs"]
+data = {
+"data": PackedByteArray(228, 8, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_c3aaj"]
+data = {
+"data": PackedByteArray(228, 16, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_joec3"]
+data = {
+"data": PackedByteArray(236, 0, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_ko3g3"]
+data = {
+"data": PackedByteArray(228, 1, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_33a84"]
+data = {
+"data": PackedByteArray(232, 1, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_qtew4"]
+data = {
+"data": PackedByteArray(66, 140, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_k1hld"]
+data = {
+"data": PackedByteArray(66, 12, 1, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_2hvcg"]
+data = {
+"data": PackedByteArray(70, 12, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_floau"]
+data = {
+"data": PackedByteArray(194, 12, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_7ehr2"]
+data = {
+"data": PackedByteArray(66, 28, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_ubfun"]
+data = {
+"data": PackedByteArray(132, 28, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_hhijm"]
+data = {
+"data": PackedByteArray(66, 136, 1, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_y7p64"]
+data = {
+"data": PackedByteArray(195, 16, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_gjh3j"]
+data = {
+"data": PackedByteArray(196, 12, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_54nd3"]
+data = {
+"data": PackedByteArray(97, 24, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
+
+[sub_resource type="BitMap" id="BitMap_qej4p"]
+data = {
+"data": PackedByteArray(102, 4, 0, 0),
+"size": Vector2i(5, 5)
+}
+script = ExtResource("1_vygfp")
 
 [resource]
 script = ExtResource("1_r7gog")
@@ -438,6 +466,7 @@ polyominoes = {
 "5_[(0, 0), (0, 1), (1, 0), (2, 0), (3, 0)]": PackedVector2Array(0, 0, 0, 1, 1, 0, 2, 0, 3, 0),
 "5_[(0, 0), (0, 1), (1, 1), (1, 2), (1, 3)]": PackedVector2Array(0, 0, 0, 1, 1, 1, 1, 2, 1, 3),
 "5_[(0, 0), (0, 1), (1, 1), (1, 2), (2, 1)]": PackedVector2Array(0, 0, 0, 1, 1, 1, 1, 2, 2, 1),
+"5_[(0, 0), (0, 1), (1, 1), (1, 2), (2, 2)]": PackedVector2Array(0, 0, 0, 1, 1, 1, 1, 2, 2, 2),
 "5_[(0, 0), (0, 1), (1, 1), (2, 0), (2, 1)]": PackedVector2Array(0, 0, 0, 1, 1, 1, 2, 0, 2, 1),
 "5_[(0, 0), (0, 1), (1, 1), (2, 1), (2, 2)]": PackedVector2Array(0, 0, 0, 1, 1, 1, 2, 1, 2, 2),
 "5_[(0, 0), (0, 1), (1, 1), (2, 1), (3, 1)]": PackedVector2Array(0, 0, 0, 1, 1, 1, 2, 1, 3, 1),
@@ -448,6 +477,7 @@ polyominoes = {
 "5_[(0, 0), (1, 0), (1, 1), (1, 2), (2, 2)]": PackedVector2Array(0, 0, 1, 0, 1, 1, 1, 2, 2, 2),
 "5_[(0, 0), (1, 0), (1, 1), (2, 0), (2, 1)]": PackedVector2Array(0, 0, 1, 0, 1, 1, 2, 0, 2, 1),
 "5_[(0, 0), (1, 0), (1, 1), (2, 0), (3, 0)]": PackedVector2Array(0, 0, 1, 0, 1, 1, 2, 0, 3, 0),
+"5_[(0, 0), (1, 0), (1, 1), (2, 1), (2, 2)]": PackedVector2Array(0, 0, 1, 0, 1, 1, 2, 1, 2, 2),
 "5_[(0, 0), (1, 0), (1, 1), (2, 1), (3, 1)]": PackedVector2Array(0, 0, 1, 0, 1, 1, 2, 1, 3, 1),
 "5_[(0, 0), (1, 0), (2, 0), (2, 1), (2, 2)]": PackedVector2Array(0, 0, 1, 0, 2, 0, 2, 1, 2, 2),
 "5_[(0, 0), (1, 0), (2, 0), (2, 1), (3, 0)]": PackedVector2Array(0, 0, 1, 0, 2, 0, 2, 1, 3, 0),
@@ -456,6 +486,7 @@ polyominoes = {
 "5_[(0, 0), (1, 0), (2, 0), (3, 0), (4, 0)]": PackedVector2Array(0, 0, 1, 0, 2, 0, 3, 0, 4, 0),
 "5_[(0, 1), (0, 2), (0, 3), (1, 0), (1, 1)]": PackedVector2Array(0, 1, 0, 2, 0, 3, 1, 0, 1, 1),
 "5_[(0, 1), (0, 2), (1, 0), (1, 1), (1, 2)]": PackedVector2Array(0, 1, 0, 2, 1, 0, 1, 1, 1, 2),
+"5_[(0, 1), (0, 2), (1, 0), (1, 1), (2, 0)]": PackedVector2Array(0, 1, 0, 2, 1, 0, 1, 1, 2, 0),
 "5_[(0, 1), (0, 2), (1, 0), (1, 1), (2, 1)]": PackedVector2Array(0, 1, 0, 2, 1, 0, 1, 1, 2, 1),
 "5_[(0, 1), (0, 2), (1, 1), (2, 0), (2, 1)]": PackedVector2Array(0, 1, 0, 2, 1, 1, 2, 0, 2, 1),
 "5_[(0, 1), (1, 0), (1, 1), (1, 2), (1, 3)]": PackedVector2Array(0, 1, 1, 0, 1, 1, 1, 2, 1, 3),
@@ -476,68 +507,73 @@ polyominoes = {
 "5_[(0, 2), (1, 0), (1, 1), (1, 2), (2, 0)]": PackedVector2Array(0, 2, 1, 0, 1, 1, 1, 2, 2, 0),
 "5_[(0, 2), (1, 0), (1, 1), (1, 2), (2, 1)]": PackedVector2Array(0, 2, 1, 0, 1, 1, 1, 2, 2, 1),
 "5_[(0, 2), (1, 0), (1, 1), (1, 2), (2, 2)]": PackedVector2Array(0, 2, 1, 0, 1, 1, 1, 2, 2, 2),
+"5_[(0, 2), (1, 1), (1, 2), (2, 0), (2, 1)]": PackedVector2Array(0, 2, 1, 1, 1, 2, 2, 0, 2, 1),
 "5_[(0, 2), (1, 2), (2, 0), (2, 1), (2, 2)]": PackedVector2Array(0, 2, 1, 2, 2, 0, 2, 1, 2, 2),
 "5_[(0, 3), (1, 0), (1, 1), (1, 2), (1, 3)]": PackedVector2Array(0, 3, 1, 0, 1, 1, 1, 2, 1, 3)
 }
 free_polyominoes = {
-"5_[(0, 0), (0, 1), (0, 2), (0, 3), (0, 4)]": SubResource("BitMap_kt6cc"),
-"5_[(0, 0), (0, 1), (0, 2), (0, 3), (1, 0)]": SubResource("BitMap_s603m"),
-"5_[(0, 0), (0, 1), (0, 2), (0, 3), (1, 1)]": SubResource("BitMap_eafm7"),
-"5_[(0, 0), (0, 1), (0, 2), (0, 3), (1, 2)]": SubResource("BitMap_b48h6"),
-"5_[(0, 0), (0, 1), (0, 2), (0, 3), (1, 3)]": SubResource("BitMap_r2o2s"),
-"5_[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1)]": SubResource("BitMap_4l57f"),
-"5_[(0, 0), (0, 1), (0, 2), (1, 0), (1, 2)]": SubResource("BitMap_inyfq"),
-"5_[(0, 0), (0, 1), (0, 2), (1, 0), (2, 0)]": SubResource("BitMap_kq3ip"),
-"5_[(0, 0), (0, 1), (0, 2), (1, 1), (1, 2)]": SubResource("BitMap_xw3px"),
-"5_[(0, 0), (0, 1), (0, 2), (1, 1), (2, 1)]": SubResource("BitMap_gbd36"),
-"5_[(0, 0), (0, 1), (0, 2), (1, 2), (1, 3)]": SubResource("BitMap_3x68g"),
-"5_[(0, 0), (0, 1), (0, 2), (1, 2), (2, 2)]": SubResource("BitMap_5rtyd"),
-"5_[(0, 0), (0, 1), (1, 0), (1, 1), (1, 2)]": SubResource("BitMap_fpc1u"),
-"5_[(0, 0), (0, 1), (1, 0), (1, 1), (2, 0)]": SubResource("BitMap_kvvbi"),
-"5_[(0, 0), (0, 1), (1, 0), (1, 1), (2, 1)]": SubResource("BitMap_j265q"),
-"5_[(0, 0), (0, 1), (1, 0), (2, 0), (2, 1)]": SubResource("BitMap_lp28c"),
-"5_[(0, 0), (0, 1), (1, 0), (2, 0), (3, 0)]": SubResource("BitMap_l8n7c"),
-"5_[(0, 0), (0, 1), (1, 1), (1, 2), (1, 3)]": SubResource("BitMap_oafwi"),
-"5_[(0, 0), (0, 1), (1, 1), (1, 2), (2, 1)]": SubResource("BitMap_cfwnu"),
-"5_[(0, 0), (0, 1), (1, 1), (2, 0), (2, 1)]": SubResource("BitMap_6fhml"),
-"5_[(0, 0), (0, 1), (1, 1), (2, 1), (2, 2)]": SubResource("BitMap_jas6y"),
-"5_[(0, 0), (0, 1), (1, 1), (2, 1), (3, 1)]": SubResource("BitMap_gfm3a"),
-"5_[(0, 0), (0, 2), (1, 0), (1, 1), (1, 2)]": SubResource("BitMap_c4jju"),
-"5_[(0, 0), (1, 0), (1, 1), (1, 2), (1, 3)]": SubResource("BitMap_vivhd"),
-"5_[(0, 0), (1, 0), (1, 1), (1, 2), (2, 0)]": SubResource("BitMap_1a0a1"),
-"5_[(0, 0), (1, 0), (1, 1), (1, 2), (2, 1)]": SubResource("BitMap_74cb1"),
-"5_[(0, 0), (1, 0), (1, 1), (1, 2), (2, 2)]": SubResource("BitMap_86vyu"),
-"5_[(0, 0), (1, 0), (1, 1), (2, 0), (2, 1)]": SubResource("BitMap_hfe68"),
-"5_[(0, 0), (1, 0), (1, 1), (2, 0), (3, 0)]": SubResource("BitMap_dfjsn"),
-"5_[(0, 0), (1, 0), (1, 1), (2, 1), (3, 1)]": SubResource("BitMap_er8l6"),
-"5_[(0, 0), (1, 0), (2, 0), (2, 1), (2, 2)]": SubResource("BitMap_drmim"),
-"5_[(0, 0), (1, 0), (2, 0), (2, 1), (3, 0)]": SubResource("BitMap_kqxtp"),
-"5_[(0, 0), (1, 0), (2, 0), (2, 1), (3, 1)]": SubResource("BitMap_8hfmq"),
-"5_[(0, 0), (1, 0), (2, 0), (3, 0), (3, 1)]": SubResource("BitMap_ooyew"),
-"5_[(0, 0), (1, 0), (2, 0), (3, 0), (4, 0)]": SubResource("BitMap_shv6h"),
-"5_[(0, 1), (0, 2), (0, 3), (1, 0), (1, 1)]": SubResource("BitMap_ao4t7"),
-"5_[(0, 1), (0, 2), (1, 0), (1, 1), (1, 2)]": SubResource("BitMap_7gnsg"),
-"5_[(0, 1), (0, 2), (1, 0), (1, 1), (2, 1)]": SubResource("BitMap_0pbch"),
-"5_[(0, 1), (0, 2), (1, 1), (2, 0), (2, 1)]": SubResource("BitMap_n6r0w"),
-"5_[(0, 1), (1, 0), (1, 1), (1, 2), (1, 3)]": SubResource("BitMap_60oi3"),
-"5_[(0, 1), (1, 0), (1, 1), (1, 2), (2, 0)]": SubResource("BitMap_snjdk"),
-"5_[(0, 1), (1, 0), (1, 1), (1, 2), (2, 1)]": SubResource("BitMap_kqsfi"),
-"5_[(0, 1), (1, 0), (1, 1), (1, 2), (2, 2)]": SubResource("BitMap_8qvak"),
-"5_[(0, 1), (1, 0), (1, 1), (2, 0), (2, 1)]": SubResource("BitMap_qfg1p"),
-"5_[(0, 1), (1, 0), (1, 1), (2, 0), (3, 0)]": SubResource("BitMap_mgl4a"),
-"5_[(0, 1), (1, 0), (1, 1), (2, 1), (2, 2)]": SubResource("BitMap_vjsqq"),
-"5_[(0, 1), (1, 0), (1, 1), (2, 1), (3, 1)]": SubResource("BitMap_1gppc"),
-"5_[(0, 1), (1, 1), (1, 2), (2, 0), (2, 1)]": SubResource("BitMap_jcfqq"),
-"5_[(0, 1), (1, 1), (2, 0), (2, 1), (2, 2)]": SubResource("BitMap_aa24w"),
-"5_[(0, 1), (1, 1), (2, 0), (2, 1), (3, 0)]": SubResource("BitMap_iua6g"),
-"5_[(0, 1), (1, 1), (2, 0), (2, 1), (3, 1)]": SubResource("BitMap_qkywe"),
-"5_[(0, 1), (1, 1), (2, 1), (3, 0), (3, 1)]": SubResource("BitMap_u2om2"),
-"5_[(0, 2), (0, 3), (1, 0), (1, 1), (1, 2)]": SubResource("BitMap_p0gwb"),
-"5_[(0, 2), (1, 0), (1, 1), (1, 2), (1, 3)]": SubResource("BitMap_601vo"),
-"5_[(0, 2), (1, 0), (1, 1), (1, 2), (2, 0)]": SubResource("BitMap_no85a"),
-"5_[(0, 2), (1, 0), (1, 1), (1, 2), (2, 1)]": SubResource("BitMap_b8gob"),
-"5_[(0, 2), (1, 0), (1, 1), (1, 2), (2, 2)]": SubResource("BitMap_s46nu"),
-"5_[(0, 2), (1, 2), (2, 0), (2, 1), (2, 2)]": SubResource("BitMap_af2fm"),
-"5_[(0, 3), (1, 0), (1, 1), (1, 2), (1, 3)]": SubResource("BitMap_3dtpj")
+"5_[(0, 0), (0, 1), (0, 2), (0, 3), (0, 4)]": SubResource("BitMap_7dg5i"),
+"5_[(0, 0), (0, 1), (0, 2), (0, 3), (1, 0)]": SubResource("BitMap_4c68r"),
+"5_[(0, 0), (0, 1), (0, 2), (0, 3), (1, 1)]": SubResource("BitMap_k4owc"),
+"5_[(0, 0), (0, 1), (0, 2), (0, 3), (1, 2)]": SubResource("BitMap_k6gk3"),
+"5_[(0, 0), (0, 1), (0, 2), (0, 3), (1, 3)]": SubResource("BitMap_ykhcj"),
+"5_[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1)]": SubResource("BitMap_0e1jm"),
+"5_[(0, 0), (0, 1), (0, 2), (1, 0), (1, 2)]": SubResource("BitMap_f24p1"),
+"5_[(0, 0), (0, 1), (0, 2), (1, 0), (2, 0)]": SubResource("BitMap_yxrhm"),
+"5_[(0, 0), (0, 1), (0, 2), (1, 1), (1, 2)]": SubResource("BitMap_up7n7"),
+"5_[(0, 0), (0, 1), (0, 2), (1, 1), (2, 1)]": SubResource("BitMap_cnv15"),
+"5_[(0, 0), (0, 1), (0, 2), (1, 2), (1, 3)]": SubResource("BitMap_qjxux"),
+"5_[(0, 0), (0, 1), (0, 2), (1, 2), (2, 2)]": SubResource("BitMap_8f1q5"),
+"5_[(0, 0), (0, 1), (1, 0), (1, 1), (1, 2)]": SubResource("BitMap_pp7yi"),
+"5_[(0, 0), (0, 1), (1, 0), (1, 1), (2, 0)]": SubResource("BitMap_r0ix7"),
+"5_[(0, 0), (0, 1), (1, 0), (1, 1), (2, 1)]": SubResource("BitMap_n5wue"),
+"5_[(0, 0), (0, 1), (1, 0), (2, 0), (2, 1)]": SubResource("BitMap_jlhq4"),
+"5_[(0, 0), (0, 1), (1, 0), (2, 0), (3, 0)]": SubResource("BitMap_n83kp"),
+"5_[(0, 0), (0, 1), (1, 1), (1, 2), (1, 3)]": SubResource("BitMap_6i0gh"),
+"5_[(0, 0), (0, 1), (1, 1), (1, 2), (2, 1)]": SubResource("BitMap_pcyr7"),
+"5_[(0, 0), (0, 1), (1, 1), (1, 2), (2, 2)]": SubResource("BitMap_54nd3"),
+"5_[(0, 0), (0, 1), (1, 1), (2, 0), (2, 1)]": SubResource("BitMap_pjat5"),
+"5_[(0, 0), (0, 1), (1, 1), (2, 1), (2, 2)]": SubResource("BitMap_q4d03"),
+"5_[(0, 0), (0, 1), (1, 1), (2, 1), (3, 1)]": SubResource("BitMap_o4v5m"),
+"5_[(0, 0), (0, 2), (1, 0), (1, 1), (1, 2)]": SubResource("BitMap_3r7hm"),
+"5_[(0, 0), (1, 0), (1, 1), (1, 2), (1, 3)]": SubResource("BitMap_inlko"),
+"5_[(0, 0), (1, 0), (1, 1), (1, 2), (2, 0)]": SubResource("BitMap_r0vsa"),
+"5_[(0, 0), (1, 0), (1, 1), (1, 2), (2, 1)]": SubResource("BitMap_htcfr"),
+"5_[(0, 0), (1, 0), (1, 1), (1, 2), (2, 2)]": SubResource("BitMap_xooli"),
+"5_[(0, 0), (1, 0), (1, 1), (2, 0), (2, 1)]": SubResource("BitMap_yfevo"),
+"5_[(0, 0), (1, 0), (1, 1), (2, 0), (3, 0)]": SubResource("BitMap_l2mi5"),
+"5_[(0, 0), (1, 0), (1, 1), (2, 1), (2, 2)]": SubResource("BitMap_y7p64"),
+"5_[(0, 0), (1, 0), (1, 1), (2, 1), (3, 1)]": SubResource("BitMap_t5xgv"),
+"5_[(0, 0), (1, 0), (2, 0), (2, 1), (2, 2)]": SubResource("BitMap_3sf4i"),
+"5_[(0, 0), (1, 0), (2, 0), (2, 1), (3, 0)]": SubResource("BitMap_28de0"),
+"5_[(0, 0), (1, 0), (2, 0), (2, 1), (3, 1)]": SubResource("BitMap_607wq"),
+"5_[(0, 0), (1, 0), (2, 0), (3, 0), (3, 1)]": SubResource("BitMap_12e2m"),
+"5_[(0, 0), (1, 0), (2, 0), (3, 0), (4, 0)]": SubResource("BitMap_rvvmo"),
+"5_[(0, 1), (0, 2), (0, 3), (1, 0), (1, 1)]": SubResource("BitMap_li16h"),
+"5_[(0, 1), (0, 2), (1, 0), (1, 1), (1, 2)]": SubResource("BitMap_vgg1x"),
+"5_[(0, 1), (0, 2), (1, 0), (1, 1), (2, 0)]": SubResource("BitMap_qej4p"),
+"5_[(0, 1), (0, 2), (1, 0), (1, 1), (2, 1)]": SubResource("BitMap_tke7t"),
+"5_[(0, 1), (0, 2), (1, 1), (2, 0), (2, 1)]": SubResource("BitMap_5os0v"),
+"5_[(0, 1), (1, 0), (1, 1), (1, 2), (1, 3)]": SubResource("BitMap_5m8p4"),
+"5_[(0, 1), (1, 0), (1, 1), (1, 2), (2, 0)]": SubResource("BitMap_rmpy0"),
+"5_[(0, 1), (1, 0), (1, 1), (1, 2), (2, 1)]": SubResource("BitMap_mio56"),
+"5_[(0, 1), (1, 0), (1, 1), (1, 2), (2, 2)]": SubResource("BitMap_jio5x"),
+"5_[(0, 1), (1, 0), (1, 1), (2, 0), (2, 1)]": SubResource("BitMap_574o0"),
+"5_[(0, 1), (1, 0), (1, 1), (2, 0), (3, 0)]": SubResource("BitMap_44i8m"),
+"5_[(0, 1), (1, 0), (1, 1), (2, 1), (2, 2)]": SubResource("BitMap_in212"),
+"5_[(0, 1), (1, 0), (1, 1), (2, 1), (3, 1)]": SubResource("BitMap_yh57e"),
+"5_[(0, 1), (1, 1), (1, 2), (2, 0), (2, 1)]": SubResource("BitMap_1ukfs"),
+"5_[(0, 1), (1, 1), (2, 0), (2, 1), (2, 2)]": SubResource("BitMap_c3aaj"),
+"5_[(0, 1), (1, 1), (2, 0), (2, 1), (3, 0)]": SubResource("BitMap_joec3"),
+"5_[(0, 1), (1, 1), (2, 0), (2, 1), (3, 1)]": SubResource("BitMap_ko3g3"),
+"5_[(0, 1), (1, 1), (2, 1), (3, 0), (3, 1)]": SubResource("BitMap_33a84"),
+"5_[(0, 2), (0, 3), (1, 0), (1, 1), (1, 2)]": SubResource("BitMap_qtew4"),
+"5_[(0, 2), (1, 0), (1, 1), (1, 2), (1, 3)]": SubResource("BitMap_k1hld"),
+"5_[(0, 2), (1, 0), (1, 1), (1, 2), (2, 0)]": SubResource("BitMap_2hvcg"),
+"5_[(0, 2), (1, 0), (1, 1), (1, 2), (2, 1)]": SubResource("BitMap_floau"),
+"5_[(0, 2), (1, 0), (1, 1), (1, 2), (2, 2)]": SubResource("BitMap_7ehr2"),
+"5_[(0, 2), (1, 1), (1, 2), (2, 0), (2, 1)]": SubResource("BitMap_gjh3j"),
+"5_[(0, 2), (1, 2), (2, 0), (2, 1), (2, 2)]": SubResource("BitMap_ubfun"),
+"5_[(0, 3), (1, 0), (1, 1), (1, 2), (1, 3)]": SubResource("BitMap_hhijm")
 }
 unfinished_polyominoes = {}

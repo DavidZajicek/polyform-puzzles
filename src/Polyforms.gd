@@ -57,16 +57,15 @@ func paint(broken_dicktionary: Dictionary):
 			var next_steps: PackedVector2Array = polyBitMap.get_all_outer_walls(walls)
 			
 			for i in next_steps.size():
-			
+				var _polyBitMap: PolyBitMap = polyBitMap.duplicate()
 				for step in next_steps:
-					var next_step_PolyBitMap: PolyBitMap = polyBitMap.duplicate()
-					if i % next_steps.size() != 0:
-						if touching_another_painted_space(next_step_PolyBitMap, step) or first_index_allow_empty:
-							next_step_PolyBitMap.set_bitv(step, true)
+					var next_step_PolyBitMap: PolyBitMap = _polyBitMap.duplicate()
+					if touching_another_painted_space(next_step_PolyBitMap, step) or first_index_allow_empty:
+						next_step_PolyBitMap.set_bitv(step, true)
 					if next_step_PolyBitMap.get_true_bit_count() == size:
 						add_to_array(next_step_PolyBitMap)
 					elif next_step_PolyBitMap.get_true_bit_count() < size:
-						temp_dictionary[step] = [next_step_PolyBitMap] #This overwrites, not adds so we aren't building every permutation
+						temp_dictionary[str(step) + str(i)] = [next_step_PolyBitMap] #This overwrites, not adds so we aren't building every permutation
 						
 					iteration += 1
 			
