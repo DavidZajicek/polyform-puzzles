@@ -17,7 +17,7 @@ var fixed_index: int = 0
 var free_index: int = 0
 var iteration: int = 0
 
-var _rotated_bitmap_array: Array[BitMap]
+var _rotated_PolyBitMap_array: Array[PolyBitMap]
 
 func generate_shape(_size) -> void:
 	#TODO: extract into a "setup" method
@@ -25,50 +25,48 @@ func generate_shape(_size) -> void:
 		return
 	size = _size
 	
-	_rotated_bitmap_array.clear()
+	_rotated_PolyBitMap_array.clear()
 	first_index_allow_empty = true
 	
-	var bitmap: BitMap = BitMap.new()
-	bitmap.create(Vector2i(size,size))
+	var polyBitMap: PolyBitMap = PolyBitMap.new()
+	polyBitMap.create(Vector2i(size,size))
 	location = Vector2i(Vector2(size, size).clamp(Vector2.ZERO, Vector2i(size, size)) / 2)
 	var _permutations: int = size * size ** 2
-	var bitmap_array: Array[BitMap] = [bitmap]
+	var polyBitMap_array: Array[PolyBitMap] = [polyBitMap]
 	
 	var time = Time.get_unix_time_from_system()
 	
+	
 	var broken_dicktionary: Dictionary
-	broken_dicktionary[location] = [bitmap]
+	broken_dicktionary[location] = [polyBitMap]
 	for i in range(size+1):
 		broken_dicktionary = paint(broken_dicktionary)
 	
 	print(iteration)
 	print(Time.get_time_string_from_unix_time(Time.get_unix_time_from_system() - time)  )
-#
-#
-#
-#
-#
-#
+	
+	for poly in free_polyominoes.values():
+		print(poly.get_all_inner_walls())
 	ResourceSaver.save(self, resource_path)
 	
 
 func paint(broken_dicktionary: Dictionary):
 	var temp_dictionary: Dictionary
 	for _location in broken_dicktionary:
-		for bitmap in broken_dicktionary[_location]:
-			var next_steps: = check_next_steps(bitmap, _location)
+		for polyBitMap in broken_dicktionary[_location]:
+			var next_steps: = check_next_steps(polyBitMap, _location)
 			
 			for i in next_steps.size():
 			
 				for step in next_steps:
-					var next_step_bitmap: BitMap = bitmap.duplicate()
+					var next_step_PolyBitMap: PolyBitMap = polyBitMap.duplicate()
 					if i % next_steps.size() != 0:
-						if touching_another_painted_space(next_step_bitmap, step) or first_index_allow_empty:
-							next_step_bitmap.set_bitv(step, true)
-					if next_step_bitmap.get_true_bit_count() == size:
-						add_to_array(next_step_bitmap)
-					elif next_step_bitmap.get_true_bit_count() < size:
-						temp_dictionary[step] = [next_step_bitmap] #This overwrites, not adds so we aren't building every permutation
+						if touching_another_painted_space(next_step_PolyBitMap, step) or first_index_allow_empty:
+							next_step_PolyBitMap.set_bitv(step, true)
+					if next_step_PolyBitMap.get_true_bit_count() == size:
+						add_to_array(next_step_PolyBitMap)
+					elif next_step_PolyBitMap.get_true_bit_count() < size:
+						temp_dictionary[step] = [next_step_PolyBitMap] #This overwrites, not adds so we aren't building every permutation
 						
 					iteration += 1
 			
@@ -76,19 +74,19 @@ func paint(broken_dicktionary: Dictionary):
 	return temp_dictionary.duplicate()
 	
 
-func touching_another_painted_space(_bitmap: BitMap, _location: Vector2i = Vector2i.ZERO) -> bool:
+func touching_another_painted_space(_PolyBitMap: PolyBitMap, _location: Vector2i = Vector2i.ZERO) -> bool:
 	var adjacent_tiles: bool = false
 	for step in steps:
-		if _bitmap.get_bitv((_location + step).clamp(Vector2i.ZERO, Vector2i(size-1, size-1))):
+		if _PolyBitMap.get_bitv((_location + step).clamp(Vector2i.ZERO, Vector2i(size-1, size-1))):
 			adjacent_tiles = true
 	return adjacent_tiles
 
 
-func check_next_steps(_bitmap: BitMap, _location: Vector2i = Vector2i.ZERO) -> Array[Vector2i]:
+func check_next_steps(_polyBitMap: PolyBitMap, _location: Vector2i = Vector2i.ZERO) -> Array[Vector2i]:
 	var unpainted_bits: Array[Vector2i] = []
 	for step in steps:
 		var next_step = (_location + step).clamp(Vector2i.ZERO, Vector2i(size-1, size-1))
-		if not _bitmap.get_bitv(next_step) and next_step not in unpainted_bits:
+		if not _polyBitMap.get_bitv(next_step) and next_step not in unpainted_bits:
 			unpainted_bits.append(next_step)
 	if not first_index_allow_empty:
 		for step in unpainted_bits:
@@ -98,88 +96,88 @@ func check_next_steps(_bitmap: BitMap, _location: Vector2i = Vector2i.ZERO) -> A
 
 
 
-func add_to_array(_bitmap: BitMap):
-	if _bitmap.get_true_bit_count() == 0:
-		print("Cannot add an empty BitMap to Dictionary")
+func add_to_array(_PolyBitMap: PolyBitMap):
+	if _PolyBitMap.get_true_bit_count() == 0:
+		print("Cannot add an empty PolyBitMap to Dictionary")
 		return
-	var rotated_bitmaps: Array[BitMap] = rotate(_bitmap)
-	var fixed_bitmaps: Array[BitMap] = rotated_bitmaps.duplicate()
-	for bitmap in rotated_bitmaps:
-		fixed_bitmaps.append(flip(bitmap))
-	for fixed_bitmap in fixed_bitmaps:
-		var packed_array = convert_bitmap_to_array(fixed_bitmap)
+	var rotated_PolyBitMaps: Array[PolyBitMap] = rotate(_PolyBitMap)
+	var fixed_PolyBitMaps: Array[PolyBitMap] = rotated_PolyBitMaps.duplicate()
+	for PolyBitMap in rotated_PolyBitMaps:
+		fixed_PolyBitMaps.append(flip(PolyBitMap))
+	for fixed_PolyBitMap in fixed_PolyBitMaps:
+		var packed_array = convert_PolyBitMap_to_array(fixed_PolyBitMap)
 		if not packed_array in polyominoes.values():
 			var block_name: String = str(size) + "_" + str(packed_array)
 			polyominoes[block_name] = packed_array
-			free_polyominoes[block_name] = fixed_bitmap
+			free_polyominoes[block_name] = fixed_PolyBitMap
 
 ###Works
-func rotate(_bitmap: BitMap, rotations: int = 4) -> Array[BitMap]:
-	var rotated_bitmaps: Array[BitMap]
-	var _new_bitmap: BitMap = _bitmap.duplicate()
+func rotate(_PolyBitMap: PolyBitMap, rotations: int = 4) -> Array[PolyBitMap]:
+	var rotated_PolyBitMaps: Array[PolyBitMap]
+	var _new_PolyBitMap: PolyBitMap = _PolyBitMap.duplicate()
 	for rotation in rotations:
-		var _bitmap_rotated: BitMap = BitMap.new()
-		_bitmap_rotated.create(Vector2i(size, size))
+		var _polyBitMap_rotated: PolyBitMap = PolyBitMap.new()
+		_polyBitMap_rotated.create(Vector2i(size, size))
 		for x in size:
 			for y in size:
-				_bitmap_rotated.set_bit(size -y -1, x, _new_bitmap.get_bit(x, y))
-		var aligned_bitmap = align_shape(_bitmap_rotated)
-		rotated_bitmaps.append(aligned_bitmap)
-		_new_bitmap = aligned_bitmap
+				_polyBitMap_rotated.set_bit(size -y -1, x, _new_PolyBitMap.get_bit(x, y))
+		var aligned_PolyBitMap = align_shape(_polyBitMap_rotated)
+		rotated_PolyBitMaps.append(aligned_PolyBitMap)
+		_new_PolyBitMap = aligned_PolyBitMap
 	
-	return rotated_bitmaps
+	return rotated_PolyBitMaps
 
 ###Works
-func flip(_bitmap: BitMap) -> BitMap:
-	var _bitmap_flipped: BitMap = BitMap.new()
-	_bitmap_flipped.create(Vector2i(size, size))
+func flip(_polyBitMap: PolyBitMap) -> PolyBitMap:
+	var _polyBitMap_flipped: PolyBitMap = PolyBitMap.new()
+	_polyBitMap_flipped.create(Vector2i(size, size))
 	for x in size:
 		for y in size:
-			_bitmap_flipped.set_bit(size -x -1, y, _bitmap.get_bit(x, y))
-	return align_shape(_bitmap_flipped)
+			_polyBitMap_flipped.set_bit(size -x -1, y, _polyBitMap.get_bit(x, y))
+	return align_shape(_polyBitMap_flipped)
 
 ###Works
-func convert_bitmap_to_array(_bitmap: BitMap) -> PackedVector2Array:
+func convert_PolyBitMap_to_array(_PolyBitMap: PolyBitMap) -> PackedVector2Array:
 	var _packed_vector_array: PackedVector2Array = []
 	for x in size:
 		for y in size:
-			if _bitmap.get_bit(x, y):
+			if _PolyBitMap.get_bit(x, y):
 				_packed_vector_array.append(Vector2i(x, y))
 	return _packed_vector_array
 
-func align_shape(_bitmap: BitMap) -> BitMap:
-	var left_aligned_bitmap = align_shape_left(_bitmap)
-	var top_aligned_bitmap = align_shape_top(left_aligned_bitmap)
-	return top_aligned_bitmap
+func align_shape(_PolyBitMap: PolyBitMap) -> PolyBitMap:
+	var left_aligned_PolyBitMap = align_shape_left(_PolyBitMap)
+	var top_aligned_PolyBitMap = align_shape_top(left_aligned_PolyBitMap)
+	return top_aligned_PolyBitMap
 
-func align_shape_left(_bitmap: BitMap) -> BitMap:
-	var _bitmap_shifted: BitMap = BitMap.new()
-	_bitmap_shifted.create(Vector2i(size, size))
+func align_shape_left(_polyBitMap: PolyBitMap) -> PolyBitMap:
+	var _polyBitMap_shifted: PolyBitMap = PolyBitMap.new()
+	_polyBitMap_shifted.create(Vector2i(size, size))
 	for y in size:
-		if _bitmap.get_bit(0, y):
-			return _bitmap
+		if _polyBitMap.get_bit(0, y):
+			return _polyBitMap
 	
 	for x in size:
 		for y in size:
-			if _bitmap.get_bit(x, y):
-				if _bitmap_shifted.get_bit(x-1, y) != null:
-					_bitmap_shifted.set_bit(x-1, y, true)
+			if _polyBitMap.get_bit(x, y):
+				if _polyBitMap_shifted.get_bit(x-1, y) != null:
+					_polyBitMap_shifted.set_bit(x-1, y, true)
 	
-	return align_shape_left(_bitmap_shifted)
+	return align_shape_left(_polyBitMap_shifted)
 
-func align_shape_top(_bitmap: BitMap) -> BitMap:
-	var _bitmap_shifted: BitMap = BitMap.new()
-	_bitmap_shifted.create(Vector2i(size, size))
+func align_shape_top(_polyBitMap: PolyBitMap) -> PolyBitMap:
+	var _polyBitMap_shifted: PolyBitMap = PolyBitMap.new()
+	_polyBitMap_shifted.create(Vector2i(size, size))
 	for x in size:
-		if _bitmap.get_bit(x, 0):
-			return _bitmap
+		if _polyBitMap.get_bit(x, 0):
+			return _polyBitMap
 	
 	for x in size:
 		for y in size:
-			if _bitmap.get_bit(x, y):
-				if _bitmap_shifted.get_bit(x, y-1) != null:
-					_bitmap_shifted.set_bit(x, y-1, true)
+			if _polyBitMap.get_bit(x, y):
+				if _polyBitMap_shifted.get_bit(x, y-1) != null:
+					_polyBitMap_shifted.set_bit(x, y-1, true)
 	
-	return align_shape_top(_bitmap_shifted)
+	return align_shape_top(_polyBitMap_shifted)
 
 

@@ -1,120 +1,140 @@
-[gd_resource type="Resource" script_class="Polyforms" load_steps=21 format=3 uid="uid://dn7d54x3t6sox"]
+[gd_resource type="Resource" script_class="Polyforms" load_steps=22 format=3 uid="uid://cwrvdjw8ge7o3"]
 
 [ext_resource type="Script" path="res://Polyforms.gd" id="1_r7gog"]
+[ext_resource type="Script" path="res://PolyBitMap.gd" id="1_yhdsc"]
 
-[sub_resource type="BitMap" id="BitMap_1a1f4"]
+[sub_resource type="BitMap" id="BitMap_uwsnw"]
 data = {
 "data": PackedByteArray(17, 17),
 "size": Vector2i(4, 4)
 }
+script = ExtResource("1_yhdsc")
 
-[sub_resource type="BitMap" id="BitMap_4pbda"]
+[sub_resource type="BitMap" id="BitMap_lff1s"]
 data = {
 "data": PackedByteArray(19, 1),
 "size": Vector2i(4, 4)
 }
+script = ExtResource("1_yhdsc")
 
-[sub_resource type="BitMap" id="BitMap_jhvw6"]
+[sub_resource type="BitMap" id="BitMap_g67c8"]
 data = {
 "data": PackedByteArray(49, 1),
 "size": Vector2i(4, 4)
 }
+script = ExtResource("1_yhdsc")
 
-[sub_resource type="BitMap" id="BitMap_uca51"]
+[sub_resource type="BitMap" id="BitMap_p8h7s"]
 data = {
 "data": PackedByteArray(17, 3),
 "size": Vector2i(4, 4)
 }
+script = ExtResource("1_yhdsc")
 
-[sub_resource type="BitMap" id="BitMap_nq0nw"]
+[sub_resource type="BitMap" id="BitMap_sg4d8"]
 data = {
 "data": PackedByteArray(51, 0),
 "size": Vector2i(4, 4)
 }
+script = ExtResource("1_yhdsc")
 
-[sub_resource type="BitMap" id="BitMap_bgngf"]
+[sub_resource type="BitMap" id="BitMap_7j6i0"]
 data = {
 "data": PackedByteArray(23, 0),
 "size": Vector2i(4, 4)
 }
+script = ExtResource("1_yhdsc")
 
-[sub_resource type="BitMap" id="BitMap_2namj"]
+[sub_resource type="BitMap" id="BitMap_d8taq"]
 data = {
 "data": PackedByteArray(49, 2),
 "size": Vector2i(4, 4)
 }
+script = ExtResource("1_yhdsc")
 
-[sub_resource type="BitMap" id="BitMap_h1dr8"]
+[sub_resource type="BitMap" id="BitMap_3x1h3"]
 data = {
 "data": PackedByteArray(113, 0),
 "size": Vector2i(4, 4)
 }
+script = ExtResource("1_yhdsc")
 
-[sub_resource type="BitMap" id="BitMap_u2fuj"]
+[sub_resource type="BitMap" id="BitMap_ug4sq"]
 data = {
 "data": PackedByteArray(35, 2),
 "size": Vector2i(4, 4)
 }
+script = ExtResource("1_yhdsc")
 
-[sub_resource type="BitMap" id="BitMap_tigh0"]
+[sub_resource type="BitMap" id="BitMap_il1b1"]
 data = {
 "data": PackedByteArray(39, 0),
 "size": Vector2i(4, 4)
 }
+script = ExtResource("1_yhdsc")
 
-[sub_resource type="BitMap" id="BitMap_uit8j"]
+[sub_resource type="BitMap" id="BitMap_81axn"]
 data = {
 "data": PackedByteArray(99, 0),
 "size": Vector2i(4, 4)
 }
+script = ExtResource("1_yhdsc")
 
-[sub_resource type="BitMap" id="BitMap_i1cdw"]
+[sub_resource type="BitMap" id="BitMap_035pu"]
 data = {
 "data": PackedByteArray(71, 0),
 "size": Vector2i(4, 4)
 }
+script = ExtResource("1_yhdsc")
 
-[sub_resource type="BitMap" id="BitMap_nm5mt"]
+[sub_resource type="BitMap" id="BitMap_g2xkd"]
 data = {
 "data": PackedByteArray(15, 0),
 "size": Vector2i(4, 4)
 }
+script = ExtResource("1_yhdsc")
 
-[sub_resource type="BitMap" id="BitMap_tkwy0"]
+[sub_resource type="BitMap" id="BitMap_wp5l8"]
 data = {
 "data": PackedByteArray(50, 1),
 "size": Vector2i(4, 4)
 }
+script = ExtResource("1_yhdsc")
 
-[sub_resource type="BitMap" id="BitMap_yufuh"]
+[sub_resource type="BitMap" id="BitMap_hv1ds"]
 data = {
 "data": PackedByteArray(50, 2),
 "size": Vector2i(4, 4)
 }
+script = ExtResource("1_yhdsc")
 
-[sub_resource type="BitMap" id="BitMap_11ecy"]
+[sub_resource type="BitMap" id="BitMap_lkxgj"]
 data = {
 "data": PackedByteArray(54, 0),
 "size": Vector2i(4, 4)
 }
+script = ExtResource("1_yhdsc")
 
-[sub_resource type="BitMap" id="BitMap_rvc37"]
+[sub_resource type="BitMap" id="BitMap_vpneh"]
 data = {
 "data": PackedByteArray(114, 0),
 "size": Vector2i(4, 4)
 }
+script = ExtResource("1_yhdsc")
 
-[sub_resource type="BitMap" id="BitMap_ahbxs"]
+[sub_resource type="BitMap" id="BitMap_fiaur"]
 data = {
 "data": PackedByteArray(116, 0),
 "size": Vector2i(4, 4)
 }
+script = ExtResource("1_yhdsc")
 
-[sub_resource type="BitMap" id="BitMap_ghvyy"]
+[sub_resource type="BitMap" id="BitMap_k74qj"]
 data = {
 "data": PackedByteArray(34, 3),
 "size": Vector2i(4, 4)
 }
+script = ExtResource("1_yhdsc")
 
 [resource]
 script = ExtResource("1_r7gog")
@@ -140,24 +160,24 @@ polyominoes = {
 "4_[(0, 2), (1, 0), (1, 1), (1, 2)]": PackedVector2Array(0, 2, 1, 0, 1, 1, 1, 2)
 }
 free_polyominoes = {
-"4_[(0, 0), (0, 1), (0, 2), (0, 3)]": SubResource("BitMap_1a1f4"),
-"4_[(0, 0), (0, 1), (0, 2), (1, 0)]": SubResource("BitMap_4pbda"),
-"4_[(0, 0), (0, 1), (0, 2), (1, 1)]": SubResource("BitMap_jhvw6"),
-"4_[(0, 0), (0, 1), (0, 2), (1, 2)]": SubResource("BitMap_uca51"),
-"4_[(0, 0), (0, 1), (1, 0), (1, 1)]": SubResource("BitMap_nq0nw"),
-"4_[(0, 0), (0, 1), (1, 0), (2, 0)]": SubResource("BitMap_bgngf"),
-"4_[(0, 0), (0, 1), (1, 1), (1, 2)]": SubResource("BitMap_2namj"),
-"4_[(0, 0), (0, 1), (1, 1), (2, 1)]": SubResource("BitMap_h1dr8"),
-"4_[(0, 0), (1, 0), (1, 1), (1, 2)]": SubResource("BitMap_u2fuj"),
-"4_[(0, 0), (1, 0), (1, 1), (2, 0)]": SubResource("BitMap_tigh0"),
-"4_[(0, 0), (1, 0), (1, 1), (2, 1)]": SubResource("BitMap_uit8j"),
-"4_[(0, 0), (1, 0), (2, 0), (2, 1)]": SubResource("BitMap_i1cdw"),
-"4_[(0, 0), (1, 0), (2, 0), (3, 0)]": SubResource("BitMap_nm5mt"),
-"4_[(0, 1), (0, 2), (1, 0), (1, 1)]": SubResource("BitMap_tkwy0"),
-"4_[(0, 1), (1, 0), (1, 1), (1, 2)]": SubResource("BitMap_yufuh"),
-"4_[(0, 1), (1, 0), (1, 1), (2, 0)]": SubResource("BitMap_11ecy"),
-"4_[(0, 1), (1, 0), (1, 1), (2, 1)]": SubResource("BitMap_rvc37"),
-"4_[(0, 1), (1, 1), (2, 0), (2, 1)]": SubResource("BitMap_ahbxs"),
-"4_[(0, 2), (1, 0), (1, 1), (1, 2)]": SubResource("BitMap_ghvyy")
+"4_[(0, 0), (0, 1), (0, 2), (0, 3)]": SubResource("BitMap_uwsnw"),
+"4_[(0, 0), (0, 1), (0, 2), (1, 0)]": SubResource("BitMap_lff1s"),
+"4_[(0, 0), (0, 1), (0, 2), (1, 1)]": SubResource("BitMap_g67c8"),
+"4_[(0, 0), (0, 1), (0, 2), (1, 2)]": SubResource("BitMap_p8h7s"),
+"4_[(0, 0), (0, 1), (1, 0), (1, 1)]": SubResource("BitMap_sg4d8"),
+"4_[(0, 0), (0, 1), (1, 0), (2, 0)]": SubResource("BitMap_7j6i0"),
+"4_[(0, 0), (0, 1), (1, 1), (1, 2)]": SubResource("BitMap_d8taq"),
+"4_[(0, 0), (0, 1), (1, 1), (2, 1)]": SubResource("BitMap_3x1h3"),
+"4_[(0, 0), (1, 0), (1, 1), (1, 2)]": SubResource("BitMap_ug4sq"),
+"4_[(0, 0), (1, 0), (1, 1), (2, 0)]": SubResource("BitMap_il1b1"),
+"4_[(0, 0), (1, 0), (1, 1), (2, 1)]": SubResource("BitMap_81axn"),
+"4_[(0, 0), (1, 0), (2, 0), (2, 1)]": SubResource("BitMap_035pu"),
+"4_[(0, 0), (1, 0), (2, 0), (3, 0)]": SubResource("BitMap_g2xkd"),
+"4_[(0, 1), (0, 2), (1, 0), (1, 1)]": SubResource("BitMap_wp5l8"),
+"4_[(0, 1), (1, 0), (1, 1), (1, 2)]": SubResource("BitMap_hv1ds"),
+"4_[(0, 1), (1, 0), (1, 1), (2, 0)]": SubResource("BitMap_lkxgj"),
+"4_[(0, 1), (1, 0), (1, 1), (2, 1)]": SubResource("BitMap_vpneh"),
+"4_[(0, 1), (1, 1), (2, 0), (2, 1)]": SubResource("BitMap_fiaur"),
+"4_[(0, 2), (1, 0), (1, 1), (1, 2)]": SubResource("BitMap_k74qj")
 }
 unfinished_polyominoes = {}
