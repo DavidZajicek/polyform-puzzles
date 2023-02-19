@@ -95,20 +95,21 @@ func check_next_steps(_polyBitMap: PolyBitMap, _location: Vector2i = Vector2i.ZE
 
 
 
-func add_to_array(_PolyBitMap: PolyBitMap):
-	if _PolyBitMap.get_true_bit_count() == 0:
+func add_to_array(_polyBitMap: PolyBitMap):
+	if _polyBitMap.get_true_bit_count() == 0:
 		print("Cannot add an empty PolyBitMap to Dictionary")
 		return
-	var rotated_PolyBitMaps: Array[PolyBitMap] = rotate(_PolyBitMap)
+	var rotated_PolyBitMaps: Array[PolyBitMap] = rotate(_polyBitMap)
 	var fixed_PolyBitMaps: Array[PolyBitMap] = rotated_PolyBitMaps.duplicate()
 	for PolyBitMap in rotated_PolyBitMaps:
 		fixed_PolyBitMaps.append(flip(PolyBitMap))
 	for fixed_PolyBitMap in fixed_PolyBitMaps:
 		var packed_array = convert_PolyBitMap_to_array(fixed_PolyBitMap)
-		if not packed_array in polyominoes.values():
+		if not packed_array in free_polyominoes.values():
 			var block_name: String = str(size) + "_" + str(packed_array)
-			polyominoes[block_name] = packed_array
-			free_polyominoes[block_name] = fixed_PolyBitMap
+			free_polyominoes[block_name] = packed_array
+			if free_polyominoes.values().find(packed_array) != 0 and polyominoes.values().find(packed_array) == 0:
+				polyominoes[block_name] = packed_array
 
 ###Works
 func rotate(_PolyBitMap: PolyBitMap, rotations: int = 4) -> Array[PolyBitMap]:
