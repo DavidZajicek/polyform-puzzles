@@ -32,12 +32,13 @@ func generate_shape(_size) -> void:
 	
 	var broken_dicktionary: Dictionary
 	broken_dicktionary[location] = polyBitMap
-	for i in range(size):
+	for i in range(2):
 		if broken_dicktionary == null:
 			continue
 		broken_dicktionary = paint(broken_dicktionary)
 	
 	unfinished = broken_dicktionary
+	
 	print(iteration)
 	print(Time.get_time_string_from_unix_time(Time.get_unix_time_from_system() - time)  )
 	
@@ -52,16 +53,18 @@ func paint(broken_dicktionary: Dictionary):
 		var next_steps: PackedVector2Array = polyBitMap.get_all_outer_walls(walls)
 		for i in next_steps.size():
 			var step_PolyBitMap: PolyBitMap = polyBitMap.duplicate()
-			for step in next_steps:
+			
+			for j in next_steps.size():
 				var next_step_PolyBitMap: PolyBitMap = step_PolyBitMap.duplicate()
-				next_step_PolyBitMap.set_bitv(step, true)
+				next_step_PolyBitMap.set_bitv(next_steps[(j + i) % next_steps.size()], true)
 				if i % 2:
-					step_PolyBitMap.set_bitv(step, true)
+					step_PolyBitMap.set_bitv(next_steps[j], true)
 				if next_step_PolyBitMap.get_true_bit_count() == size:
 					add_to_polyominoes_dictionary(next_step_PolyBitMap)
-				elif next_step_PolyBitMap.get_true_bit_count() < size:
-						temp_dictionary[str(step) + str(next_step_PolyBitMap.get_true_bit_count())] = next_step_PolyBitMap
-#				temp_dictionary[str(iteration) + str(step)] = step_PolyBitMap
+#				if next_step_PolyBitMap.get_true_bit_count() < size:
+#					temp_dictionary[str(next_steps[j]) + str(next_step_PolyBitMap.get_true_bit_count())] = next_step_PolyBitMap
+				
+				temp_dictionary["%02d" % [iteration] + str(next_steps[j])] = next_step_PolyBitMap
 #				print(polyBitMap.get_all_inner_walls())
 #				print(step_PolyBitMap.get_all_inner_walls())
 #				print(next_step_PolyBitMap.get_all_inner_walls())
