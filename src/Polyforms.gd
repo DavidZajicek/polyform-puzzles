@@ -32,7 +32,7 @@ func generate_shape(_size) -> void:
 	
 	var broken_dicktionary: Dictionary
 	broken_dicktionary[location] = polyBitMap
-	for i in range(2):
+	for i in range(size):
 		if broken_dicktionary == null:
 			continue
 		broken_dicktionary = paint(broken_dicktionary)
@@ -51,20 +51,27 @@ func paint(broken_dicktionary: Dictionary):
 	for polyBitMap in broken_dicktionary.values():
 		var walls: PackedVector2Array = polyBitMap.get_all_inner_walls()
 		var next_steps: PackedVector2Array = polyBitMap.get_all_outer_walls(walls)
+		
 		for i in next_steps.size():
 			var step_PolyBitMap: PolyBitMap = polyBitMap.duplicate()
 			
 			for j in next_steps.size():
 				var next_step_PolyBitMap: PolyBitMap = step_PolyBitMap.duplicate()
 				next_step_PolyBitMap.set_bitv(next_steps[(j + i) % next_steps.size()], true)
+#				elif not i % 2:
+#					step_PolyBitMap.set_bitv(next_steps[(j + i) % next_steps.size()], true)
 				if i % 2:
-					step_PolyBitMap.set_bitv(next_steps[j], true)
+					step_PolyBitMap.set_bitv(next_steps[(j - i) % next_steps.size()], true)
+				else:
+					step_PolyBitMap.set_bitv(next_steps[(j - i - 1) % next_steps.size()], true)
+				
 				if next_step_PolyBitMap.get_true_bit_count() == size:
 					add_to_polyominoes_dictionary(next_step_PolyBitMap)
-#				if next_step_PolyBitMap.get_true_bit_count() < size:
-#					temp_dictionary[str(next_steps[j]) + str(next_step_PolyBitMap.get_true_bit_count())] = next_step_PolyBitMap
+				if next_step_PolyBitMap.get_true_bit_count() < size:
+					temp_dictionary[next_step_PolyBitMap.get_all_inner_walls()] = next_step_PolyBitMap
+#					temp_dictionary["%02d" % [iteration] + str(next_step_PolyBitMap.get_all_inner_walls())] = next_step_PolyBitMap
 				
-				temp_dictionary["%02d" % [iteration] + str(next_steps[j])] = next_step_PolyBitMap
+#				temp_dictionary["%02d" % [iteration] + str(next_steps[j])] = next_step_PolyBitMap
 #				print(polyBitMap.get_all_inner_walls())
 #				print(step_PolyBitMap.get_all_inner_walls())
 #				print(next_step_PolyBitMap.get_all_inner_walls())
