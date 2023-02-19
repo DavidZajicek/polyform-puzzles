@@ -4,7 +4,7 @@ extends Resource
 @export var polyominoes: Dictionary
 @export var free_polyominoes: Dictionary
 @export var unfinished: Dictionary
-
+@export var polyomino_details: Dictionary = {}
 
 var location: Vector2i = Vector2i.ZERO
 var size: int = 0
@@ -19,14 +19,12 @@ func generate_shape(_size) -> void:
 	size = _size
 	
 	#TODO: REMOVE THESE OR ELSE
-	polyominoes.clear()
-	free_polyominoes.clear()
+#	if not free_polyominoes.is_empty():
+#		return
 	
 	var polyBitMap: PolyBitMap = PolyBitMap.new()
 	polyBitMap.create(Vector2i(size,size))
-	polyBitMap.set_bitv(Vector2i(Vector2(size, size).clamp(Vector2.ZERO, Vector2i(size, size)) / 2), true)
-	var _permutations: int = size * size ** 2
-	
+	polyBitMap.set_bitv(Vector2i(Vector2(size, size).clamp(Vector2.ZERO, Vector2i(size, size)) / 2), true)	
 	var time = Time.get_unix_time_from_system()
 	
 	
@@ -42,6 +40,7 @@ func generate_shape(_size) -> void:
 	print(iteration)
 	print(Time.get_time_string_from_unix_time(Time.get_unix_time_from_system() - time)  )
 	
+	polyomino_details["Speed: " + str(size)] = Time.get_time_string_from_unix_time(Time.get_unix_time_from_system() - time)
 	
 	ResourceSaver.save(self, resource_path)
 	
@@ -58,8 +57,6 @@ func paint(broken_dicktionary: Dictionary):
 			for j in next_steps.size():
 				var next_step_PolyBitMap: PolyBitMap = step_PolyBitMap.duplicate()
 				next_step_PolyBitMap.set_bitv(next_steps[(j + i) % next_steps.size()], true)
-#				elif not i % 2:
-#					step_PolyBitMap.set_bitv(next_steps[(j + i) % next_steps.size()], true)
 				if i % 2:
 					step_PolyBitMap.set_bitv(next_steps[(j - i) % next_steps.size()], true)
 				else:
@@ -69,12 +66,6 @@ func paint(broken_dicktionary: Dictionary):
 					add_to_polyominoes_dictionary(next_step_PolyBitMap)
 				if next_step_PolyBitMap.get_true_bit_count() < size:
 					temp_dictionary[next_step_PolyBitMap.get_all_inner_walls()] = next_step_PolyBitMap
-#					temp_dictionary["%02d" % [iteration] + str(next_step_PolyBitMap.get_all_inner_walls())] = next_step_PolyBitMap
-				
-#				temp_dictionary["%02d" % [iteration] + str(next_steps[j])] = next_step_PolyBitMap
-#				print(polyBitMap.get_all_inner_walls())
-#				print(step_PolyBitMap.get_all_inner_walls())
-#				print(next_step_PolyBitMap.get_all_inner_walls())
 				iteration += 1
 			
 	return temp_dictionary.duplicate()
@@ -99,8 +90,13 @@ func add_to_polyominoes_dictionary(_polyBitMap: PolyBitMap):
 		if packed_array in free_polyominoes.keys():
 			poly_in_polyominoes = true
 	
-	var packed_array = convert_PolyBitMap_to_array(fixed_PolyBitMaps[0])
 	if not poly_in_polyominoes:
+		var packed_array = convert_PolyBitMap_to_array(fixed_PolyBitMaps[0])
+		if not polyomino_details.get("size: " + str(size)):
+			polyomino_details["size: " + str(size)] = 1
+		else:
+			polyomino_details["size: " + str(size)] += 1
+		var name: = str(size) + "_" + str(polyomino_details["size: " + str(size)])
 		free_polyominoes[packed_array] = fixed_PolyBitMaps[0]
 
 ###Works

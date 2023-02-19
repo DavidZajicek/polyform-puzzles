@@ -33,16 +33,18 @@ var mouse_over: bool = false
 func _ready() -> void:
 #	randomize()
 #	var points: PackedVector2Array = generate_shape()
+#	polyforms.generate_shape(1)
 #	polyforms.generate_shape(2)
+#	polyforms.generate_shape(3)
 #	polyforms.generate_shape(4) #19/5
 #	polyforms.generate_shape(5) #63/12
-#	polyforms.generate_shape(6) #216/35 (all shapes) 00:10 time 00:01?!?!?!
-#	polyforms.generate_shape(7) #760/108 (all shapes) 0:27 seconds
-#	polyforms.generate_shape(8) #2725/369 (all shapes) 4:47 time
-	polyforms.generate_shape(9) #9910/1285 (all shapes) 01:40:34
+	polyforms.generate_shape(6) #216/35 (all shapes) 00:03
+#	polyforms.generate_shape(7) #760/108 (all shapes) 0:27
+#	polyforms.generate_shape(8) #2725/369 (all shapes) 4:47
+#	polyforms.generate_shape(9) #9910/1285 (all shapes) 01:40:34
 #	create_clickable_area(points)
-#	generate_shape()
-#	connect_with_poly_children()
+	generate_shape()
+	connect_with_poly_children()
 	
 
 
@@ -66,7 +68,7 @@ func _input(event: InputEvent) -> void:
 	
 
 func generate_shape() -> void:
-	for vector in polyforms.polyominoes[ polyforms.polyominoes.keys()[ randi() % polyforms.polyominoes.size() ] ]:
+	for vector in polyforms.polyominoes[ polyforms.polyominoes.keys()[ randi() % polyforms.polyominoes.size() ] ].get_all_inner_walls():
 		var new_poly = poly.instantiate()
 		add_child(new_poly)
 		new_poly.position = vector * Globals.tile_size
