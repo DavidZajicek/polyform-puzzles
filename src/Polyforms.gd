@@ -30,7 +30,7 @@ func generate_shape(_size) -> void:
 	
 	var polyBitMap: PolyBitMap = PolyBitMap.new()
 	polyBitMap.create(Vector2i(size,size))
-	location = Vector2i(Vector2(size, size).clamp(Vector2.ZERO, Vector2i(size, size)) / 2)
+	polyBitMap.set_bitv(Vector2i(Vector2(size, size).clamp(Vector2.ZERO, Vector2i(size, size)) / 2), true)
 	var _permutations: int = size * size ** 2
 	var polyBitMap_array: Array[PolyBitMap] = [polyBitMap]
 	
@@ -39,14 +39,13 @@ func generate_shape(_size) -> void:
 	
 	var broken_dicktionary: Dictionary
 	broken_dicktionary[location] = [polyBitMap]
-	for i in range(size+1):
+	for i in range(size):
 		broken_dicktionary = paint(broken_dicktionary)
 	
 	print(iteration)
 	print(Time.get_time_string_from_unix_time(Time.get_unix_time_from_system() - time)  )
 	
-	for poly in free_polyominoes.values():
-		print(poly.get_all_inner_walls())
+	
 	ResourceSaver.save(self, resource_path)
 	
 
@@ -54,7 +53,8 @@ func paint(broken_dicktionary: Dictionary):
 	var temp_dictionary: Dictionary
 	for _location in broken_dicktionary:
 		for polyBitMap in broken_dicktionary[_location]:
-			var next_steps: = check_next_steps(polyBitMap, _location)
+			var walls: PackedVector2Array = polyBitMap.get_all_inner_walls()
+			var next_steps: PackedVector2Array = polyBitMap.get_all_outer_walls(walls)
 			
 			for i in next_steps.size():
 			

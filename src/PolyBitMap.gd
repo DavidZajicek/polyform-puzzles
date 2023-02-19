@@ -16,23 +16,25 @@ func get_all_inner_walls(must_be_connected_orthogonally: bool = true) -> PackedV
 					points = get_adjacent_walls(location)
 	return points
 
-func get_adjacent_walls(starting_location: Vector2i):
+func get_adjacent_walls(starting_location: Vector2i) -> PackedVector2Array:
 	var location: Vector2i = starting_location
 	var adjacent_walls: PackedVector2Array = [starting_location]
 	for step in get_size():
 		for direction in orthogonally_adjacent_directions:
-			if not adjacent_walls.find(direction) and get_bitv(direction + location):
-				adjacent_walls.append(direction + location)
+			var point_to_test: Vector2i = (direction + Vector2i(location)).clamp(Vector2i.ZERO, get_size() - Vector2i(1, 1))
+			if not adjacent_walls.find(point_to_test) and get_bitv(point_to_test):
+				adjacent_walls.append(point_to_test)
 	return adjacent_walls
 
 func if_touching_adjacent(starting_location: Vector2i):
 	pass
 
-func get_all_outer_walls(walls: PackedVector2Array):
+func get_all_outer_walls(walls: PackedVector2Array) -> PackedVector2Array:
 	var adjacent_empty_spaces: PackedVector2Array
 	for wall in walls:
 		for direction in orthogonally_adjacent_directions:
-			if not adjacent_empty_spaces.find(direction) and not get_bitv(direction + Vector2i(wall)):
-				adjacent_empty_spaces.append(direction + Vector2i(wall))
+			var point_to_test: Vector2i = (direction + Vector2i(wall)).clamp(Vector2i.ZERO, get_size() - Vector2i(1, 1))
+			if adjacent_empty_spaces.find(point_to_test) < 1 and not get_bitv(point_to_test):
+				adjacent_empty_spaces.append(point_to_test)
 	
 	return adjacent_empty_spaces
