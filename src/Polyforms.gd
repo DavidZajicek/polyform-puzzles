@@ -3,21 +3,14 @@ extends Resource
 
 @export var polyominoes: Dictionary
 @export var free_polyominoes: Dictionary
-@export var unfinished_polyominoes: Dictionary
+@export var unfinished: Dictionary
 
 
-var length: int = 1
-var previous_location: Vector2i = Vector2i.ZERO
 var location: Vector2i = Vector2i.ZERO
-var steps: Array[Vector2i] = [Vector2i.LEFT, Vector2i.UP, Vector2i.DOWN, Vector2i.RIGHT, Vector2i.ZERO]
 var size: int = 0
-var first_index_allow_empty: bool = true
 
-var fixed_index: int = 0
-var free_index: int = 0
 var iteration: int = 0
 
-var _rotated_PolyBitMap_array: Array[PolyBitMap]
 
 func generate_shape(_size) -> void:
 	#TODO: extract into a "setup" method
@@ -25,24 +18,26 @@ func generate_shape(_size) -> void:
 		return
 	size = _size
 	
-	_rotated_PolyBitMap_array.clear()
-	first_index_allow_empty = true
+	#TODO: REMOVE THESE OR ELSE
+	polyominoes.clear()
+	free_polyominoes.clear()
 	
 	var polyBitMap: PolyBitMap = PolyBitMap.new()
 	polyBitMap.create(Vector2i(size,size))
 	polyBitMap.set_bitv(Vector2i(Vector2(size, size).clamp(Vector2.ZERO, Vector2i(size, size)) / 2), true)
 	var _permutations: int = size * size ** 2
-	var polyBitMap_array: Array[PolyBitMap] = [polyBitMap]
 	
 	var time = Time.get_unix_time_from_system()
 	
 	
 	var broken_dicktionary: Dictionary
-	broken_dicktionary[location] = [polyBitMap]
+	broken_dicktionary[location] = polyBitMap
 	for i in range(size):
+		if broken_dicktionary == null:
+			continue
 		broken_dicktionary = paint(broken_dicktionary)
 	
-	
+	unfinished = broken_dicktionary
 	print(iteration)
 	print(Time.get_time_string_from_unix_time(Time.get_unix_time_from_system() - time)  )
 	
@@ -51,49 +46,29 @@ func generate_shape(_size) -> void:
 	
 
 func paint(broken_dicktionary: Dictionary):
-	var temp_dictionary: Dictionary
-	for _location in broken_dicktionary:
-		for polyBitMap in broken_dicktionary[_location]:
-			var walls: PackedVector2Array = polyBitMap.get_all_inner_walls()
-			var next_steps: PackedVector2Array = polyBitMap.get_all_outer_walls(walls)
+	var temp_dictionary: Dictionary = {}
+	for polyBitMap in broken_dicktionary.values():
+		var walls: PackedVector2Array = polyBitMap.get_all_inner_walls()
+		var next_steps: PackedVector2Array = polyBitMap.get_all_outer_walls(walls)
+		for i in next_steps.size():
+			var step_PolyBitMap: PolyBitMap = polyBitMap.duplicate()
+			for step in next_steps:
+				var next_step_PolyBitMap: PolyBitMap = step_PolyBitMap.duplicate()
+				next_step_PolyBitMap.set_bitv(step, true)
+				if i % 2:
+					step_PolyBitMap.set_bitv(step, true)
+				if next_step_PolyBitMap.get_true_bit_count() == size:
+					add_to_polyominoes_dictionary(next_step_PolyBitMap)
+				elif next_step_PolyBitMap.get_true_bit_count() < size:
+						temp_dictionary[str(step) + str(next_step_PolyBitMap.get_true_bit_count())] = next_step_PolyBitMap
+#				temp_dictionary[str(iteration) + str(step)] = step_PolyBitMap
+#				print(polyBitMap.get_all_inner_walls())
+#				print(step_PolyBitMap.get_all_inner_walls())
+#				print(next_step_PolyBitMap.get_all_inner_walls())
+				iteration += 1
 			
-			for i in next_steps.size():
-				var _polyBitMap: PolyBitMap = polyBitMap.duplicate()
-				for step in next_steps:
-					var next_step_PolyBitMap: PolyBitMap = _polyBitMap.duplicate()
-					if touching_another_painted_space(next_step_PolyBitMap, step) or first_index_allow_empty:
-						next_step_PolyBitMap.set_bitv(step, true)
-					if next_step_PolyBitMap.get_true_bit_count() == size:
-						add_to_polyominoes_dictionary(next_step_PolyBitMap)
-					elif next_step_PolyBitMap.get_true_bit_count() < size:
-						temp_dictionary[str(step) + str(i)] = [next_step_PolyBitMap] #This overwrites, not adds so we aren't building every permutation
-						
-					iteration += 1
-			
-			first_index_allow_empty = false
 	return temp_dictionary.duplicate()
 	
-
-func touching_another_painted_space(_PolyBitMap: PolyBitMap, _location: Vector2i = Vector2i.ZERO) -> bool:
-	var adjacent_tiles: bool = false
-	for step in steps:
-		if _PolyBitMap.get_bitv((_location + step).clamp(Vector2i.ZERO, Vector2i(size-1, size-1))):
-			adjacent_tiles = true
-	return adjacent_tiles
-
-
-func check_next_steps(_polyBitMap: PolyBitMap, _location: Vector2i = Vector2i.ZERO) -> Array[Vector2i]:
-	var unpainted_bits: Array[Vector2i] = []
-	for step in steps:
-		var next_step = (_location + step).clamp(Vector2i.ZERO, Vector2i(size-1, size-1))
-		if not _polyBitMap.get_bitv(next_step) and next_step not in unpainted_bits:
-			unpainted_bits.append(next_step)
-	if not first_index_allow_empty:
-		for step in unpainted_bits:
-			unpainted_bits.erase(Vector2i.ZERO)
-	
-	return unpainted_bits
-
 
 
 func add_to_polyominoes_dictionary(_polyBitMap: PolyBitMap):
@@ -117,12 +92,6 @@ func add_to_polyominoes_dictionary(_polyBitMap: PolyBitMap):
 	var packed_array = convert_PolyBitMap_to_array(fixed_PolyBitMaps[0])
 	if not poly_in_polyominoes:
 		free_polyominoes[packed_array] = fixed_PolyBitMaps[0]
-#
-#	var packed_array = convert_PolyBitMap_to_array(align_shape(_polyBitMap))
-#	if poly_in_polyominoes and not packed_array in free_polyominoes.keys():
-##		var free_polyomino: PolyBitMap = align_shape(_polyBitMap)
-#		free_polyominoes[packed_array] = align_shape(_polyBitMap)
-		
 
 ###Works
 func rotate(_PolyBitMap: PolyBitMap, rotations: int = 3) -> Array[PolyBitMap]:
