@@ -38,8 +38,8 @@ func _ready() -> void:
 #	polyforms.generate_shape(5) #63/12
 #	polyforms.generate_shape(6) #216/35 (all shapes) 00:10 time 00:01?!?!?!
 #	polyforms.generate_shape(7) #760/108 (all shapes) 0:27 seconds
-	polyforms.generate_shape(8) #2725/369 (270/369 shapes made) 2:06 time
-#	polyforms.generate_shape(9) #9910/1285
+#	polyforms.generate_shape(8) #2725/369 (all shapes) 4:47 time
+	polyforms.generate_shape(9) #9910/1285 (all shapes) 01:40:34
 #	create_clickable_area(points)
 #	generate_shape()
 #	connect_with_poly_children()
