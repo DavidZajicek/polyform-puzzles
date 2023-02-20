@@ -29,7 +29,7 @@ func generate_shape(_size) -> void:
 	
 	#TODO: REMOVE THESE OR ELSE
 #	free_polyominoes.clear()
-	if not size in free_polyominoes.keys():
+	if size in free_polyominoes.keys():
 		return
 	
 	polyBitMap.set_bitv(Vector2i(Vector2(size, size).clamp(Vector2.ZERO, Vector2i(size, size)) / 2), true)	
