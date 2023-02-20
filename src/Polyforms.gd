@@ -1,12 +1,11 @@
 class_name Polyforms
 extends Resource
 
-@export var polyominoes: Dictionary
-@export var free_polyominoes: Dictionary
-@export var unfinished: Dictionary
+@export var polyominoes: Dictionary = {}
+@export var free_polyominoes: Dictionary = {}
+@export var unfinished: Dictionary = {}
 @export var polyomino_details: Dictionary = {}
 
-var location: Vector2i = Vector2i.ZERO
 var size: int = 0
 
 var iteration: int = 0
@@ -17,25 +16,35 @@ func generate_shape(_size) -> void:
 	if _size == 0:
 		return
 	size = _size
-	
-	#TODO: REMOVE THESE OR ELSE
-#	if not free_polyominoes.is_empty():
-#		return
-	
 	var polyBitMap: PolyBitMap = PolyBitMap.new()
 	polyBitMap.create(Vector2i(size,size))
+	if size == 1:
+		var packed_array = convert_PolyBitMap_to_array(polyBitMap)
+		if not packed_array in polyominoes.keys():
+			polyominoes[size] = {}
+			polyominoes[size][packed_array] = polyBitMap
+			free_polyominoes[size] = {}
+			free_polyominoes[size][packed_array] = polyBitMap
+	
+	
+	#TODO: REMOVE THESE OR ELSE
+#	free_polyominoes.clear()
+	if not size in free_polyominoes.keys():
+		return
+	
 	polyBitMap.set_bitv(Vector2i(Vector2(size, size).clamp(Vector2.ZERO, Vector2i(size, size)) / 2), true)	
 	var time = Time.get_unix_time_from_system()
 	
 	
-	var broken_dicktionary: Dictionary
-	broken_dicktionary[location] = polyBitMap
+	var temp_dictionary: Dictionary
+	temp_dictionary[0] = {}
+	temp_dictionary[0][0] = polyBitMap
 	for i in range(size):
-		if broken_dicktionary == null:
+		if temp_dictionary == null:
 			continue
-		broken_dicktionary = paint(broken_dicktionary)
+		temp_dictionary = paint(temp_dictionary)
 	
-	unfinished = broken_dicktionary
+	unfinished = temp_dictionary
 	
 	print(iteration)
 	print(Time.get_time_string_from_unix_time(Time.get_unix_time_from_system() - time)  )
@@ -45,34 +54,46 @@ func generate_shape(_size) -> void:
 	ResourceSaver.save(self, resource_path)
 	
 
-func paint(broken_dicktionary: Dictionary):
-	var temp_dictionary: Dictionary = {}
-	for polyBitMap in broken_dicktionary.values():
-		var walls: PackedVector2Array = polyBitMap.get_all_inner_walls()
-		var next_steps: PackedVector2Array = polyBitMap.get_all_outer_walls(walls)
-		
-		for i in next_steps.size():
-			var step_PolyBitMap: PolyBitMap = polyBitMap.duplicate()
-			
-			for j in next_steps.size():
-				var next_step_PolyBitMap: PolyBitMap = step_PolyBitMap.duplicate()
-				next_step_PolyBitMap.set_bitv(next_steps[(j + i) % next_steps.size()], true)
-				if i % 2:
-					step_PolyBitMap.set_bitv(next_steps[(j - i) % next_steps.size()], true)
-				else:
-					step_PolyBitMap.set_bitv(next_steps[(j - i - 1) % next_steps.size()], true)
-				
-				if next_step_PolyBitMap.get_true_bit_count() == size:
-					add_to_polyominoes_dictionary(next_step_PolyBitMap)
-				if next_step_PolyBitMap.get_true_bit_count() < size:
-					temp_dictionary[next_step_PolyBitMap.get_all_inner_walls()] = next_step_PolyBitMap
-				iteration += 1
-			
-	return temp_dictionary.duplicate()
+func paint(temp_dictionary: Dictionary):
+	var _temp_dictionary: Dictionary = {}
+	for _size in temp_dictionary.keys():
+		for polyBitMap in temp_dictionary[_size].values():
+			var walls: PackedVector2Array = polyBitMap.get_all_inner_walls()
+			var next_steps: PackedVector2Array = polyBitMap.get_all_outer_walls(walls)
+			var diff: int = size - polyBitMap.get_true_bit_count()
+			if diff >= next_steps.size():
+				diff = next_steps.size() + 1
+			for i in next_steps.size():
+				if polyBitMap.get_true_bit_count() == size:
+					continue
+				var step_PolyBitMap: PolyBitMap = polyBitMap.duplicate()
+				for j in diff:
+					var next_step_PolyBitMap: PolyBitMap = step_PolyBitMap.duplicate()
+					next_step_PolyBitMap.set_bitv(next_steps[(j + i) % next_steps.size()], true)
+					if not i % 2:
+						step_PolyBitMap.set_bitv(next_steps[(j - i) % next_steps.size()], true)
+					else:
+						step_PolyBitMap.set_bitv(next_steps[(j - i - 1) % next_steps.size()], true)
+					
+					if next_step_PolyBitMap.get_true_bit_count() == size:
+						add_to_polyominoes_dictionary(next_step_PolyBitMap)
+					elif next_step_PolyBitMap.get_true_bit_count() < size:
+						if next_step_PolyBitMap.get_true_bit_count() in _temp_dictionary.keys():
+							_temp_dictionary[next_step_PolyBitMap.get_true_bit_count()][next_step_PolyBitMap.get_all_inner_walls()] = next_step_PolyBitMap
+						else:
+							_temp_dictionary[next_step_PolyBitMap.get_true_bit_count()] = {}
+							_temp_dictionary[next_step_PolyBitMap.get_true_bit_count()][next_step_PolyBitMap.get_all_inner_walls()] = next_step_PolyBitMap
+					iteration += 1
+	return _temp_dictionary.duplicate()
 	
 
 
 func add_to_polyominoes_dictionary(_polyBitMap: PolyBitMap):
+	_polyBitMap = align_shape(_polyBitMap)
+	var _array = convert_PolyBitMap_to_array(_polyBitMap)
+	if polyominoes.has(size):
+		if _array in polyominoes[size].keys():
+			return
 	
 	if _polyBitMap.get_true_bit_count() == 0:
 		print("Cannot add an empty PolyBitMap to Dictionary")
@@ -86,8 +107,12 @@ func add_to_polyominoes_dictionary(_polyBitMap: PolyBitMap):
 	for fixed_PolyBitMap in fixed_PolyBitMaps:
 		var packed_array = convert_PolyBitMap_to_array(fixed_PolyBitMap)
 		if not packed_array in polyominoes.keys():
-			polyominoes[packed_array] = fixed_PolyBitMap
-		if packed_array in free_polyominoes.keys():
+			if size in polyominoes.keys():
+				polyominoes[size][packed_array] = _polyBitMap
+			else:
+				polyominoes[size] = {}
+				polyominoes[size][packed_array] = _polyBitMap
+		if packed_array in polyominoes.keys():
 			poly_in_polyominoes = true
 	
 	if not poly_in_polyominoes:
@@ -96,8 +121,11 @@ func add_to_polyominoes_dictionary(_polyBitMap: PolyBitMap):
 			polyomino_details["size: " + str(size)] = 1
 		else:
 			polyomino_details["size: " + str(size)] += 1
-		var name: = str(size) + "_" + str(polyomino_details["size: " + str(size)])
-		free_polyominoes[packed_array] = fixed_PolyBitMaps[0]
+		if size in free_polyominoes.keys():
+			free_polyominoes[size][_array] = _polyBitMap
+		else:
+			free_polyominoes[size] = {}
+			free_polyominoes[size][_array] = _polyBitMap
 
 ###Works
 func rotate(_PolyBitMap: PolyBitMap, rotations: int = 3) -> Array[PolyBitMap]:

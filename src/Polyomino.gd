@@ -31,20 +31,22 @@ var areas: Array
 var mouse_over: bool = false
 
 func _ready() -> void:
+	pass
 #	randomize()
 #	var points: PackedVector2Array = generate_shape()
-#	polyforms.generate_shape(1)
+	polyforms.generate_shape(1)
 #	polyforms.generate_shape(2)
 #	polyforms.generate_shape(3)
 #	polyforms.generate_shape(4) #19/5
 #	polyforms.generate_shape(5) #63/12
-	polyforms.generate_shape(6) #216/35 (all shapes) 00:03
+#	polyforms.generate_shape(6) #216/35 (all shapes) 00:03
 #	polyforms.generate_shape(7) #760/108 (all shapes) 0:27
 #	polyforms.generate_shape(8) #2725/369 (all shapes) 4:47
 #	polyforms.generate_shape(9) #9910/1285 (all shapes) 01:40:34
+#	polyforms.generate_shape(10) #36446/4655 
 #	create_clickable_area(points)
-	generate_shape()
-	connect_with_poly_children()
+#	generate_shape()
+#	connect_with_poly_children()
 	
 
 
@@ -76,24 +78,7 @@ func generate_shape() -> void:
 func create_shape(count: int) -> void:
 	for x in array.get_size().x:
 		array.set_bit(x, count, true)
-#func generate_shape() -> PackedVector2Array:
-#	var grid = unique_polyominoes[unique_polyominoes.keys()[randi() % unique_polyominoes.size()]]
-#	var y_index = 0
-#	var points: PackedVector2Array
-#
-#	for y in grid:
-#		var x_index = 0
-#		y_index += 1
-#
-#		for x in y:
-#			x_index += 1
-#			if x == 1:
-#				var new_poly = poly.instantiate()
-#				add_child(new_poly)
-#				new_poly.position = Vector2(x_index, y_index) * Globals.tile_size
-#				points.append(new_poly.position)
-#	return points
-#
+
 func connect_with_poly_children() -> void:
 	for child in get_children():
 		if child is Poly:
