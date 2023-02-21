@@ -1,4 +1,5 @@
-extends CollisionPolygon2D
+class_name ClickableArea
+extends Area2D
 
 var points: PackedVector2Array
 

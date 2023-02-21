@@ -9,15 +9,18 @@
 
 [node name="Polyomino" parent="." instance=ExtResource("2_rgq52")]
 position = Vector2(544, 64)
+size = 10
 
 [node name="Polyomino3" parent="." instance=ExtResource("2_rgq52")]
 position = Vector2(352, 64)
+size = 5
 
 [node name="Polyomino4" parent="." instance=ExtResource("2_rgq52")]
 position = Vector2(224, 64)
 
 [node name="Polyomino5" parent="." instance=ExtResource("2_rgq52")]
 position = Vector2(64, 64)
+size = 10
 
 [node name="Polyomino6" parent="." instance=ExtResource("2_rgq52")]
 position = Vector2(544, 192)
