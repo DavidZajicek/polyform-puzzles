@@ -3,12 +3,12 @@ extends CanvasGroup
 #constants
 
 #exports
+@export var grid_size: Vector2 = Vector2(6, 6)
 
 #onready
 @onready var grid_tile: PackedScene = preload("res://GridTile.tscn")
 
 #vars
-var grid_size: Vector2 = Vector2(6, 6)
 var grid_array: Array
 
 # Called when the node enters the scene tree for the first time.
@@ -21,9 +21,6 @@ func _ready():
 func _process(delta):
 	pass
 
-func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_accept"):
-		get_tree().reload_current_scene()
 
 func create_grid() -> void:
 	for x in grid_size.x:
