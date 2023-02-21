@@ -27,9 +27,8 @@ func _ready() -> void:
 #	polyforms_resource.generate_shape(8) #2725/369 (all shapes) 4:47
 #	polyforms_resource.generate_shape(9) #9910/1285 (all shapes) 01:40:34
 #	polyforms_resource.generate_shape(10) #36446/4655 5 hours
-#	create_clickable_area(points)
-#	generate_shape(size)
-#	connect_with_poly_children()
+	generate_shape(size)
+	connect_with_poly_children()
 	
 
 
@@ -75,8 +74,8 @@ func connect_with_poly_children() -> void:
 
 
 func _on_ClickableChild_event(viewport: Node, event: InputEvent, shape_idx: int):
-	if event is InputEventScreenTouch:
-		if event.is_pressed():
+	if event is InputEventScreenTouch or event is InputEventMouseButton:
+		if event.is_pressed() and not dragging:
 			get_tree().get_root().set_input_as_handled()
 			original_position = position
 			offset = position - event.position
@@ -96,6 +95,6 @@ func _on_ClickableChild_event(viewport: Node, event: InputEvent, shape_idx: int)
 		position = event.position + offset
 
 func _unhandled_input(event: InputEvent) -> void:
-	if dragging and event is InputEventScreenDrag:
+	if dragging and event is InputEventScreenDrag or dragging and event is InputEventMouseMotion:
 		position = event.position + offset
 	
