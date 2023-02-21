@@ -108,10 +108,10 @@ func add_to_polyominoes_dictionary(_polyBitMap: PolyBitMap):
 		var packed_array = convert_PolyBitMap_to_array(fixed_PolyBitMap)
 		if not packed_array in polyominoes.keys():
 			if size in polyominoes.keys():
-				polyominoes[size][packed_array] = _polyBitMap
+				polyominoes[size][packed_array] = fixed_PolyBitMap
 			else:
 				polyominoes[size] = {}
-				polyominoes[size][packed_array] = _polyBitMap
+				polyominoes[size][packed_array] = fixed_PolyBitMap
 		if packed_array in polyominoes.keys():
 			poly_in_polyominoes = true
 	
