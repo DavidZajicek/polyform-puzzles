@@ -17,19 +17,19 @@ func _ready() -> void:
 	
 	randomize()
 #	var points: PackedVector2Array = generate_shape()
-	polyforms_resource.generate_shape(1)
-	polyforms_resource.generate_shape(2)
-	polyforms_resource.generate_shape(3)
-	polyforms_resource.generate_shape(4) #19/5
-	polyforms_resource.generate_shape(5) #63/12
-	polyforms_resource.generate_shape(6) #216/35 (all shapes) 00:03
+#	polyforms_resource.generate_shape(1)
+#	polyforms_resource.generate_shape(2)
+#	polyforms_resource.generate_shape(3)
+#	polyforms_resource.generate_shape(4) #19/5
+#	polyforms_resource.generate_shape(5) #63/12
+#	polyforms_resource.generate_shape(6) #216/35 (all shapes) 00:03
 #	polyforms_resource.generate_shape(7) #760/108 (all shapes) 0:27
 #	polyforms_resource.generate_shape(8) #2725/369 (all shapes) 4:47
 #	polyforms_resource.generate_shape(9) #9910/1285 (all shapes) 01:40:34
 #	polyforms_resource.generate_shape(10) #36446/4655 5 hours
 #	create_clickable_area(points)
 #	generate_shape(size)
-	connect_with_poly_children()
+#	connect_with_poly_children()
 	
 
 
