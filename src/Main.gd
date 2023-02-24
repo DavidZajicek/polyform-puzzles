@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var grid: Node2D = $Grid
-@onready var top_score: Scores = ResourceLoader.load("user://topscore.tres")
+@onready var top_score: = ResourceLoader.load("user://topscore.tres")
 
 @export var polyomino: PackedScene = preload("res://Polyomino.tscn")
 
@@ -12,7 +12,9 @@ var score: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	randomize()
-	$UserInterface/TopScore.text = str(top_score.top_score)
+#	if not ResourceLoader.exists("user://topscore.tres"):
+#		ResourceSaver.save(Scores, "user://topscore.tres")
+#	$UserInterface/TopScore.text = str(top_score.top_score)
 	$UserInterface/Button.pressed.connect(save_and_reload.bind())
 
 func _process(_delta: float) -> void:
@@ -106,8 +108,8 @@ func test_for_any_legal_moves():
 
 
 func save_and_reload():
-	if score > top_score.top_score:
-		top_score.top_score = score
+#	if score > top_score.top_score:
+#		top_score.top_score = score
 	get_tree().reload_current_scene()
 
 
