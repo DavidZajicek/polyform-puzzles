@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var grid: Node2D = $Grid
-@onready var top_score: Resource = load("user://top_score.tres")
+@onready var top_score: Scores = ResourceLoader.load("user://topscore.tres")
 
 @export var polyomino: PackedScene = preload("res://Polyomino.tscn")
 
@@ -102,6 +102,7 @@ func test_for_any_legal_moves():
 	$UserInterface/TrueBitLabel.text = str(legal_moves)
 	if legal_moves == 0:
 		save_and_reload()
+		get_tree().reload_current_scene()
 
 
 func save_and_reload():
