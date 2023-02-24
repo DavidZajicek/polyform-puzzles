@@ -51,14 +51,17 @@ func _on_ClickableChild_event(_viewport: Node, event: InputEvent, _shape_idx: in
 			get_tree().get_root().set_input_as_handled()
 			original_position = position
 			offset = position - event.position
+			offset.y -= Globals.tile_size.y
 			dragging = self
 			emit_signal("picked_up", self, offset)
 			z_index = 1
-		elif event.is_action_released("left_mouse"):
+		
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_released("left_mouse"):
 			if dragging == self:
 				get_tree().get_root().set_input_as_handled()
 				position = snapped(position, Globals.tile_size)
-				
 				await get_tree().process_frame
 				for child in overlap_areas:
 					if child.has_overlapping_areas():
@@ -66,5 +69,3 @@ func _on_ClickableChild_event(_viewport: Node, event: InputEvent, _shape_idx: in
 				emit_signal("put_down", self, position, original_position)
 				dragging = null
 				z_index = 0
-	
-

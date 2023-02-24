@@ -27,6 +27,7 @@ func _process(_delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if dragging and event is InputEventScreenDrag or dragging and event is InputEventMouseMotion:
 		dragging.position = event.position + offset
+		
 	
 	if event.is_action_pressed("restart"):
 		get_tree().reload_current_scene()
