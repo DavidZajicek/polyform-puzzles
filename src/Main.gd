@@ -9,14 +9,20 @@ var score: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	bind_polyominoes()
+	randomize()
+
+func _process(_delta: float) -> void:
+	if not get_tree().get_nodes_in_group("polyominoes").size():
+		for point in $SpawnPoints.get_children():
+			spawn_polyomino(point.position)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if dragging and event is InputEventScreenDrag or dragging and event is InputEventMouseMotion:
 		dragging.position = event.position + offset
 	
-	if not dragging and event.is_action_pressed("ui_accept"):
-		spawn_polyomino(get_global_mouse_position())
+	if event.is_action_pressed("restart"):
+		get_tree().reload_current_scene()
+	
 
 func _on_Polyomino_picked_up_event(_polyomino: Polyomino, _offset: Vector2):
 	dragging = _polyomino
@@ -47,8 +53,9 @@ func _on_Polyomino_put_down_event(_polyomino: Polyomino, _position: Vector2, _or
 
 func spawn_polyomino(_position):
 	var new_poly = polyomino.instantiate()
-	add_child(new_poly)
 	new_poly.position = _position
+	new_poly.size = randi_range(1, 10)
+	add_child(new_poly)
 	bind_polyominoes()
 
 func bind_polyominoes():

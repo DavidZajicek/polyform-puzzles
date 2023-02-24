@@ -6,8 +6,8 @@ var score: int = 1
 
 signal destroy_poly
 
-func _physics_process(_delta: float) -> void:
-	label.text = str(global_position)
+#func _physics_process(_delta: float) -> void:
+#	label.text = str(global_position)
 
 func destroy():
 	emit_signal("destroy_poly", score)

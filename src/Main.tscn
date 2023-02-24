@@ -25,3 +25,14 @@ offset_right = 72.0
 offset_bottom = 58.0
 text = "0"
 script = ExtResource("3_iwrja")
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(128, 768)
+
+[node name="Marker2D2" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(352, 768)
+
+[node name="Marker2D3" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(576, 768)

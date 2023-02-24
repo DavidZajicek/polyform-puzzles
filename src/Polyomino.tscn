@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://Polyomino.gd" id="1_1tpi1"]
 
-[node name="Polyomino" type="CanvasGroup"]
+[node name="Polyomino" type="CanvasGroup" groups=["polyominoes"]]
 script = ExtResource("1_1tpi1")
