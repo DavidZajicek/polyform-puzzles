@@ -17,3 +17,4 @@ data_*/
 #Android build ignore
 src/android/build/*
 !src/android/build/AndroidManifest.xml
+releases/*

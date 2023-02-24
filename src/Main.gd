@@ -50,7 +50,6 @@ func _on_Polyomino_put_down_event(_polyomino: Polyomino, _position: Vector2, _or
 		_polyomino.position = _original_position
 	dragging = null
 	await get_tree().process_frame
-	print(get_tree().get_nodes_in_group("polyominoes").size())
 	if get_tree().get_nodes_in_group("polyominoes").size() > 0:
 		test_for_any_legal_moves()
 	
@@ -85,17 +84,19 @@ func test_for_any_legal_moves():
 	var bitmap: PolyBitMap = grid.bitmap.duplicate()
 	var legal_moves: int = 0
 	for _polyomino in get_tree().get_nodes_in_group("polyominoes"):
-		var illegal_moves: int = 0
 		for x in bitmap.get_size().x:
 			for y in bitmap.get_size().y:
 				if not bitmap.get_bit(x, y):
+					var checked_spaces: int = 0
 					for poly in _polyomino.get_children():
-						var pos = poly.position / Globals.tile_size
-						if bitmap.get_bitv(pos):
-							illegal_moves += 1
-					
-		if not illegal_moves:
-			legal_moves += 1
+						var pos = (poly.position / Globals.tile_size) + Vector2(x, y)
+						if pos.x >= Vector2(bitmap.get_size()).x or pos.y >= Vector2(bitmap.get_size()).y:
+							continue
+						if not bitmap.get_bitv(pos):
+							checked_spaces += 1
+					if checked_spaces == _polyomino.size:
+						legal_moves += 1
+	
 	if legal_moves == 0:
 		if score > top_score.top_score:
 			top_score.top_score = score
