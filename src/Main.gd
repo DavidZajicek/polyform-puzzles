@@ -5,6 +5,7 @@ extends Node2D
 
 var dragging
 var offset: Vector2
+var score: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,6 +36,8 @@ func _on_Polyomino_put_down_event(_polyomino: Polyomino, _position: Vector2, _or
 			grid.bitmap.set_bitv(pos / Globals.tile_size, true)
 			_polyomino.remove_child(poly)
 			grid.add_child(poly)
+			
+			poly.destroy_poly.connect(_on_Poly_destroyed.bind())
 			poly.position = pos
 		_polyomino.queue_free()
 		if grid.bitmap.get_total_line_count():
@@ -55,4 +58,10 @@ func bind_polyominoes():
 					child.picked_up.connect(_on_Polyomino_picked_up_event.bind())
 				if not child.is_connected("put_down", _on_Polyomino_put_down_event.bind()):
 					child.put_down.connect(_on_Polyomino_put_down_event.bind())
+
+func _on_Poly_destroyed(_score: int):
+	score += _score
+	$UserInterface/ScoreLabel.text = str(score)
+
+
 

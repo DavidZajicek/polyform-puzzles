@@ -29,9 +29,14 @@ func create_grid() -> void:
 
 func destroy_lines():
 	var points = bitmap.get_all_lines()
+	var total_rows: int = bitmap.get_all_rows().size() + 1
+	var total_columns: int = bitmap.get_all_columns().size() + 1
+	var multiplier: int = total_columns * total_rows
 	for child in get_children():
 		if child is Poly:
 			for point in points:
 				if child.position / Globals.tile_size == point:
+					child.emit_signal("destroy_poly", child.score * multiplier)
 					child.queue_free()
 					bitmap.set_bitv(point, false)
+
