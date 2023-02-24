@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://d2a7o585g1irr" path="res://icon.svg" id="1_wadjk"]
 
 [node name="GridTile" type="Sprite2D"]
-modulate = Color(0, 0, 1, 1)
+modulate = Color(0, 0, 1, 0.513726)
 texture_repeat = 2
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_wadjk")
 region_rect = Rect2(0, 0, 512, 512)

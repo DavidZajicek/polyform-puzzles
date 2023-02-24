@@ -57,7 +57,7 @@ func _on_ClickableChild_event(_viewport: Node, event: InputEvent, _shape_idx: in
 		elif event.is_action_released("left_mouse"):
 			if dragging == self:
 				get_tree().get_root().set_input_as_handled()
-				position = snapped(position, Vector2(32,32))
+				position = snapped(position, Globals.tile_size)
 				for child in overlap_areas:
 					if child.has_overlapping_areas():
 						position = original_position

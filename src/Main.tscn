@@ -36,6 +36,7 @@ text = "0"
 script = ExtResource("3_iwrja")
 
 [node name="SpawnPoints" type="Node2D" parent="."]
+position = Vector2(0, 192)
 
 [node name="Marker2D" type="Marker2D" parent="SpawnPoints"]
 position = Vector2(128, 768)

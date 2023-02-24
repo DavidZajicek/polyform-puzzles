@@ -1,3 +1,3 @@
 extends Node
 
-@export var tile_size: Vector2 = Vector2(32, 32)
+@export var tile_size: Vector2 = Vector2(64, 64)
