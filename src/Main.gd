@@ -1,8 +1,7 @@
 extends Node2D
 
 @onready var grid: Node2D = $Grid
-@onready var top_score: = ResourceLoader.load("user://topscore.tres")
-
+@onready var top_score: Scores
 @export var polyomino: PackedScene = preload("res://Polyomino.tscn")
 
 var dragging
@@ -12,10 +11,9 @@ var score: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	randomize()
-#	if not ResourceLoader.exists("user://topscore.tres"):
-#		ResourceSaver.save(Scores, "user://topscore.tres")
-#	$UserInterface/TopScore.text = str(top_score.top_score)
-	$UserInterface/Button.pressed.connect(save_and_reload.bind())
+	_create_or_load_save()
+	$UserInterface/TopScore.text = "Top Score: \n" + str(top_score.top_score)
+	$UserInterface/Button.pressed.connect(save_and_quit.bind())
 
 func _process(_delta: float) -> void:
 	if not get_tree().get_nodes_in_group("polyominoes").size():
@@ -33,6 +31,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("restart"):
 		get_tree().reload_current_scene()
 	
+
+func _create_or_load_save():
+	if Scores.save_exists():
+		top_score = load("user://topscore.tres")
+	else:
+		top_score = Scores.new()
 
 func _on_Polyomino_picked_up_event(_polyomino: Polyomino, _offset: Vector2):
 	dragging = _polyomino
@@ -62,7 +66,7 @@ func _on_Polyomino_put_down_event(_polyomino: Polyomino, _position: Vector2, _or
 func spawn_polyomino(_position):
 	var new_polyomino = polyomino.instantiate()
 	new_polyomino.position = _position
-	new_polyomino.size = randi_range(1, 6)
+	new_polyomino.size = randi_range(1, Globals.poly_size)
 	add_child(new_polyomino)
 	bind_polyominoes()
 
@@ -76,7 +80,7 @@ func bind_polyominoes():
 
 func _on_Poly_destroyed(_score: int):
 	score += _score
-	$UserInterface/ScoreLabel.text = str(score)
+	$UserInterface/ScoreLabel.text =  "Current Score: \n" + str(score)
 
 func test_if_legal(_polyomino):
 	for poly in _polyomino.get_children():
@@ -101,18 +105,21 @@ func test_for_any_legal_moves():
 							checked_spaces += 1
 					if checked_spaces == _polyomino.size:
 						legal_moves += 1
-	$UserInterface/TrueBitLabel.text = str(legal_moves)
+	$UserInterface/TrueBitLabel.text =  "Possible Moves: \n" + str(legal_moves)
 	if legal_moves == 0:
 		save_and_reload()
 		get_tree().reload_current_scene()
 
 
 func save_and_reload():
-#	if score > top_score.top_score:
-#		top_score.top_score = score
+	if score > top_score.top_score:
+		top_score.top_score = score
 	get_tree().reload_current_scene()
 
-
+func save_and_quit():
+	if score > top_score.top_score:
+		top_score.top_score = score
+	get_tree().change_scene_to_file("res://main_menu.tscn")
 
 
 
