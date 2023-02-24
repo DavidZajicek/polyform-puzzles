@@ -17,6 +17,8 @@ func _ready():
 	bitmap.create(grid_size)
 	create_grid()
 
+func _process(_delta: float) -> void:
+	bitmap.opaque_to_polygons(rect)
 
 
 func create_grid() -> void:

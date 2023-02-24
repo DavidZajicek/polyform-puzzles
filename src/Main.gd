@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var grid: Node2D = $Grid
-@onready var top_score: Resource = ResourceLoader.load("user://top_score.tres")
+@onready var top_score: Resource = load("user://top_score.tres")
 
 @export var polyomino: PackedScene = preload("res://Polyomino.tscn")
 
@@ -13,12 +13,16 @@ var score: int = 0
 func _ready() -> void:
 	randomize()
 	$UserInterface/TopScore.text = str(top_score.top_score)
+	$UserInterface/Button.pressed.connect(save_and_reload.bind())
 
 func _process(_delta: float) -> void:
 	if not get_tree().get_nodes_in_group("polyominoes").size():
 		for point in $SpawnPoints.get_children():
 			spawn_polyomino(point.position)
+		await get_tree().process_frame
+		
 		test_for_any_legal_moves()
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if dragging and event is InputEventScreenDrag or dragging and event is InputEventMouseMotion:
@@ -36,13 +40,12 @@ func _on_Polyomino_put_down_event(_polyomino: Polyomino, _position: Vector2, _or
 	var legal = test_if_legal(_polyomino)
 	if legal:
 		for poly in _polyomino.get_children():
-			var pos = poly.global_position - grid.global_position
-			grid.bitmap.set_bitv(pos / Globals.tile_size, true)
+			var pos = (poly.global_position - grid.global_position) / Globals.tile_size
+			grid.bitmap.set_bitv(pos, true)
 			_polyomino.remove_child(poly)
 			grid.add_child(poly)
-			
 			poly.destroy_poly.connect(_on_Poly_destroyed.bind())
-			poly.position = pos
+			poly.position = pos * Globals.tile_size
 		_polyomino.queue_free()
 		if grid.bitmap.get_total_line_count():
 			grid.destroy_lines()
@@ -76,7 +79,7 @@ func _on_Poly_destroyed(_score: int):
 func test_if_legal(_polyomino):
 	for poly in _polyomino.get_children():
 		var pos = poly.global_position - grid.global_position
-		if not grid.rect.has_point(pos):
+		if not grid.rect.has_point(pos) or grid.bitmap.get_bitv(pos / Globals.tile_size):
 			return false
 	return true
 
@@ -96,14 +99,15 @@ func test_for_any_legal_moves():
 							checked_spaces += 1
 					if checked_spaces == _polyomino.size:
 						legal_moves += 1
-	
+	$UserInterface/TrueBitLabel.text = str(legal_moves)
 	if legal_moves == 0:
-		if score > top_score.top_score:
-			top_score.top_score = score
-		get_tree().reload_current_scene()
+		save_and_reload()
 
 
-
+func save_and_reload():
+	if score > top_score.top_score:
+		top_score.top_score = score
+	get_tree().reload_current_scene()
 
 
 
