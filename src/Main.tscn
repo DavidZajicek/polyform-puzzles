@@ -1,71 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://c8udt46afaivn"]
 
+[ext_resource type="Script" path="res://Main.gd" id="1_ui10h"]
 [ext_resource type="PackedScene" uid="uid://t6a4vln63jxa" path="res://Grid.tscn" id="2_nkc1e"]
-[ext_resource type="PackedScene" uid="uid://c16fk1fiop15j" path="res://Polyomino.tscn" id="2_rgq52"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_ui10h")
 
 [node name="Grid" parent="." instance=ExtResource("2_nkc1e")]
-
-[node name="Polyomino" parent="." instance=ExtResource("2_rgq52")]
-position = Vector2(544, 64)
-size = 10
-
-[node name="Polyomino3" parent="." instance=ExtResource("2_rgq52")]
-position = Vector2(352, 64)
-size = 5
-
-[node name="Polyomino4" parent="." instance=ExtResource("2_rgq52")]
-position = Vector2(224, 64)
-
-[node name="Polyomino5" parent="." instance=ExtResource("2_rgq52")]
 position = Vector2(64, 64)
-size = 10
-
-[node name="Polyomino6" parent="." instance=ExtResource("2_rgq52")]
-position = Vector2(544, 192)
-
-[node name="Polyomino7" parent="." instance=ExtResource("2_rgq52")]
-position = Vector2(384, 192)
-
-[node name="Polyomino8" parent="." instance=ExtResource("2_rgq52")]
-position = Vector2(224, 192)
-
-[node name="Polyomino9" parent="." instance=ExtResource("2_rgq52")]
-position = Vector2(64, 192)
-
-[node name="Polyomino10" parent="." instance=ExtResource("2_rgq52")]
-position = Vector2(64, 320)
-
-[node name="Polyomino11" parent="." instance=ExtResource("2_rgq52")]
-position = Vector2(224, 320)
-
-[node name="Polyomino12" parent="." instance=ExtResource("2_rgq52")]
-position = Vector2(352, 320)
-
-[node name="Polyomino13" parent="." instance=ExtResource("2_rgq52")]
-position = Vector2(512, 320)
-
-[node name="Polyomino14" parent="." instance=ExtResource("2_rgq52")]
-position = Vector2(64, 448)
-
-[node name="Polyomino15" parent="." instance=ExtResource("2_rgq52")]
-position = Vector2(224, 448)
-
-[node name="Polyomino16" parent="." instance=ExtResource("2_rgq52")]
-position = Vector2(352, 448)
-
-[node name="Polyomino17" parent="." instance=ExtResource("2_rgq52")]
-position = Vector2(512, 448)
-
-[node name="Polyomino18" parent="." instance=ExtResource("2_rgq52")]
-position = Vector2(64, 608)
-
-[node name="Polyomino19" parent="." instance=ExtResource("2_rgq52")]
-position = Vector2(224, 608)
-
-[node name="Polyomino20" parent="." instance=ExtResource("2_rgq52")]
-position = Vector2(352, 608)
-
-[node name="Polyomino21" parent="." instance=ExtResource("2_rgq52")]
-position = Vector2(512, 608)
+grid_size = Vector2(10, 10)

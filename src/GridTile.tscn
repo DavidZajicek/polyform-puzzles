@@ -7,5 +7,4 @@ modulate = Color(0, 0, 1, 1)
 texture_repeat = 2
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_wadjk")
-centered = false
 region_rect = Rect2(0, 0, 512, 512)

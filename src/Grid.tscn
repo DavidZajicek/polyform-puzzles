@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://Grid.gd" id="1_y7vcg"]
 
-[node name="Grid" type="CanvasGroup"]
+[node name="Grid" type="Node2D"]
 script = ExtResource("1_y7vcg")

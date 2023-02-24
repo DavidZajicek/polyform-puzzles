@@ -116,7 +116,7 @@ func add_to_polyominoes_dictionary(_polyBitMap: PolyBitMap):
 			poly_in_polyominoes = true
 	
 	if not poly_in_polyominoes:
-		var packed_array = convert_PolyBitMap_to_array(fixed_PolyBitMaps[0])
+		var _packed_array = convert_PolyBitMap_to_array(fixed_PolyBitMaps[0])
 		if not polyomino_details.get("size: " + str(size)):
 			polyomino_details["size: " + str(size)] = 1
 		else:
