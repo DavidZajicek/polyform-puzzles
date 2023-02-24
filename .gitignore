@@ -15,5 +15,5 @@ export_presets.cfg
 data_*/
 
 #Android build ignore
-*android/build/*
-!*android/build/AndroidManifest.xml
+src/android/build/*
+!src/android/build/AndroidManifest.xml
