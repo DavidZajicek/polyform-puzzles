@@ -54,13 +54,12 @@ offset_bottom = 63.0
 text = "Quit"
 
 [node name="SpawnPoints" type="Node2D" parent="."]
-position = Vector2(0, 320)
 
 [node name="Marker2D" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(64, 768)
+position = Vector2(64, 832)
 
 [node name="Marker2D2" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(256, 896)
+position = Vector2(256, 1088)
 
 [node name="Marker2D3" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(512, 768)
+position = Vector2(512, 832)
