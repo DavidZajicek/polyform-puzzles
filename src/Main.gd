@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var grid: Node2D = $Grid
-@onready var top_score: Scores
 @export var polyomino: PackedScene = preload("res://Polyomino.tscn")
 
 var dragging
@@ -11,9 +10,8 @@ var score: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	randomize()
-	_create_or_load_save()
-	if top_score.top_scores.has(Globals.poly_size):
-		$UserInterface/TopScore.text = "Top Score for size " + str(Globals.poly_size) + ": \n" + str(top_score.top_scores[Globals.poly_size])
+	if Globals.top_score.top_scores.has(Globals.poly_size):
+		$UserInterface/TopScore.text = "Top Score for size " + str(Globals.poly_size) + ": \n" + str(Globals.top_score.top_scores[Globals.poly_size])
 	else:
 		$UserInterface/TopScore.text = "Top Score for size " + str(Globals.poly_size) + ": \n0"
 	$UserInterface/QuitButton.pressed.connect(save_and_quit.bind())
@@ -37,11 +35,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_tree().reload_current_scene()
 	
 
-func _create_or_load_save():
-	if Scores.save_exists():
-		top_score = load("user://topscore.tres")
-	else:
-		top_score = Scores.new()
+
 
 func _on_Polyomino_picked_up_event(_polyomino: Polyomino, _offset: Vector2):
 	dragging = _polyomino
@@ -121,14 +115,11 @@ func test_for_any_legal_moves():
 
 
 func save():
-	if score > top_score.top_score:
-		top_score.top_score = score
-	if Globals.poly_size not in top_score.top_scores:
-		top_score.top_scores = {Globals.poly_size : score}
-	else:
-		if score > top_score.top_scores[Globals.poly_size]:
-			top_score.set_scores({Globals.poly_size : score})
 	
+	if score > Globals.top_score.top_score:
+		Globals.top_score.top_score = score
+	
+	Globals.top_score.set_scores(score)
 
 func reload():
 	get_tree().reload_current_scene()

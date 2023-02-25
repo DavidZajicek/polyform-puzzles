@@ -1,6 +1,5 @@
 extends Control
 
-@onready var top_score: Scores
 @onready var top_score_label: Label = $VBoxContainer/TopScore
 @onready var start_button: Button = $VBoxContainer/StartButton
 @onready var quit_button: Button = $VBoxContainer/QuitButton
@@ -12,8 +11,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	_create_or_load_save()
-	top_score_label.text = "Top Score: \n" + str(top_score.top_score)
+	top_score_label.text = "Top Score: \n" + str(Globals.top_score.top_score)
 	start_button.pressed.connect(start_game.bind())
 	quit_button.pressed.connect(get_tree().quit)
 	difficulty_slider.value_changed.connect(update_difficulty_label)
@@ -28,11 +26,6 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _create_or_load_save():
-	if Scores.save_exists():
-		top_score = load("user://topscore.tres")
-	else:
-		top_score = Scores.new()
 
 func start_game():
 	Globals.poly_size = difficulty_slider.value
@@ -40,7 +33,7 @@ func start_game():
 
 func update_difficulty_label(value: int):
 	difficulty_label.text = "Max Block Size: \n" + str(value)
-	if top_score.top_scores.has(value):
-		difficulty_top_score.text = "Top Score for size " + str(value) + ": \n" + str(top_score.top_scores[value])
+	if Globals.top_score.top_scores.has(value):
+		difficulty_top_score.text = "Top Score for size " + str(value) + ": \n" + str(Globals.top_score.top_scores[value])
 	else:
 		difficulty_top_score.text = "Top Score for size " + str(value) + ": \n0"
