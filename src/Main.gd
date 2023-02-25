@@ -47,12 +47,12 @@ func _on_Polyomino_put_down_event(_polyomino: Polyomino, _position: Vector2, _or
 	var legal = test_if_legal(_polyomino)
 	if legal:
 		for poly in _polyomino.get_children():
-			var pos = (poly.global_position - grid.global_position) / Globals.tile_size
+			var pos = snapped((poly.global_position - grid.global_position) / Globals.tile_size, Vector2(1, 1))
 			grid.bitmap.set_bitv(pos, true)
 			_polyomino.remove_child(poly)
 			grid.add_child(poly)
 			poly.destroy_poly.connect(_on_Poly_destroyed.bind())
-			poly.position = pos * Globals.tile_size
+			poly.position = snapped(pos * Globals.tile_size, Globals.tile_size)
 		_polyomino.queue_free()
 		if grid.bitmap.get_total_line_count():
 			grid.destroy_lines()
@@ -109,13 +109,12 @@ func test_for_any_legal_moves():
 	$UserInterface/TrueBitLabel.text =  "Possible Moves: \n" + str(legal_moves)
 	if legal_moves == 0:
 		save_and_reload()
-		get_tree().reload_current_scene()
+		
 
 
 func save_and_reload():
 	if score > top_score.top_score:
 		top_score.top_score = score
-	get_tree().reload_current_scene()
 
 func save_and_quit():
 	if score > top_score.top_score:
