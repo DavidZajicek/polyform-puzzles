@@ -109,12 +109,13 @@ func test_for_any_legal_moves():
 	$UserInterface/TrueBitLabel.text =  "Possible Moves: \n" + str(legal_moves)
 	if legal_moves == 0:
 		save_and_reload()
-		
+		$UserInterface/ScoreLabel.text = "No more moves,\n<-- try again?"
 
 
 func save_and_reload():
 	if score > top_score.top_score:
 		top_score.top_score = score
+	
 
 func save_and_quit():
 	if score > top_score.top_score:
