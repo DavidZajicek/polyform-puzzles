@@ -59,3 +59,9 @@ layout_mode = 2
 min_value = 4.0
 max_value = 10.0
 value = 6.0
+
+[node name="DifficultyTopScore" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Top Score for size 6:
+ "
+horizontal_alignment = 1

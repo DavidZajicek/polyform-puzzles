@@ -6,6 +6,7 @@ extends Control
 @onready var quit_button: Button = $VBoxContainer/QuitButton
 @onready var difficulty_slider: HSlider = $VBoxContainer/DifficultySlider
 @onready var difficulty_label: Label = $VBoxContainer/DifficultyLabel
+@onready var difficulty_top_score: Label = $VBoxContainer/DifficultyTopScore
 
 @onready var main_game: PackedScene = load("res://Main.tscn")
 
@@ -17,6 +18,8 @@ func _ready() -> void:
 	quit_button.pressed.connect(get_tree().quit)
 	difficulty_slider.value_changed.connect(update_difficulty_label)
 	difficulty_slider.value = Globals.poly_size
+	
+	update_difficulty_label(Globals.poly_size)
 	
 
 
@@ -35,5 +38,9 @@ func start_game():
 	Globals.poly_size = difficulty_slider.value
 	get_tree().change_scene_to_packed(main_game)
 
-func update_difficulty_label(value):
+func update_difficulty_label(value: int):
 	difficulty_label.text = "Max Block Size: \n" + str(value)
+	if top_score.top_scores.has(value):
+		difficulty_top_score.text = "Top Score for size " + str(value) + ": \n" + str(top_score.top_scores[value])
+	else:
+		difficulty_top_score.text = "Top Score for size " + str(value) + ": \n0"

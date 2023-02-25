@@ -3,7 +3,9 @@ extends Resource
 
 const SAVE_GAME_BASE_PATH := "user://topscore"
 
+@export var version: int = 1
 @export var top_score: int = 0 : set = set_score, get = get_score
+@export var top_scores: Dictionary = {} : set = set_scores, get = get_scores
 
 
 
@@ -13,6 +15,13 @@ func set_score(new_score: int):
 
 func get_score() -> int:
 	return top_score
+
+func set_scores(new_score: Dictionary):
+	top_scores[new_score.keys().front()] = new_score.values().front()
+	write_savegame()
+
+func get_scores() -> Dictionary:
+	return top_scores
 
 func write_savegame() -> void:
 	ResourceSaver.save(self, get_save_path())

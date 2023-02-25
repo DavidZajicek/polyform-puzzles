@@ -12,7 +12,10 @@ var score: int = 0
 func _ready() -> void:
 	randomize()
 	_create_or_load_save()
-	$UserInterface/TopScore.text = "Top Score: \n" + str(top_score.top_score)
+	if top_score.top_scores.has(Globals.poly_size):
+		$UserInterface/TopScore.text = "Top Score for size " + str(Globals.poly_size) + ": \n" + str(top_score.top_scores[Globals.poly_size])
+	else:
+		$UserInterface/TopScore.text = "Top Score for size " + str(Globals.poly_size) + ": \n0"
 	$UserInterface/QuitButton.pressed.connect(save_and_quit.bind())
 	$UserInterface/RestartButton.pressed.connect(save_and_reload.bind())
 
@@ -120,6 +123,11 @@ func test_for_any_legal_moves():
 func save():
 	if score > top_score.top_score:
 		top_score.top_score = score
+	if Globals.poly_size not in top_score.top_scores:
+		top_score.top_scores = {Globals.poly_size : score}
+	else:
+		if score > top_score.top_scores[Globals.poly_size]:
+			top_score.set_scores({Globals.poly_size : score})
 	
 
 func reload():
