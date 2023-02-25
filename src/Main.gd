@@ -89,7 +89,6 @@ func test_if_legal(_polyomino):
 		var pos = poly.global_position - grid.global_position
 		var grid_pos = snapped(pos / Globals.tile_size, Vector2(1, 1))
 		if grid_pos.x >= grid.bitmap.get_size().x or grid_pos.y >= grid.bitmap.get_size().y:
-			print(grid_pos)
 			return false
 		if not grid.rect.has_point(pos) or grid.bitmap.get_bitv(grid_pos):
 			return false
@@ -113,7 +112,7 @@ func test_for_any_legal_moves():
 						legal_moves += 1
 	$UserInterface/PossibleMoves.text =  "Possible Moves: \n" + str(legal_moves)
 	if legal_moves == 0:
-		save_and_reload()
+		save()
 		$UserInterface/ScoreLabel.text = "No more moves,\n<-- quit?"
 		$UserInterface/PossibleMoves.text = "No more moves,\nrestart? -->"
 
