@@ -29,29 +29,39 @@ script = ExtResource("3_iwrja")
 
 [node name="TopScore" type="Label" parent="UserInterface"]
 layout_mode = 0
-offset_left = 448.0
+offset_left = 320.0
 offset_top = 32.0
-offset_right = 488.0
-offset_bottom = 58.0
-text = "0"
+offset_right = 400.0
+offset_bottom = 84.0
+text = "Top Score:
+0"
 script = ExtResource("3_iwrja")
 
-[node name="TrueBitLabel" type="Label" parent="UserInterface"]
+[node name="PossibleMoves" type="Label" parent="UserInterface"]
 layout_mode = 0
-offset_left = 288.0
+offset_left = 512.0
 offset_top = 32.0
-offset_right = 328.0
-offset_bottom = 58.0
-text = "0"
+offset_right = 635.0
+offset_bottom = 84.0
+text = "Possible Moves:
+0"
 script = ExtResource("3_iwrja")
 
-[node name="Button" type="Button" parent="UserInterface"]
+[node name="QuitButton" type="Button" parent="UserInterface"]
 layout_mode = 0
-offset_left = 32.0
+offset_left = 40.0
 offset_top = 32.0
-offset_right = 97.0
+offset_right = 105.0
 offset_bottom = 63.0
 text = "Quit"
+
+[node name="RestartButton" type="Button" parent="UserInterface"]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 32.0
+offset_right = 705.0
+offset_bottom = 63.0
+text = "Restart"
 
 [node name="SpawnPoints" type="Node2D" parent="."]
 

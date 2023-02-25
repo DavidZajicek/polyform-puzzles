@@ -13,7 +13,8 @@ func _ready() -> void:
 	randomize()
 	_create_or_load_save()
 	$UserInterface/TopScore.text = "Top Score: \n" + str(top_score.top_score)
-	$UserInterface/Button.pressed.connect(save_and_quit.bind())
+	$UserInterface/QuitButton.pressed.connect(save_and_quit.bind())
+	$UserInterface/RestartButton.pressed.connect(save_and_reload.bind())
 
 func _process(_delta: float) -> void:
 	if not get_tree().get_nodes_in_group("polyominoes").size():
@@ -86,7 +87,9 @@ func _on_Poly_destroyed(_score: int):
 func test_if_legal(_polyomino):
 	for poly in _polyomino.get_children():
 		var pos = poly.global_position - grid.global_position
-		if not grid.rect.has_point(pos) or grid.bitmap.get_bitv(pos / Globals.tile_size):
+		var grid_pos = pos / Globals.tile_size
+		
+		if not grid.rect.has_point(pos) or grid.bitmap.get_bitv(grid_pos) or not grid_pos.x >= grid.bitmap.get_size().x or not grid_pos.y >= grid.bitmap.get_size().y:
 			return false
 	return true
 
@@ -106,20 +109,28 @@ func test_for_any_legal_moves():
 							checked_spaces += 1
 					if checked_spaces == _polyomino.size:
 						legal_moves += 1
-	$UserInterface/TrueBitLabel.text =  "Possible Moves: \n" + str(legal_moves)
+	$UserInterface/PossibleMoves.text =  "Possible Moves: \n" + str(legal_moves)
 	if legal_moves == 0:
 		save_and_reload()
-		$UserInterface/ScoreLabel.text = "No more moves,\n<-- try again?"
+		$UserInterface/ScoreLabel.text = "No more moves,\n<-- quit?"
+		$UserInterface/PossibleMoves.text = "No more moves,\nrestart? -->"
 
 
-func save_and_reload():
+func save():
 	if score > top_score.top_score:
 		top_score.top_score = score
 	
 
+func reload():
+	get_tree().reload_current_scene()
+
+func save_and_reload():
+	save()
+	reload()
+
+
 func save_and_quit():
-	if score > top_score.top_score:
-		top_score.top_score = score
+	save()
 	get_tree().change_scene_to_file("res://main_menu.tscn")
 
 
