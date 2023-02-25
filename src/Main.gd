@@ -110,7 +110,6 @@ func test_for_any_legal_moves():
 	$UserInterface/PossibleMoves.text =  "Possible Moves: \n" + str(legal_moves)
 	if legal_moves == 0:
 		save()
-		$UserInterface/ScoreLabel.text = "No more moves,\n<-- quit?"
 		$UserInterface/PossibleMoves.text = "No more moves,\nrestart? -->"
 
 

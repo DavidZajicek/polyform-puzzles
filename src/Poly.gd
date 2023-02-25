@@ -3,6 +3,7 @@ extends Area2D
 
 var score: int = 1
 @onready var label: Label = $Label
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 signal destroy_poly
 
@@ -10,4 +11,4 @@ signal destroy_poly
 #	label.text = str((global_position - Globals.tile_size - Vector2(0, 64)) / Globals.tile_size)
 
 func destroy():
-	emit_signal("destroy_poly", score)
+	queue_free()

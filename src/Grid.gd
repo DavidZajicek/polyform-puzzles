@@ -39,6 +39,6 @@ func destroy_lines():
 			for point in points:
 				if child.position / Globals.tile_size == point:
 					child.emit_signal("destroy_poly", child.score * multiplier)
-					child.queue_free()
+					child.animation_player.play("destroy")
 					bitmap.set_bitv(point, false)
 
