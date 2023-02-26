@@ -21,10 +21,14 @@ func _ready() -> void:
 	
 
 
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
 
 
 func start_game():
-	Globals.poly_size = int(difficulty_slider.value)
+	Globals.poly_size = difficulty_slider.value
 	get_tree().change_scene_to_packed(main_game)
 
 func update_difficulty_label(value: int):
