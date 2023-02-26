@@ -3,11 +3,12 @@ extends Node2D
 var grid: Grid
 @export var polyomino: PackedScene = preload("res://Polyomino.tscn")
 
-@onready var score_label: Label = $Camera2D/UserInterface/ScoreLabel
-@onready var top_score: Label = $Camera2D/UserInterface/TopScore
-@onready var possible_moves: Label = $Camera2D/UserInterface/PossibleMoves
-@onready var quit_button: Button = $Camera2D/UserInterface/QuitButton
-@onready var restart_button: Button = $Camera2D/UserInterface/RestartButton
+@onready var quit_button: Button = $CanvasLayer/UserInterface/HBoxContainer/QuitButton
+@onready var score_label: Label = $CanvasLayer/UserInterface/HBoxContainer/ScoreLabel
+@onready var top_score: Label = $CanvasLayer/UserInterface/HBoxContainer/TopScore
+@onready var possible_moves: Label = $CanvasLayer/UserInterface/HBoxContainer/PossibleMoves
+@onready var restart_button: Button = $CanvasLayer/UserInterface/HBoxContainer/RestartButton
+
 @onready var spawn_points: Node2D = $SpawnPoints
 @onready var camera_2d: Camera2D = $Camera2D
 
