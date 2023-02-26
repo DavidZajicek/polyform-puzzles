@@ -1,3 +1,4 @@
+class_name Grid
 extends Node2D
 
 #constants
@@ -8,7 +9,7 @@ extends Node2D
 #onready
 @onready var grid_tile: PackedScene = preload("res://GridTile.tscn")
 @onready var bitmap: PolyBitMap = PolyBitMap.new()
-@onready var rect: Rect2i = Rect2i(Vector2i.ZERO, grid_size * Globals.tile_size)
+@onready var rect: Rect2i = Rect2i(Vector2i.ZERO, grid_size)
 
 #vars
 

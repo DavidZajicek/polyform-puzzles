@@ -1,7 +1,7 @@
 class_name InfiniteModeMain
 extends Node2D
 
-@onready var grid: Node2D = $Grid
+@onready var grid: Grid = $Grid
 @export var polyomino: PackedScene = preload("res://Polyomino.tscn")
 
 var dragging
@@ -43,7 +43,7 @@ func _on_Polyomino_picked_up_event(_polyomino: Polyomino, _offset: Vector2):
 	offset = _offset
 
 func _on_Polyomino_put_down_event(_polyomino: Polyomino, _position: Vector2, _original_position: Vector2):
-	var legal = test_if_legal(_polyomino)
+	var legal = test_if_legal(_polyomino, _position - grid.position)
 	if legal:
 		for poly in _polyomino.get_children():
 			var pos = snapped((poly.global_position - grid.global_position) / Globals.tile_size, Vector2(1, 1))
@@ -82,13 +82,12 @@ func _on_Poly_destroyed(_score: int):
 	score += _score
 	$UserInterface/ScoreLabel.text =  "Current Score: \n" + str(score)
 
-func test_if_legal(_polyomino):
+func test_if_legal(_polyomino: Polyomino, _position: Vector2):
 	for poly in _polyomino.get_children():
-		var pos = poly.global_position - grid.global_position
-		var grid_pos = snapped(pos / Globals.tile_size, Vector2(1, 1))
-		if grid_pos.x >= grid.bitmap.get_size().x or grid_pos.y >= grid.bitmap.get_size().y:
+		var grid_pos = snapped((poly.position + _position) / Globals.tile_size, Vector2(1, 1))
+		if not grid.rect.has_point(grid_pos):
 			return false
-		if not grid.rect.has_point(pos) or grid.bitmap.get_bitv(grid_pos):
+		if grid.bitmap.get_bitv(grid_pos):
 			return false
 	return true
 
@@ -98,16 +97,9 @@ func test_for_any_legal_moves():
 	for _polyomino in get_tree().get_nodes_in_group("polyominoes"):
 		for x in bitmap.get_size().x:
 			for y in bitmap.get_size().y:
-				if not bitmap.get_bit(x, y):
-					var checked_spaces: int = 0
-					for poly in _polyomino.get_children():
-						var pos = (poly.position / Globals.tile_size) + Vector2(x, y)
-						if pos.x >= Vector2(bitmap.get_size()).x or pos.y >= Vector2(bitmap.get_size()).y:
-							continue
-						if not bitmap.get_bitv(pos):
-							checked_spaces += 1
-					if checked_spaces == _polyomino.size:
-						legal_moves += 1
+				var _position: Vector2 = Vector2(x, y) * Globals.tile_size
+				if test_if_legal(_polyomino, _position):
+					legal_moves += 1
 	$UserInterface/PossibleMoves.text =  "Possible Moves: \n" + str(legal_moves)
 	if legal_moves == 0:
 		save()
