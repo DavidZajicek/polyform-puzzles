@@ -22,46 +22,54 @@ position = Vector2(448, 832)
 anchor_mode = 0
 script = ExtResource("4_1g418")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="UserInterface" type="Control" parent="CanvasLayer"]
+[node name="UserInterface" type="Control" parent="Camera2D"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 720.0
-offset_bottom = 1280.0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UserInterface"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 10.0
-offset_bottom = 62.0
-grow_horizontal = 2
-theme_override_constants/separation = 40
-alignment = 1
-
-[node name="QuitButton" type="Button" parent="CanvasLayer/UserInterface/HBoxContainer"]
-layout_mode = 2
-text = "Quit"
-
-[node name="ScoreLabel" type="Label" parent="CanvasLayer/UserInterface/HBoxContainer"]
-layout_mode = 2
+[node name="ScoreLabel" type="Label" parent="Camera2D/UserInterface"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 32.0
+offset_right = 168.0
+offset_bottom = 58.0
 text = "Current Score:
 0"
 script = ExtResource("3_iwrja")
 
-[node name="TopScore" type="Label" parent="CanvasLayer/UserInterface/HBoxContainer"]
-layout_mode = 2
+[node name="TopScore" type="Label" parent="Camera2D/UserInterface"]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 32.0
+offset_right = 400.0
+offset_bottom = 84.0
 text = "Top Score:
 0"
 script = ExtResource("3_iwrja")
 
-[node name="PossibleMoves" type="Label" parent="CanvasLayer/UserInterface/HBoxContainer"]
-layout_mode = 2
+[node name="PossibleMoves" type="Label" parent="Camera2D/UserInterface"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 32.0
+offset_right = 635.0
+offset_bottom = 84.0
 text = "Possible Moves:
 0"
 script = ExtResource("3_iwrja")
 
-[node name="RestartButton" type="Button" parent="CanvasLayer/UserInterface/HBoxContainer"]
-layout_mode = 2
+[node name="QuitButton" type="Button" parent="Camera2D/UserInterface"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 32.0
+offset_right = 105.0
+offset_bottom = 63.0
+text = "Quit"
+
+[node name="RestartButton" type="Button" parent="Camera2D/UserInterface"]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 32.0
+offset_right = 705.0
+offset_bottom = 63.0
 text = "Restart"
