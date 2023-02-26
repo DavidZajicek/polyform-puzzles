@@ -1,3 +1,4 @@
+class_name InfiniteModeMainMenu
 extends Control
 
 @onready var top_score_label: Label = $VBoxContainer/TopScore
@@ -7,7 +8,7 @@ extends Control
 @onready var difficulty_label: Label = $VBoxContainer/DifficultyLabel
 @onready var difficulty_top_score: Label = $VBoxContainer/DifficultyTopScore
 
-@onready var main_game: PackedScene = load("res://Main.tscn")
+@onready var main_game: PackedScene = load("res://InfiniteModeMain.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

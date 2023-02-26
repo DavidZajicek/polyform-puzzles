@@ -1,15 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bayflkqksrv3v"]
+[gd_scene load_steps=2 format=3 uid="uid://cq8i4nsghjio4"]
 
-[ext_resource type="Script" path="res://MainMenu.gd" id="1_y1t3w"]
+[ext_resource type="Script" path="res://InfiniteModeMainMenu.gd" id="1_431xr"]
 
-[node name="MainMenu" type="Control"]
+[node name="InfiniteModeMainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_y1t3w")
+script = ExtResource("1_431xr")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

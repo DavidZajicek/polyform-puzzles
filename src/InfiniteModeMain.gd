@@ -1,3 +1,4 @@
+class_name InfiniteModeMain
 extends Node2D
 
 @onready var grid: Node2D = $Grid
@@ -130,7 +131,7 @@ func save_and_reload():
 
 func save_and_quit():
 	save()
-	get_tree().change_scene_to_file("res://main_menu.tscn")
+	get_tree().change_scene_to_file("res://InfiniteModeMainMenu.tscn")
 
 
 
