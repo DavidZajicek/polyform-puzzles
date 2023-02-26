@@ -1,7 +1,16 @@
 extends Node2D
 
-@onready var grid: Node2D = $Grid
+var grid: Grid
 @export var polyomino: PackedScene = preload("res://Polyomino.tscn")
+
+@onready var score_label: Label = $Camera2D/UserInterface/ScoreLabel
+@onready var top_score: Label = $Camera2D/UserInterface/TopScore
+@onready var possible_moves: Label = $Camera2D/UserInterface/PossibleMoves
+@onready var quit_button: Button = $Camera2D/UserInterface/QuitButton
+@onready var restart_button: Button = $Camera2D/UserInterface/RestartButton
+@onready var spawn_points: Node2D = $SpawnPoints
+@onready var camera_2d: Camera2D = $Camera2D
+
 
 var dragging
 var offset: Vector2
@@ -10,17 +19,21 @@ var score: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	randomize()
+	spawn_points.position += Vector2(0, Globals.tile_size.y * (Globals.poly_size - 6))
+	create_grid()
+	var zoom_level: float = (10.0 + (6.0 - Globals.poly_size)) / 10.0
+	camera_2d.zoom = Vector2(zoom_level, zoom_level)
 	if Globals.top_score.top_scores.has(Globals.poly_size):
-		$UserInterface/TopScore.text = "Top Score for size " + str(Globals.poly_size) + ": \n" + str(Globals.top_score.top_scores[Globals.poly_size])
+		top_score.text = "Top Score for size " + str(Globals.poly_size) + ": \n" + str(Globals.top_score.top_scores[Globals.poly_size])
 	else:
-		$UserInterface/TopScore.text = "Top Score for size " + str(Globals.poly_size) + ": \n0"
-	$UserInterface/QuitButton.pressed.connect(save_and_quit.bind())
-	$UserInterface/RestartButton.pressed.connect(save_and_reload.bind())
+		top_score.text = "Top Score for size " + str(Globals.poly_size) + ": \n0"
+	quit_button.pressed.connect(save_and_quit.bind())
+	restart_button.pressed.connect(save_and_reload.bind())
 
 func _process(_delta: float) -> void:
 	if not get_tree().get_nodes_in_group("polyominoes").size():
 		for point in $SpawnPoints.get_children():
-			spawn_polyomino(point.position)
+			spawn_polyomino(point.global_position)
 		await get_tree().process_frame
 		
 		test_for_any_legal_moves()
@@ -35,7 +48,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_tree().reload_current_scene()
 	
 
-
+func create_grid():
+	grid = Grid.new()
+	grid.position = Vector2(64, 128) # magic numbers
+	grid.grid_size = Vector2(Globals.poly_size + 4, Globals.poly_size + 4)
+	add_child(grid)
 
 func _on_Polyomino_picked_up_event(_polyomino: Polyomino, _offset: Vector2):
 	dragging = _polyomino
@@ -79,7 +96,7 @@ func bind_polyominoes():
 
 func _on_Poly_destroyed(_score: int):
 	score += _score
-	$UserInterface/ScoreLabel.text =  "Current Score: \n" + str(score)
+	score_label.text =  "Current Score: \n" + str(score)
 
 func test_if_legal(_polyomino):
 	for poly in _polyomino.get_children():
@@ -107,10 +124,10 @@ func test_for_any_legal_moves():
 							checked_spaces += 1
 					if checked_spaces == _polyomino.size:
 						legal_moves += 1
-	$UserInterface/PossibleMoves.text =  "Possible Moves: \n" + str(legal_moves)
+	possible_moves.text =  "Possible Moves: \n" + str(legal_moves)
 	if legal_moves == 0:
 		save()
-		$UserInterface/PossibleMoves.text = "No more moves,\nrestart? -->"
+		possible_moves.text = "No more moves,\nrestart? -->"
 
 
 func save():

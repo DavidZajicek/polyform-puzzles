@@ -1,3 +1,4 @@
+class_name Grid
 extends Node2D
 
 #constants
