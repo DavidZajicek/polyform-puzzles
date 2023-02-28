@@ -108,8 +108,8 @@ func test_for_any_legal_moves():
 
 func save():
 	
-	if score > Globals.top_score.top_score:
-		Globals.top_score.top_score = score
+#	if score > Globals.top_score.top_score:
+#		Globals.top_score.top_score = score
 	
 	Globals.top_score.set_scores(score)
 
