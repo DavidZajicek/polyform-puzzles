@@ -6,6 +6,9 @@ const SAVE_GAME_BASE_PATH := "user://topscore"
 @export var version: int = 2
 @export var top_score: int = 0
 @export var top_scores: Dictionary
+#move into settings save
+@export var background_colour: Color = Color(0.3, 0.3, 0.3, 1.0) : set = set_background_colour
+
 
 
 
@@ -40,3 +43,6 @@ static func get_save_path() -> String:
 	var extension := ".tres" if OS.is_debug_build() else ".res"
 	return SAVE_GAME_BASE_PATH + extension
 
+func set_background_colour(colour):
+	background_colour = colour
+	write_savegame()

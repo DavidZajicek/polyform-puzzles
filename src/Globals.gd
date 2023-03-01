@@ -7,6 +7,7 @@ var top_score: Scores
 
 func _ready() -> void:
 	_create_or_load_save()
+	RenderingServer.set_default_clear_color(top_score.background_colour)
 
 func _create_or_load_save():
 	if Scores.save_exists():
