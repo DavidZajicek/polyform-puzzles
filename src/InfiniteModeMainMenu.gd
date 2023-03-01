@@ -8,6 +8,7 @@ extends Control
 @onready var difficulty_label: Label = $VBoxContainer/DifficultyLabel
 @onready var difficulty_top_score: Label = $VBoxContainer/DifficultyTopScore
 @onready var color_picker_button: ColorPickerButton = $VBoxContainer/ColorPickerButton
+@onready var grid_tile_color_picker: ColorPickerButton = $VBoxContainer/GridTileColorPicker
 
 @onready var main_game: PackedScene = load("res://InfiniteModeMain.tscn")
 
@@ -19,6 +20,7 @@ func _ready() -> void:
 	difficulty_slider.value_changed.connect(update_difficulty_label)
 	difficulty_slider.value = Globals.poly_size
 	color_picker_button.color_changed.connect(change_background.bind())
+	grid_tile_color_picker.color_changed.connect(change_grid_tile.bind())
 	update_difficulty_label(Globals.poly_size)
 	
 
@@ -30,6 +32,9 @@ func _process(delta: float) -> void:
 func change_background(colour):
 	Globals.top_score.background_colour = colour
 	RenderingServer.set_default_clear_color(colour)
+
+func change_grid_tile(colour):
+	Globals.top_score.grid_tile_colour = colour
 
 func start_game():
 	Globals.poly_size = difficulty_slider.value

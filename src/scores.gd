@@ -8,7 +8,7 @@ const SAVE_GAME_BASE_PATH := "user://topscore"
 @export var top_scores: Dictionary
 #move into settings save
 @export var background_colour: Color = Color(0.3, 0.3, 0.3, 1.0) : set = set_background_colour
-
+@export var grid_tile_colour: Color = Color(0.0, 0.0, 1.0, 0.5) : set = set_grid_tile_colour
 
 
 
@@ -45,4 +45,8 @@ static func get_save_path() -> String:
 
 func set_background_colour(colour):
 	background_colour = colour
+	write_savegame()
+
+func set_grid_tile_colour(colour):
+	grid_tile_colour = colour
 	write_savegame()
