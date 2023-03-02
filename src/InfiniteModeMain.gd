@@ -44,11 +44,12 @@ func _on_Polyomino_picked_up_event(_polyomino: Polyomino, _offset: Vector2):
 	offset = _offset
 
 func _on_Polyomino_put_down_event(_polyomino: Polyomino, _position: Vector2, _original_position: Vector2):
-	var legal = test_if_legal(_polyomino, _position - grid.position)
+	var relative_position: Vector2 = snapped(dragging.position - grid.position, Globals.tile_size)
+	var legal = test_if_legal(_polyomino, relative_position)
 	if legal:
 		for poly in _polyomino.get_children():
 			if poly is Poly:
-				var pos = snapped((poly.global_position - grid.global_position) / Globals.tile_size, Vector2(1, 1))
+				var pos = snapped((poly.position + relative_position) / Globals.tile_size, Vector2(1, 1))
 				grid.bitmap.set_bitv(pos, true)
 				_polyomino.remove_child(poly)
 				grid.add_child(poly)
