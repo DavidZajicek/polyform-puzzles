@@ -2,7 +2,10 @@ class_name Polyomino
 extends CanvasGroup
 
 @onready var poly: PackedScene = preload("res://Poly.tscn")
+@onready var drop_shadow_poly: PackedScene = preload("res://DropShadowPoly.tscn")
 @onready var polyforms_resource: Polyforms = preload("res://Polyforms.tres")
+@onready var drop_shadow: CanvasGroup = $DropShadow
+
 @export var size: int = 4
 
 signal picked_up
@@ -29,10 +32,14 @@ func generate_shape() -> void:
 		var new_poly = poly.instantiate()
 		add_child(new_poly)
 		new_poly.position = (vector * Globals.tile_size)
+		var new_drop_shadow_poly = drop_shadow_poly.instantiate()
+		new_drop_shadow_poly.position = (vector * Globals.tile_size)
+		drop_shadow.add_child(new_drop_shadow_poly)
 #		new_poly.label.text = str(new_poly.global_position)
 		score += 1
 	for child in get_children():
-		child.score = score * score
+		if child is Poly:
+			child.score = score * score
 
 
 func connect_with_poly_children() -> void:
@@ -54,6 +61,7 @@ func _on_ClickableChild_event(_viewport: Node, event: InputEvent, _shape_idx: in
 			offset.y -= Globals.tile_size.y
 			dragging = self
 			emit_signal("picked_up", self, offset)
+			dragging.drop_shadow.visible = true
 			z_index = 1
 		
 	
@@ -67,5 +75,6 @@ func _unhandled_input(event: InputEvent) -> void:
 					if child.has_overlapping_areas():
 						position = original_position
 				emit_signal("put_down", self, position, original_position)
+				dragging.drop_shadow.visible = false
 				dragging = null
 				z_index = 0

@@ -4,3 +4,8 @@
 
 [node name="Polyomino" type="CanvasGroup" groups=["polyominoes"]]
 script = ExtResource("1_1tpi1")
+
+[node name="DropShadow" type="CanvasGroup" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 0.603922)
+show_behind_parent = true

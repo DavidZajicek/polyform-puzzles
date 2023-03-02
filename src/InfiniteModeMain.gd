@@ -4,7 +4,7 @@ extends Node2D
 @onready var grid: Grid = $Grid
 @export var polyomino: PackedScene = preload("res://Polyomino.tscn")
 
-var dragging
+var dragging: Polyomino
 var offset: Vector2
 var score: int = 0
 
@@ -30,6 +30,7 @@ func _process(_delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if dragging and event is InputEventScreenDrag or dragging and event is InputEventMouseMotion:
 		dragging.position = event.position + offset
+		dragging.drop_shadow.global_position = snapped(dragging.global_position, Globals.tile_size)
 		
 	
 	if event.is_action_pressed("restart"):
@@ -46,12 +47,13 @@ func _on_Polyomino_put_down_event(_polyomino: Polyomino, _position: Vector2, _or
 	var legal = test_if_legal(_polyomino, _position - grid.position)
 	if legal:
 		for poly in _polyomino.get_children():
-			var pos = snapped((poly.global_position - grid.global_position) / Globals.tile_size, Vector2(1, 1))
-			grid.bitmap.set_bitv(pos, true)
-			_polyomino.remove_child(poly)
-			grid.add_child(poly)
-			poly.destroy_poly.connect(_on_Poly_destroyed.bind())
-			poly.position = snapped(pos * Globals.tile_size, Globals.tile_size)
+			if poly is Poly:
+				var pos = snapped((poly.global_position - grid.global_position) / Globals.tile_size, Vector2(1, 1))
+				grid.bitmap.set_bitv(pos, true)
+				_polyomino.remove_child(poly)
+				grid.add_child(poly)
+				poly.destroy_poly.connect(_on_Poly_destroyed.bind())
+				poly.position = snapped(pos * Globals.tile_size, Globals.tile_size)
 		_polyomino.queue_free()
 		if grid.bitmap.get_total_line_count():
 			grid.destroy_lines()
