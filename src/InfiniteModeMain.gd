@@ -87,11 +87,12 @@ func _on_Poly_destroyed(_score: int):
 
 func test_if_legal(_polyomino: Polyomino, _position: Vector2):
 	for poly in _polyomino.get_children():
-		var grid_pos = snapped((poly.position + _position) / Globals.tile_size, Vector2(1, 1))
-		if not grid.rect.has_point(grid_pos):
-			return false
-		if grid.bitmap.get_bitv(grid_pos):
-			return false
+		if poly is Poly:
+			var grid_pos = snapped((poly.position + _position) / Globals.tile_size, Vector2(1, 1))
+			if not grid.rect.has_point(grid_pos):
+				return false
+			if grid.bitmap.get_bitv(grid_pos):
+				return false
 	return true
 
 func test_for_any_legal_moves():
