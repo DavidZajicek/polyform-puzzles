@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ThemeData" load_steps=2 format=3 uid="uid://bjdtr5xywppsc"]
+
+[ext_resource type="Script" path="res://theme_data.gd" id="1_jgtjh"]
+
+[resource]
+script = ExtResource("1_jgtjh")
+runes = {
+"RUNE_H": "res://assets/blocks/rune-h.png",
+"RUNE_R": "res://assets/blocks/rune-r.png",
+"RUNE_TH": "res://assets/blocks/rune-th.png"
+}

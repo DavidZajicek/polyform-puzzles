@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxcwofo851bx3"]
+[gd_scene load_steps=3 format=3 uid="uid://dxcwofo851bx3"]
 
 [ext_resource type="Script" path="res://InfiniteModeMain.gd" id="1_l1gu7"]
 [ext_resource type="PackedScene" uid="uid://t6a4vln63jxa" path="res://Grid.tscn" id="2_1uqbt"]
-[ext_resource type="Script" path="res://ScoreLabel.gd" id="3_5aa0e"]
 
 [node name="InfiniteModeMain" type="Node2D"]
 script = ExtResource("1_l1gu7")
@@ -17,7 +16,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ScoreLabel" type="Label" parent="UserInterface"]
+[node name="ScoreLabel" type="RichTextLabel" parent="UserInterface"]
 layout_mode = 0
 offset_left = 128.0
 offset_top = 32.0
@@ -25,9 +24,11 @@ offset_right = 168.0
 offset_bottom = 58.0
 text = "Current Score:
 0"
-script = ExtResource("3_5aa0e")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
-[node name="TopScore" type="Label" parent="UserInterface"]
+[node name="TopScore" type="RichTextLabel" parent="UserInterface"]
 layout_mode = 0
 offset_left = 320.0
 offset_top = 32.0
@@ -35,9 +36,10 @@ offset_right = 400.0
 offset_bottom = 84.0
 text = "Top Score:
 0"
-script = ExtResource("3_5aa0e")
+fit_content = true
+autowrap_mode = 0
 
-[node name="PossibleMoves" type="Label" parent="UserInterface"]
+[node name="PossibleMoves" type="RichTextLabel" parent="UserInterface"]
 layout_mode = 0
 offset_left = 512.0
 offset_top = 32.0
@@ -45,7 +47,8 @@ offset_right = 635.0
 offset_bottom = 84.0
 text = "Possible Moves:
 0"
-script = ExtResource("3_5aa0e")
+fit_content = true
+autowrap_mode = 0
 
 [node name="QuitButton" type="Button" parent="UserInterface"]
 layout_mode = 0

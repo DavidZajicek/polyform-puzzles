@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://do5x6v06dq6g5"]
+
+[ext_resource type="Theme" uid="uid://b2mieut3kuy46" path="res://MainMenuTheme.tres" id="1_ec3la"]
+[ext_resource type="Script" path="res://theme_menu.gd" id="1_mr4c2"]
+
+[node name="ThemeMenu" type="CanvasLayer"]
+script = ExtResource("1_mr4c2")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ec3la")
+
+[node name="Background" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="NavigationButtons" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/NavigationButtons"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Back"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2

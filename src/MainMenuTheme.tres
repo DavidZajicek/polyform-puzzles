@@ -1,4 +1,13 @@
 [gd_resource type="Theme" format=3 uid="uid://b2mieut3kuy46"]
 
 [resource]
-default_font_size = 24
+default_font_size = 30
+GridContainer/constants/h_separation = 20
+GridContainer/constants/v_separation = 25
+MarginContainer/constants/margin_bottom = 100
+MarginContainer/constants/margin_left = 50
+MarginContainer/constants/margin_right = 50
+MarginContainer/constants/margin_top = 100
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/constants/outline_size = 5
+VBoxContainer/constants/separation = 10

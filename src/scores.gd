@@ -34,10 +34,10 @@ func set_scores(new_score: int):
 
 
 func write_savegame() -> void:
-	ResourceSaver.save(self, get_save_path())
+	ResourceSaver.save(self, Scores.get_save_path())
 
 static func save_exists() -> bool:
-	return ResourceLoader.exists(get_save_path())
+	return ResourceLoader.exists(Scores.get_save_path())
 
 static func get_save_path() -> String:
 	var extension := ".tres" if OS.is_debug_build() else ".res"

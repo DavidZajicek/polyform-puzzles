@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=3 uid="uid://ooqp1e2ogghe"]
+
+[ext_resource type="Script" path="res://settings_menu.gd" id="1_5seey"]
+[ext_resource type="Theme" uid="uid://b2mieut3kuy46" path="res://MainMenuTheme.tres" id="1_a2qbf"]
+[ext_resource type="Texture2D" uid="uid://d2a7o585g1irr" path="res://icon.svg" id="3_x0v8q"]
+[ext_resource type="PackedScene" uid="uid://do5x6v06dq6g5" path="res://theme_menu.tscn" id="4_71hir"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bir1q"]
+bg_color = Color(0.6, 0, 0.976471, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.196078, 0.196078, 0.196078, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[node name="SettingsMenu" type="CanvasLayer"]
+script = ExtResource("1_5seey")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_a2qbf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="NavigationButtons" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/NavigationButtons"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Back"
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+columns = 2
+
+[node name="DifficultyLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Max Block Size: 6"
+fit_content = true
+scroll_active = false
+
+[node name="DifficultySlider" type="HSlider" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/slider = SubResource("StyleBoxFlat_bir1q")
+min_value = 4.0
+max_value = 10.0
+value = 6.0
+tick_count = 7
+ticks_on_borders = true
+
+[node name="BackgroundColourLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Background Colour:"
+fit_content = true
+scroll_active = false
+
+[node name="BackgroundColourPicker" type="ColorPickerButton" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Background Colour"
+color = Color(0.301961, 0.301961, 0.301961, 1)
+
+[node name="GridTileColourLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Grid Colour:[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="GridTileColorPicker" type="ColorPickerButton" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Background Colour"
+color = Color(0, 0, 1, 0.490196)
+
+[node name="ChangeSkinLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+bbcode_enabled = true
+text = "[center]Change Block Skin:[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="ChangeBlockTextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("3_x0v8q")
+
+[node name="ThemeMenu" parent="." instance=ExtResource("4_71hir")]
+visible = false

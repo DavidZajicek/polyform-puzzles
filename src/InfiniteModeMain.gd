@@ -127,7 +127,7 @@ func save_and_reload():
 
 func save_and_quit():
 	save()
-	get_tree().change_scene_to_file("res://InfiniteModeMainMenu.tscn")
+	get_tree().change_scene_to_file("res://MainMenu.tscn")
 
 
 

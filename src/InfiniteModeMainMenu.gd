@@ -18,16 +18,12 @@ func _ready() -> void:
 	start_button.pressed.connect(start_game.bind())
 	quit_button.pressed.connect(get_tree().quit)
 	difficulty_slider.value_changed.connect(update_difficulty_label)
-	difficulty_slider.value = Globals.poly_size
+	difficulty_slider.value = Globals.poly_size as int
 	color_picker_button.color_changed.connect(change_background.bind())
 	grid_tile_color_picker.color_changed.connect(change_grid_tile.bind())
 	update_difficulty_label(Globals.poly_size)
 	
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func change_background(colour):
 	Globals.top_score.background_colour = colour
@@ -37,7 +33,7 @@ func change_grid_tile(colour):
 	Globals.top_score.grid_tile_colour = colour
 
 func start_game():
-	Globals.poly_size = difficulty_slider.value
+	Globals.poly_size = difficulty_slider.value as int
 	get_tree().change_scene_to_packed(main_game)
 
 func update_difficulty_label(value: int):
