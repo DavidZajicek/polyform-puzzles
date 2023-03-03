@@ -8,7 +8,7 @@ extends CanvasLayer
 @onready var exit_game: Button = $MainMenu/MarginContainer/VBoxContainer/ExitGame
 
 
-@onready var infinite_mode_scene: PackedScene = load("res://InfiniteModeMain.tscn")
+@onready var infinite_mode_scene: PackedScene = load("res://InfiniteModeMainMenu.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

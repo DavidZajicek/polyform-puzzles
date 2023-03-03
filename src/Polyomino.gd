@@ -24,6 +24,7 @@ func _ready() -> void:
 	generate_shape()
 	connect_with_poly_children()
 	
+	scale = Vector2(0.5, 0.5)
 
 func generate_shape() -> void:
 	var size_poly = polyforms_resource.polyominoes[size]
@@ -58,9 +59,10 @@ func _on_ClickableChild_event(_viewport: Node, event: InputEvent, _shape_idx: in
 			get_tree().get_root().set_input_as_handled()
 			original_position = position
 			offset = position - event.position
-			offset.y -= Globals.tile_size.y
+			offset.y -= Globals.user_settings.pickup_offset
 			dragging = self
 			emit_signal("picked_up", self, offset)
+			scale = Vector2(1, 1)
 			dragging.drop_shadow.visible = true
 			z_index = 1
 		
@@ -75,6 +77,8 @@ func _unhandled_input(event: InputEvent) -> void:
 					if child.has_overlapping_areas():
 						position = original_position
 				emit_signal("put_down", self, position, original_position)
+				
+				scale = Vector2(0.5, 0.5)
 				dragging.drop_shadow.visible = false
 				dragging = null
 				z_index = 0

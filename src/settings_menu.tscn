@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ooqp1e2ogghe"]
+[gd_scene load_steps=7 format=3 uid="uid://ooqp1e2ogghe"]
 
 [ext_resource type="Script" path="res://settings_menu.gd" id="1_5seey"]
 [ext_resource type="Theme" uid="uid://b2mieut3kuy46" path="res://MainMenuTheme.tres" id="1_a2qbf"]
@@ -7,6 +7,22 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bir1q"]
 bg_color = Color(0.6, 0, 0.976471, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.196078, 0.196078, 0.196078, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fncdd"]
 border_width_left = 20
 border_width_top = 20
 border_width_right = 20
@@ -51,6 +67,7 @@ size_flags_vertical = 4
 columns = 2
 
 [node name="DifficultyLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]Max Block Size: 6"
@@ -58,12 +75,29 @@ fit_content = true
 scroll_active = false
 
 [node name="DifficultySlider" type="HSlider" parent="MarginContainer/VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 theme_override_styles/slider = SubResource("StyleBoxFlat_bir1q")
 min_value = 4.0
 max_value = 10.0
 value = 6.0
 tick_count = 7
+ticks_on_borders = true
+
+[node name="OffsetLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Offset On Pickup:"
+fit_content = true
+scroll_active = false
+
+[node name="OffsetSlider" type="HSlider" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/slider = SubResource("StyleBoxFlat_fncdd")
+max_value = 128.0
+step = 32.0
+value = 64.0
+tick_count = 5
 ticks_on_borders = true
 
 [node name="BackgroundColourLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/GridContainer"]

@@ -4,19 +4,19 @@ extends Node2D
 @onready var grid: Grid = $Grid
 @export var polyomino: PackedScene = preload("res://Polyomino.tscn")
 
-var dragging: Polyomino
 var offset: Vector2
+var dragging: Polyomino
 var score: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	randomize()
 	if Globals.top_score.top_scores.has(Globals.poly_size):
-		$UserInterface/TopScore.text = "Top Score for size " + str(Globals.poly_size) + ": \n" + str(Globals.top_score.top_scores[Globals.poly_size])
+		$CanvasLayer/UserInterface/HBoxContainer/TopScore.text = "Top Score for size " + str(Globals.poly_size) + ": \n" + str(Globals.top_score.top_scores[Globals.poly_size])
 	else:
-		$UserInterface/TopScore.text = "Top Score for size " + str(Globals.poly_size) + ": \n0"
-	$UserInterface/QuitButton.pressed.connect(save_and_quit.bind())
-	$UserInterface/RestartButton.pressed.connect(save_and_reload.bind())
+		$CanvasLayer/UserInterface/HBoxContainer/TopScore.text = "Top Score for size " + str(Globals.poly_size) + ": \n0"
+	$CanvasLayer/UserInterface/HBoxContainer/QuitButton.pressed.connect(save_and_quit.bind())
+	$CanvasLayer/UserInterface/HBoxContainer/RestartButton.pressed.connect(save_and_reload.bind())
 
 func _process(_delta: float) -> void:
 	if not get_tree().get_nodes_in_group("polyominoes").size():
@@ -83,7 +83,7 @@ func bind_polyominoes():
 
 func _on_Poly_destroyed(_score: int):
 	score += _score
-	$UserInterface/ScoreLabel.text =  "Current Score: \n" + str(score)
+	$CanvasLayer/UserInterface/HBoxContainer/ScoreLabel.text =  "Current Score: \n" + str(score)
 
 func test_if_legal(_polyomino: Polyomino, _position: Vector2):
 	for poly in _polyomino.get_children():
@@ -104,10 +104,10 @@ func test_for_any_legal_moves():
 				var _position: Vector2 = Vector2(x, y) * Globals.tile_size
 				if test_if_legal(_polyomino, _position):
 					legal_moves += 1
-	$UserInterface/PossibleMoves.text =  "Possible Moves: \n" + str(legal_moves)
+	$CanvasLayer/UserInterface/HBoxContainer/PossibleMoves.text =  "Possible Moves: \n" + str(legal_moves)
 	if legal_moves == 0:
 		save()
-		$UserInterface/PossibleMoves.text = "No more moves,\nrestart? -->"
+		$CanvasLayer/UserInterface/HBoxContainer/PossibleMoves.text = "No more moves,\nrestart? -->"
 
 
 func save():
@@ -127,7 +127,7 @@ func save_and_reload():
 
 func save_and_quit():
 	save()
-	get_tree().change_scene_to_file("res://MainMenu.tscn")
+	get_tree().change_scene_to_file("res://InfiniteModeMainMenu.tscn")
 
 
 

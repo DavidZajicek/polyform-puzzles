@@ -57,6 +57,7 @@ layout_mode = 2
 text = "Infinite Mode"
 
 [node name="PuzzleMode" type="Button" parent="MainMenu/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Puzzle Mode"
 
@@ -65,6 +66,7 @@ layout_mode = 2
 text = "Settings Menu"
 
 [node name="TopScores" type="Button" parent="MainMenu/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Top Scores"
 
@@ -72,3 +74,9 @@ text = "Top Scores"
 layout_mode = 2
 size_flags_vertical = 10
 text = "Exit Game"
+
+[node name="Label" type="Label" parent="MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "v0.2.0"
+horizontal_alignment = 2
+vertical_alignment = 2

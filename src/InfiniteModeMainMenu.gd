@@ -16,7 +16,7 @@ extends Control
 func _ready() -> void:
 	top_score_label.text = "Top Score: \n" + str(Globals.top_score.top_score)
 	start_button.pressed.connect(start_game.bind())
-	quit_button.pressed.connect(get_tree().quit)
+	quit_button.pressed.connect(func(): get_tree().change_scene_to_file("res://MainMenu.tscn"))
 	difficulty_slider.value_changed.connect(update_difficulty_label)
 	difficulty_slider.value = Globals.poly_size as int
 	color_picker_button.color_changed.connect(change_background.bind())
