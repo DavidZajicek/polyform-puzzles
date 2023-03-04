@@ -16,7 +16,3 @@ func _ready() -> void:
 	settings_menu.pressed.connect(func(): get_tree().change_scene_to_file("res://settings_menu.tscn"))
 	exit_game.pressed.connect(func(): get_tree().quit())
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

@@ -1,8 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxcwofo851bx3"]
+[gd_scene load_steps=7 format=3 uid="uid://dxcwofo851bx3"]
 
 [ext_resource type="Script" path="res://InfiniteModeMain.gd" id="1_l1gu7"]
 [ext_resource type="PackedScene" uid="uid://t6a4vln63jxa" path="res://Grid.tscn" id="2_1uqbt"]
 [ext_resource type="Theme" uid="uid://b2mieut3kuy46" path="res://MainMenuTheme.tres" id="3_g6g1x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gil0s"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ob00p"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_y2qe1"]
+Button/styles/hover = SubResource("StyleBoxFlat_gil0s")
+Button/styles/normal = SubResource("StyleBoxFlat_ob00p")
 
 [node name="InfiniteModeMain" type="Node2D"]
 script = ExtResource("1_l1gu7")
@@ -25,14 +35,16 @@ position = Vector2(320, 960)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UserInterface" type="MarginContainer" parent="CanvasLayer"]
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 284.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("3_g6g1x")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UserInterface"]
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/separation = 15
 alignment = 1
 
@@ -67,3 +79,13 @@ autowrap_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Restart"
+
+[node name="BreakButton" type="Button" parent="CanvasLayer/UserInterface"]
+visible = false
+layout_mode = 2
+theme = SubResource("Theme_y2qe1")
+text = "You've been playing for over 30 minutes, maybe take a break?"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 180.0
+autostart = true

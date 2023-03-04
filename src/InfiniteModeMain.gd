@@ -1,8 +1,10 @@
 class_name InfiniteModeMain
 extends Node2D
 
-@onready var grid: Grid = $Grid
 @export var polyomino: PackedScene = preload("res://Polyomino.tscn")
+
+@onready var grid: Grid = $Grid
+@onready var break_button: Button = $CanvasLayer/UserInterface/BreakButton
 
 var offset: Vector2
 var dragging: Polyomino
@@ -17,6 +19,8 @@ func _ready() -> void:
 		$CanvasLayer/UserInterface/HBoxContainer/TopScore.text = "Top Score for size " + str(Globals.poly_size) + ": \n0"
 	$CanvasLayer/UserInterface/HBoxContainer/QuitButton.pressed.connect(save_and_quit.bind())
 	$CanvasLayer/UserInterface/HBoxContainer/RestartButton.pressed.connect(save_and_reload.bind())
+	
+	break_button.pressed.connect(accept_break_warning.bind())
 
 func _process(_delta: float) -> void:
 	if not get_tree().get_nodes_in_group("polyominoes").size():
@@ -112,16 +116,20 @@ func test_for_any_legal_moves():
 
 func save():
 	
-#	if score > Globals.top_score.top_score:
-#		Globals.top_score.top_score = score
 	
 	Globals.top_score.set_scores(score)
+	
+	if Globals.break_time:
+		break_button.show()
+		Globals.break_time = false
+		await break_button.pressed
+	
 
 func reload():
 	get_tree().reload_current_scene()
 
 func save_and_reload():
-	save()
+	await save()
 	reload()
 
 
@@ -130,4 +138,14 @@ func save_and_quit():
 	get_tree().change_scene_to_file("res://InfiniteModeMainMenu.tscn")
 
 
+func accept_break_warning() -> bool:
+	
+	set_physics_process(true)
+	break_button.hide()
+	Globals.start_break_timer()
+	return true
 
+func break_warning_prompt() -> bool:
+	while Globals.break_time:
+		continue
+	return true
