@@ -12,6 +12,9 @@ const BASE_BLOCK_SIZE_LABEL: String = "[center]Max Block Size: "
 @onready var grid_tile_colour_picker: ColorPickerButton = $MarginContainer/VBoxContainer/GridContainer/GridTileColourPicker
 @onready var block_tray_scale_slider: HSlider = $MarginContainer/VBoxContainer/GridContainer/BlockTrayScaleSlider
 
+@onready var break_time_label: RichTextLabel = $MarginContainer/VBoxContainer/GridContainer/BreakTimeLabel
+@onready var break_time_slider: HSlider = $MarginContainer/VBoxContainer/GridContainer/BreakTimeSlider
+
 @onready var change_block_texture_button: TextureButton = $MarginContainer/VBoxContainer/GridContainer/ChangeBlockTextureButton
 @onready var back_button: Button = $MarginContainer/VBoxContainer/NavigationButtons/BackButton
 
@@ -32,6 +35,9 @@ func _ready() -> void:
 	block_tray_scale_slider.value = Globals.user_settings.block_scale
 	block_tray_scale_slider.value_changed.connect(change_scale.bind())
 	
+	break_time_slider.value_changed.connect(change_break_timer.bind())
+	break_time_slider.value = Globals.user_settings.break_time / 60
+	
 	back_button.pressed.connect(func(): get_tree().change_scene_to_file("res://MainMenu.tscn"))
 
 
@@ -44,5 +50,12 @@ func change_grid_tile_colour(colour):
 
 func change_scale(new_scale: float):
 	Globals.user_settings.block_scale = new_scale
-#	change_block_texture_button.scale = Vector2(new_scale, new_scale)
 	
+
+func change_break_timer(new_time: int):
+	Globals.user_settings.break_time = new_time * 60
+	break_time_label.text = "[center]Change Break Reminder Timer:\n" + str(new_time) + " Minutes[/center]"
+	if new_time == 0:
+		Globals.break_timer.stop()
+	else:
+		Globals.start_break_timer()

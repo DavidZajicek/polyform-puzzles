@@ -13,7 +13,8 @@ func _ready() -> void:
 	_create_or_load_save()
 	RenderingServer.set_default_clear_color(user_settings.background_colour)
 	add_child(break_timer)
-	start_break_timer()
+	if break_time:
+		start_break_timer()
 
 func _create_or_load_save():
 	if Scores.save_exists():
@@ -31,4 +32,4 @@ func _notification(what: int) -> void:
 
 func start_break_timer():
 	break_timer.timeout.connect(func(): break_time = true)
-	break_timer.start(1800)
+	break_timer.start(user_settings.break_time)
