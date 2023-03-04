@@ -37,6 +37,26 @@ func get_all_outer_walls(walls: PackedVector2Array) -> PackedVector2Array:
 	
 	return adjacent_empty_spaces
 
+func get_all_outer_edges(walls: PackedVector2Array) -> PackedVector2Array:
+	var adjacent_empty_spaces: PackedVector2Array = []
+	for wall in walls:
+		for direction in orthogonally_adjacent_directions:
+			var point_to_test: Vector2i = (direction + Vector2i(wall))
+			if adjacent_empty_spaces.find(point_to_test) > 0:
+				continue
+			if (
+					point_to_test.x < 0
+					or point_to_test.x > get_size().x - 1
+					or point_to_test.y < 0
+					or point_to_test.y > get_size().y - 1
+			):
+				adjacent_empty_spaces.append(point_to_test)
+				continue
+			if not get_bitv(point_to_test):
+				adjacent_empty_spaces.append(point_to_test)
+	
+	return adjacent_empty_spaces
+
 func get_all_columns() -> Array[PackedVector2Array]:
 	var columns: Array[PackedVector2Array] = []
 	var y_points: PackedVector2Array = []

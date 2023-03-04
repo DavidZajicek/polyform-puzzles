@@ -5,10 +5,15 @@ extends Node2D
 
 @onready var grid: Grid = $Grid
 @onready var break_button: Button = $CanvasLayer/UserInterface/BreakButton
+@onready var hint_timer: Timer = $HintTimer
 
 var offset: Vector2
 var dragging: Polyomino
 var score: int = 0
+var game_ended := false
+var possible_moves: = 0
+
+var best_move_dictionary: Dictionary = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,6 +24,8 @@ func _ready() -> void:
 		$CanvasLayer/UserInterface/HBoxContainer/TopScore.text = "Top Score for size " + str(Globals.poly_size) + ": \n0"
 	$CanvasLayer/UserInterface/HBoxContainer/QuitButton.pressed.connect(save_and_quit.bind())
 	$CanvasLayer/UserInterface/HBoxContainer/RestartButton.pressed.connect(save_and_reload.bind())
+#	hint_timer.timeout.connect(show_random_best_move.bind())
+	hint_timer.start()
 	
 	break_button.pressed.connect(accept_break_warning.bind())
 
@@ -29,6 +36,8 @@ func _process(_delta: float) -> void:
 		await get_tree().process_frame
 		
 		test_for_any_legal_moves()
+#	if possible_moves:
+#		show_random_best_move()
 	
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -40,6 +49,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("restart"):
 		get_tree().reload_current_scene()
 	
+	if event.is_action_pressed("ui_accept") and not game_ended:
+		show_random_best_move()
 
 
 
@@ -48,7 +59,7 @@ func _on_Polyomino_picked_up_event(_polyomino: Polyomino, _offset: Vector2):
 	offset = _offset
 
 func _on_Polyomino_put_down_event(_polyomino: Polyomino, _position: Vector2, _original_position: Vector2):
-	var relative_position: Vector2 = snapped(dragging.position - grid.position, Globals.tile_size)
+	var relative_position: Vector2 = snapped(_position - grid.position, Globals.tile_size)
 	var legal = test_if_legal(_polyomino, relative_position)
 	if legal:
 		for poly in _polyomino.get_children():
@@ -101,17 +112,29 @@ func test_if_legal(_polyomino: Polyomino, _position: Vector2):
 
 func test_for_any_legal_moves():
 	var bitmap: PolyBitMap = grid.bitmap.duplicate()
-	var legal_moves: int = 0
+	var legal_moves: Array = []
+	var most_adjacent_blocks: int = 0
+	best_move_dictionary = {}
 	for _polyomino in get_tree().get_nodes_in_group("polyominoes"):
+		var best_moves: PackedVector2Array = []
 		for x in bitmap.get_size().x:
 			for y in bitmap.get_size().y:
 				var _position: Vector2 = Vector2(x, y) * Globals.tile_size
 				if test_if_legal(_polyomino, _position):
-					legal_moves += 1
-	$CanvasLayer/UserInterface/HBoxContainer/PossibleMoves.text =  "Possible Moves: \n" + str(legal_moves)
-	if legal_moves == 0:
+					legal_moves.append(Vector2(x, y))
+					var adjacent_blocks = check_best_move(_polyomino.poly_bitmap.get_all_outer_edges(_polyomino.poly_bitmap.get_all_inner_walls()), Vector2(x, y))
+					if adjacent_blocks > most_adjacent_blocks:
+						most_adjacent_blocks = adjacent_blocks
+						best_moves = [Vector2i(x, y)]
+					elif adjacent_blocks == most_adjacent_blocks:
+						best_moves.append(Vector2i(x, y))
+		best_move_dictionary[_polyomino] = best_moves
+	$CanvasLayer/UserInterface/HBoxContainer/PossibleMoves.text =  "Possible Moves: \n" + str(legal_moves.size())
+	possible_moves = legal_moves.size()
+	if legal_moves.size() == 0:
 		save()
 		$CanvasLayer/UserInterface/HBoxContainer/PossibleMoves.text = "No more moves,\nrestart? -->"
+		game_ended = true
 
 
 func save():
@@ -140,7 +163,6 @@ func save_and_quit():
 
 func accept_break_warning() -> bool:
 	
-	set_physics_process(true)
 	break_button.hide()
 	Globals.start_break_timer()
 	return true
@@ -149,3 +171,23 @@ func break_warning_prompt() -> bool:
 	while Globals.break_time:
 		continue
 	return true
+
+func check_best_move(points: PackedVector2Array, grid_pos: Vector2):
+	var count: int = 0
+	for point in points:
+		if not grid.rect.has_point(point + grid_pos):
+			continue
+		if grid.bitmap.get_bitv(point + grid_pos):
+			count += 1
+	
+	return count
+
+func show_random_best_move():
+	for _polyomino in get_tree().get_nodes_in_group("polyominoes"):
+		if best_move_dictionary[_polyomino]:
+			var location: Vector2 = best_move_dictionary[_polyomino][randi() % best_move_dictionary[_polyomino].size()]
+#			dragging = _polyomino
+#			_polyomino.emit_signal("put_down", _polyomino, (location * Globals.tile_size) + grid.position, _polyomino.position)
+			_polyomino.drop_shadow.global_position = (location * Globals.tile_size) + grid.position
+			_polyomino.drop_shadow.show()
+			return

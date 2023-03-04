@@ -89,3 +89,5 @@ text = "You've been playing for over 30 minutes, maybe take a break?"
 [node name="Timer" type="Timer" parent="."]
 wait_time = 180.0
 autostart = true
+
+[node name="HintTimer" type="Timer" parent="."]

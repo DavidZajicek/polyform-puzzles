@@ -11,6 +11,8 @@ extends CanvasGroup
 signal picked_up
 signal put_down
 
+var poly_bitmap: PolyBitMap
+
 var offset: Vector2
 var original_position: Vector2
 var dragging
@@ -30,7 +32,8 @@ func _ready() -> void:
 func generate_shape() -> void:
 	var size_poly = polyforms_resource.polyominoes[size]
 	var score: int = 0
-	for vector in size_poly[size_poly.keys()[randi() % size_poly.size()]].get_all_inner_walls():
+	poly_bitmap = size_poly[size_poly.keys()[randi() % size_poly.size()]]
+	for vector in poly_bitmap.get_all_inner_walls():
 		var new_poly = poly.instantiate()
 		add_child(new_poly)
 		new_poly.position = (vector * Globals.tile_size)
