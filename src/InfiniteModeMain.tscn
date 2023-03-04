@@ -8,26 +8,26 @@
 script = ExtResource("1_l1gu7")
 
 [node name="Grid" parent="." instance=ExtResource("2_1uqbt")]
-position = Vector2(256, 256)
+position = Vector2(64, 256)
 grid_size = Vector2(10, 10)
 
 [node name="SpawnPoints" type="Node2D" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(64, 970)
+position = Vector2(64, 960)
 
 [node name="Marker2D2" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(896, 970)
+position = Vector2(512, 960)
 
 [node name="Marker2D3" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(512, 970)
+position = Vector2(320, 960)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UserInterface" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 46.0
+offset_bottom = 284.0
 grow_horizontal = 2
 theme = ExtResource("3_g6g1x")
 

@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ooqp1e2ogghe"]
+[gd_scene load_steps=6 format=3 uid="uid://ooqp1e2ogghe"]
 
 [ext_resource type="Script" path="res://settings_menu.gd" id="1_5seey"]
 [ext_resource type="Theme" uid="uid://b2mieut3kuy46" path="res://MainMenuTheme.tres" id="1_a2qbf"]
 [ext_resource type="Texture2D" uid="uid://d2a7o585g1irr" path="res://icon.svg" id="3_x0v8q"]
-[ext_resource type="PackedScene" uid="uid://do5x6v06dq6g5" path="res://theme_menu.tscn" id="4_71hir"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bir1q"]
 bg_color = Color(0.6, 0, 0.976471, 1)
@@ -119,7 +118,7 @@ text = "[center]Grid Colour:[/center]"
 fit_content = true
 scroll_active = false
 
-[node name="GridTileColorPicker" type="ColorPickerButton" parent="MarginContainer/VBoxContainer/GridContainer"]
+[node name="GridTileColourPicker" type="ColorPickerButton" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Background Colour"
 color = Color(0, 0, 1, 0.490196)
@@ -136,7 +135,24 @@ scroll_active = false
 [node name="ChangeBlockTextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 3
 texture_normal = ExtResource("3_x0v8q")
 
-[node name="ThemeMenu" parent="." instance=ExtResource("4_71hir")]
-visible = false
+[node name="ChangeBlocKTrayScaleLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+bbcode_enabled = true
+text = "[center]Change Block Tray Scale:[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="BlockTrayScaleSlider" type="HSlider" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/slider = SubResource("StyleBoxFlat_fncdd")
+min_value = 0.5
+max_value = 1.0
+step = 0.1
+value = 0.5
+tick_count = 6
+ticks_on_borders = true

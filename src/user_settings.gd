@@ -8,6 +8,7 @@ const USER_SETTINGS_BASE_PATH := "user://user_settings"
 @export var drop_shadow_colour: Color = Color(0.0, 0.0, 0.0, 0.3) : set = set_drop_shadow_colour
 @export var block_texture: CompressedTexture2D = preload("res://icon.svg") : set = set_block_texture
 @export var pickup_offset: float = 64.0 : set = set_pickup_offset
+@export var block_scale: float = 0.5 : set = set_block_scale
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -46,4 +47,8 @@ func set_block_texture(texture: CompressedTexture2D):
 
 func set_pickup_offset(offset: float):
 	pickup_offset = offset
+	write_settings()
+
+func set_block_scale(new_scale: float):
+	block_scale = new_scale
 	write_settings()

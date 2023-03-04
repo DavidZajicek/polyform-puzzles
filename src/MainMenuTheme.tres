@@ -1,7 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://b2mieut3kuy46"]
 
 [resource]
-default_font_size = 30
+default_font_size = 20
 GridContainer/constants/h_separation = 20
 GridContainer/constants/v_separation = 25
 MarginContainer/constants/margin_bottom = 100

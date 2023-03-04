@@ -17,6 +17,7 @@ var dragging
 var clickable_areas: Array[ClickableArea]
 var overlap_areas: Array[Area2D]
 var mouse_over: bool = false
+var scaled_poly := Vector2(Globals.user_settings.block_scale, Globals.user_settings.block_scale)
 
 func _ready() -> void:
 	
@@ -24,7 +25,7 @@ func _ready() -> void:
 	generate_shape()
 	connect_with_poly_children()
 	
-	scale = Vector2(0.5, 0.5)
+	scale = scaled_poly
 
 func generate_shape() -> void:
 	var size_poly = polyforms_resource.polyominoes[size]
@@ -78,7 +79,7 @@ func _unhandled_input(event: InputEvent) -> void:
 						position = original_position
 				emit_signal("put_down", self, position, original_position)
 				
-				scale = Vector2(0.5, 0.5)
+				scale = scaled_poly
 				dragging.drop_shadow.visible = false
 				dragging = null
 				z_index = 0

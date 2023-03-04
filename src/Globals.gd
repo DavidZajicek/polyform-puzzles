@@ -8,7 +8,7 @@ var user_settings: UserSettings
 
 func _ready() -> void:
 	_create_or_load_save()
-	RenderingServer.set_default_clear_color(top_score.background_colour)
+	RenderingServer.set_default_clear_color(user_settings.background_colour)
 
 func _create_or_load_save():
 	if Scores.save_exists():

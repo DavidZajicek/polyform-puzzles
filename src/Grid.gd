@@ -29,7 +29,7 @@ func create_grid() -> void:
 			add_child(new_tile)
 			
 			new_tile.position = Vector2(x, y) * Globals.tile_size
-			new_tile.modulate = Globals.top_score.grid_tile_colour
+			new_tile.modulate = Globals.user_settings.grid_tile_colour
 
 func destroy_lines():
 	var points = bitmap.get_all_lines()

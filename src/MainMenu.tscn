@@ -40,7 +40,7 @@ theme_override_constants/separation = 100
 [node name="Title" type="RichTextLabel" parent="MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxEmpty_yxnma")
 bbcode_enabled = true
 text = "[rainbow freq=0.5 sat=10 val=20][center]Poly Pals[/center][/rainbow]"
