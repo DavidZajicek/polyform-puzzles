@@ -172,6 +172,5 @@ layout_mode = 2
 theme_override_styles/slider = SubResource("StyleBoxFlat_fncdd")
 max_value = 240.0
 step = 5.0
-value = 30.0
 tick_count = 6
 ticks_on_borders = true
