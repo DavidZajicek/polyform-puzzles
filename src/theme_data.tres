@@ -4,8 +4,11 @@
 
 [resource]
 script = ExtResource("1_jgtjh")
-runes = {
+block_textures = {
+"HUMAN_RIGHTS": "res://assets/blocks/trans-flag.png",
+"PROTOTYPE": "res://icon.svg",
 "RUNE_H": "res://assets/blocks/rune-h.png",
 "RUNE_R": "res://assets/blocks/rune-r.png",
-"RUNE_TH": "res://assets/blocks/rune-th.png"
+"RUNE_TH": "res://assets/blocks/rune-th.png",
+"SLIME": "res://assets/blocks/slime.png"
 }
