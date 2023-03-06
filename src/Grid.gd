@@ -4,19 +4,23 @@ extends Node2D
 #constants
 
 #exports
-@export var grid_size: Vector2 = Vector2(6, 6)
 
 #onready
 @onready var grid_tile: PackedScene = preload("res://GridTile.tscn")
 @onready var bitmap: PolyBitMap = PolyBitMap.new()
 @onready var rect: Rect2i = Rect2i(Vector2i.ZERO, grid_size)
+@onready var spawn_points: Node2D = $SpawnPoints
 
 #vars
+var grid_size: Vector2 = Vector2(10, 10)
+var grid_center
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	bitmap.create(grid_size)
 	create_grid()
+	var spawn_pos: = Globals.tile_size.y * (10)
+	spawn_points.position.y = spawn_pos
 
 func _process(_delta: float) -> void:
 	bitmap.opaque_to_polygons(rect)

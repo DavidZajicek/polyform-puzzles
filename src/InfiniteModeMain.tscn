@@ -18,19 +18,7 @@ Button/styles/normal = SubResource("StyleBoxFlat_ob00p")
 script = ExtResource("1_l1gu7")
 
 [node name="Grid" parent="." instance=ExtResource("2_1uqbt")]
-position = Vector2(64, 256)
-grid_size = Vector2(10, 10)
-
-[node name="SpawnPoints" type="Node2D" parent="."]
-
-[node name="Marker2D" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(64, 960)
-
-[node name="Marker2D2" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(512, 960)
-
-[node name="Marker2D3" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(320, 960)
+position = Vector2(64, 320)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

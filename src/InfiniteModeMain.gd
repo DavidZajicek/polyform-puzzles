@@ -26,13 +26,14 @@ func _ready() -> void:
 	$CanvasLayer/UserInterface/HBoxContainer/RestartButton.pressed.connect(save_and_reload.bind())
 #	hint_timer.timeout.connect(show_random_best_move.bind())
 	hint_timer.start()
-	
+#	var zoom_level: float = 1.0 - float(Globals.poly_size + 4) / 10.0
+#	camera_2d.zoom = Vector2(1.0 + zoom_level, 1.0 + zoom_level)
 	break_button.pressed.connect(accept_break_warning.bind())
 
 func _process(_delta: float) -> void:
 	if not get_tree().get_nodes_in_group("polyominoes").size():
-		for point in $SpawnPoints.get_children():
-			spawn_polyomino(point.position)
+		for point in get_tree().get_nodes_in_group("spawn_points"):
+			spawn_polyomino(point.global_position)
 		await get_tree().process_frame
 		
 		test_for_any_legal_moves()
