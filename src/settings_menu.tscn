@@ -174,3 +174,18 @@ max_value = 240.0
 step = 5.0
 tick_count = 6
 ticks_on_borders = true
+
+[node name="OlisterModeLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+bbcode_enabled = true
+text = "[center]Toggle Oliver/Alister Mode:
+[font_size=14]This setting will disable blocks from being cleared, meaning you can't ever earn points[/font_size]
+[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+focus_mode = 0

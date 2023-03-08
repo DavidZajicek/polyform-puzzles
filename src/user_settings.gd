@@ -10,15 +10,8 @@ const USER_SETTINGS_BASE_PATH := "user://user_settings"
 @export var pickup_offset: float = 64.0 : set = set_pickup_offset
 @export var block_scale: float = 0.5 : set = set_block_scale
 @export var break_time: int = 0 : set = set_break_time
+@export var olister_mode: bool = false : set = set_olister_mode
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func write_settings() -> void:
 	ResourceSaver.save(self, UserSettings.get_settings_path())
@@ -56,4 +49,8 @@ func set_block_scale(new_scale: float):
 
 func set_break_time(new_time: int):
 	break_time = new_time
+	write_settings()
+
+func set_olister_mode(new_value: bool):
+	olister_mode = new_value
 	write_settings()

@@ -19,7 +19,7 @@ var grid_center
 func _ready():
 	bitmap.create(grid_size)
 	create_grid()
-	var spawn_pos: = Globals.tile_size.y * (10)
+	var spawn_pos: = Globals.tile_size.y * (11)
 	spawn_points.position.y = spawn_pos
 
 func _process(_delta: float) -> void:
@@ -45,6 +45,7 @@ func destroy_lines():
 			for point in points:
 				if child.position / Globals.tile_size == point:
 					child.emit_signal("destroy_poly", child.score * multiplier)
-					child.animation_player.play("destroy")
-					bitmap.set_bitv(point, false)
+					if not Globals.user_settings.olister_mode:
+						child.animation_player.play("destroy")
+						bitmap.set_bitv(point, false)
 

@@ -15,6 +15,9 @@ const BASE_BLOCK_SIZE_LABEL: String = "[center]Max Block Size: "
 @onready var break_time_label: RichTextLabel = $MarginContainer/VBoxContainer/GridContainer/BreakTimeLabel
 @onready var break_time_slider: HSlider = $MarginContainer/VBoxContainer/GridContainer/BreakTimeSlider
 
+@onready var check_button: CheckButton = $MarginContainer/VBoxContainer/GridContainer/CheckButton
+
+
 @onready var change_block_texture_button: TextureButton = $MarginContainer/VBoxContainer/GridContainer/ChangeBlockTextureButton
 @onready var back_button: Button = $MarginContainer/VBoxContainer/NavigationButtons/BackButton
 
@@ -37,6 +40,9 @@ func _ready() -> void:
 	
 	break_time_slider.value_changed.connect(change_break_timer.bind())
 	break_time_slider.value = Globals.user_settings.break_time / 60
+	
+	check_button.set_pressed_no_signal(Globals.user_settings.olister_mode)
+	check_button.toggled.connect(func(new_value): Globals.user_settings.olister_mode = new_value)
 	
 	back_button.pressed.connect(func(): get_tree().change_scene_to_file("res://MainMenu.tscn"))
 
