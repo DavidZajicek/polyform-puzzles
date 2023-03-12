@@ -5,7 +5,7 @@ const USER_SETTINGS_BASE_PATH := "user://user_settings"
 
 @export var background_colour: Color = Color(0.3, 0.3, 0.3, 1.0) : set = set_background_colour
 @export var grid_tile_colour: Color = Color(0.0, 0.0, 1.0, 0.5) : set = set_grid_tile_colour
-@export var drop_shadow_colour: Color = Color(0.0, 0.0, 0.0, 0.3) : set = set_drop_shadow_colour
+@export var drop_shadow_colour: Color = Color(0.0, 0.0, 0.0, 0.6) : set = set_drop_shadow_colour
 @export var block_texture: CompressedTexture2D = preload("res://icon.svg") : set = set_block_texture
 @export var pickup_offset: float = 64.0 : set = set_pickup_offset
 @export var block_scale: float = 0.5 : set = set_block_scale
