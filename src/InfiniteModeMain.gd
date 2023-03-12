@@ -9,6 +9,8 @@ extends Node2D
 
 var offset: Vector2
 var dragging: Polyomino
+var drop_position: Vector2
+
 var score: int = 0
 var game_ended := false
 var possible_moves: = 0
@@ -26,8 +28,6 @@ func _ready() -> void:
 	$CanvasLayer/UserInterface/HBoxContainer/RestartButton.pressed.connect(save_and_reload.bind())
 #	hint_timer.timeout.connect(show_random_best_move.bind())
 	hint_timer.start()
-#	var zoom_level: float = 1.0 - float(Globals.poly_size + 4) / 10.0
-#	camera_2d.zoom = Vector2(1.0 + zoom_level, 1.0 + zoom_level)
 	break_button.pressed.connect(accept_break_warning.bind())
 
 func _process(_delta: float) -> void:
@@ -44,7 +44,13 @@ func _process(_delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if dragging and event is InputEventScreenDrag or dragging and event is InputEventMouseMotion:
 		dragging.position = event.position + offset
-		dragging.drop_shadow.global_position = snapped(dragging.global_position, Globals.tile_size)
+		drop_position = snapped(dragging.global_position, Globals.tile_size)
+		dragging.drop_shadow.global_position = drop_position 
+		var legal := test_if_legal(dragging, drop_position - grid.position)
+		if not legal:
+			dragging.drop_shadow.modulate = Color(1.0, 0.0, 0.0, 0.6)
+		else:
+			dragging.drop_shadow.modulate = Globals.user_settings.drop_shadow_colour
 		
 	
 	if event.is_action_pressed("restart"):
@@ -60,7 +66,7 @@ func _on_Polyomino_picked_up_event(_polyomino: Polyomino, _offset: Vector2):
 	offset = _offset
 
 func _on_Polyomino_put_down_event(_polyomino: Polyomino, _position: Vector2, _original_position: Vector2):
-	var relative_position: Vector2 = snapped(_position - grid.position, Globals.tile_size)
+	var relative_position: Vector2 = snapped(drop_position - grid.position, Globals.tile_size)
 	var legal = test_if_legal(_polyomino, relative_position)
 	if legal:
 		for poly in _polyomino.get_children():
@@ -101,7 +107,7 @@ func _on_Poly_destroyed(_score: int):
 	score += _score
 	$CanvasLayer/UserInterface/HBoxContainer/ScoreLabel.text =  "Current Score: \n" + str(score)
 
-func test_if_legal(_polyomino: Polyomino, _position: Vector2):
+func test_if_legal(_polyomino: Polyomino, _position: Vector2) -> bool:
 	for poly in _polyomino.get_children():
 		if poly is Poly:
 			var grid_pos = snapped((poly.position + _position) / Globals.tile_size, Vector2(1, 1))

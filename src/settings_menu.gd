@@ -39,6 +39,7 @@ func _ready() -> void:
 	block_tray_scale_slider.value_changed.connect(change_scale.bind())
 	
 	break_time_slider.value_changed.connect(change_break_timer.bind())
+	@warning_ignore("integer_division")
 	break_time_slider.value = Globals.user_settings.break_time / 60
 	
 	check_button.set_pressed_no_signal(Globals.user_settings.olister_mode)
