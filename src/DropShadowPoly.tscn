@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddnf6fenyc0jk"]
+[gd_scene load_steps=3 format=3 uid="uid://ddnf6fenyc0jk"]
 
 [ext_resource type="Texture2D" uid="uid://d2a7o585g1irr" path="res://icon.svg" id="1_2xgwx"]
+[ext_resource type="Script" path="res://DropShadowPoly.gd" id="2_yj0km"]
 
 [node name="DropShadow" type="Sprite2D"]
 z_index = -1
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_2xgwx")
+script = ExtResource("2_yj0km")

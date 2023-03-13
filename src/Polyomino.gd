@@ -26,7 +26,7 @@ func _ready() -> void:
 	randomize()
 	generate_shape()
 	connect_with_poly_children()
-	
+	original_position = global_position
 	scale = scaled_poly
 
 func generate_shape() -> void:
@@ -40,7 +40,6 @@ func generate_shape() -> void:
 		var new_drop_shadow_poly = drop_shadow_poly.instantiate()
 		new_drop_shadow_poly.position = (vector * Globals.tile_size)
 		drop_shadow.add_child(new_drop_shadow_poly)
-#		new_poly.label.text = str(new_poly.global_position)
 		score += 1
 	for child in get_children():
 		if child is Poly:
@@ -61,7 +60,6 @@ func _on_ClickableChild_event(_viewport: Node, event: InputEvent, _shape_idx: in
 	if event is InputEventScreenTouch or event is InputEventMouseButton:
 		if event.is_pressed() and not dragging:
 			get_tree().get_root().set_input_as_handled()
-			original_position = position
 			offset = position - event.position
 			offset.y -= Globals.user_settings.pickup_offset
 			dragging = self
@@ -80,7 +78,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				for child in overlap_areas:
 					if child.has_overlapping_areas():
 						position = original_position
-				emit_signal("put_down", self, position, original_position)
+					else:
+						emit_signal("put_down", self, position, original_position)
 				
 				scale = scaled_poly
 				dragging.drop_shadow.visible = false

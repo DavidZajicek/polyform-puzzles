@@ -51,9 +51,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		dragging.drop_shadow.global_position = drop_position 
 		var legal := test_if_legal(dragging, drop_position - grid.position)
 		if not legal:
-			dragging.drop_shadow.modulate = Color(1.0, 0.0, 0.0, 0.6)
-		else:
 			dragging.drop_shadow.modulate = Globals.user_settings.drop_shadow_colour
+		else:
+			dragging.drop_shadow.modulate = Globals.user_settings.grid_tile_colour.inverted()
 		
 	
 	if event.is_action_pressed("restart"):
@@ -84,7 +84,7 @@ func _on_Polyomino_put_down_event(_polyomino: Polyomino, _position: Vector2, _or
 		if grid.bitmap.get_total_line_count():
 			grid.destroy_lines()
 	else:
-		_polyomino.position = _original_position
+		_polyomino.position = _polyomino.original_position
 	dragging = null
 	await get_tree().process_frame
 	if get_tree().get_nodes_in_group("polyominoes").size() > 0:
