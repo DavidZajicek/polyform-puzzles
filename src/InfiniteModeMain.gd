@@ -6,6 +6,8 @@ extends Node2D
 @onready var grid: Grid = $Grid
 @onready var break_button: Button = $CanvasLayer/UserInterface/BreakButton
 @onready var hint_timer: Timer = $HintTimer
+@onready var pop_up_label: RichTextLabel = $CanvasLayer/PopUpLabel
+@onready var animation_player: AnimationPlayer = $CanvasLayer/PopUpLabel/AnimationPlayer
 
 var offset: Vector2
 var dragging: Polyomino
@@ -28,6 +30,7 @@ func _ready() -> void:
 	$CanvasLayer/UserInterface/HBoxContainer/RestartButton.pressed.connect(save_and_reload.bind())
 #	hint_timer.timeout.connect(show_random_best_move.bind())
 	hint_timer.start()
+	grid.score_calculation_completed.connect(_on_Grid_score_caluclation_completed.bind())
 	break_button.pressed.connect(accept_break_warning.bind())
 
 func _process(_delta: float) -> void:
@@ -106,6 +109,11 @@ func bind_polyominoes():
 func _on_Poly_destroyed(_score: int):
 	score += _score
 	$CanvasLayer/UserInterface/HBoxContainer/ScoreLabel.text =  "Current Score: \n" + str(score)
+
+func _on_Grid_score_caluclation_completed(_score: int, multiplier: int):
+	pop_up_label.text = "[center]" + str(_score * multiplier)
+	animation_player.play("display_points_earned")
+
 
 func test_if_legal(_polyomino: Polyomino, _position: Vector2) -> bool:
 	for poly in _polyomino.get_children():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxcwofo851bx3"]
+[gd_scene load_steps=10 format=3 uid="uid://dxcwofo851bx3"]
 
 [ext_resource type="Script" path="res://InfiniteModeMain.gd" id="1_l1gu7"]
 [ext_resource type="PackedScene" uid="uid://t6a4vln63jxa" path="res://Grid.tscn" id="2_1uqbt"]
@@ -13,6 +13,90 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="Theme" id="Theme_y2qe1"]
 Button/styles/hover = SubResource("StyleBoxFlat_gil0s")
 Button/styles/normal = SubResource("StyleBoxFlat_ob00p")
+
+[sub_resource type="Animation" id="Animation_wi8wo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PopUpLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("PopUpLabel:theme_override_font_sizes/normal_font_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PopUpLabel:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wgm3c"]
+resource_name = "display_points_earned"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PopUpLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("PopUpLabel:theme_override_font_sizes/normal_font_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.8, 1),
+"transitions": PackedFloat32Array(1, -2, -2, 0.5),
+"update": 0,
+"values": [0, 100, 100, 50]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PopUpLabel:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.8, 1),
+"transitions": PackedFloat32Array(1, 128, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2, 2), Vector2(2, 2), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pkxme"]
+_data = {
+"RESET": SubResource("Animation_wi8wo"),
+"display_points_earned": SubResource("Animation_wgm3c")
+}
 
 [node name="InfiniteModeMain" type="Node2D"]
 script = ExtResource("1_l1gu7")
@@ -73,6 +157,35 @@ visible = false
 layout_mode = 2
 theme = SubResource("Theme_y2qe1")
 text = "You've been playing for over your break reminder time, maybe take a break?"
+
+[node name="PopUpLabel" type="RichTextLabel" parent="CanvasLayer"]
+visible = false
+anchors_preset = -1
+anchor_left = 0.267
+anchor_top = 0.45
+anchor_right = 0.711
+anchor_bottom = 0.55
+offset_left = -192.24
+offset_top = 29.5
+offset_right = 208.08
+offset_bottom = -29.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(360, 34)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+mouse_filter = 2
+theme = ExtResource("3_g6g1x")
+bbcode_enabled = true
+text = "[center]123"
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/PopUpLabel"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_pkxme")
+}
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 180.0
