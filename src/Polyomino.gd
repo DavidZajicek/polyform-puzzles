@@ -78,8 +78,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				for child in overlap_areas:
 					if child.has_overlapping_areas():
 						position = original_position
-					else:
-						emit_signal("put_down", self, position, original_position)
+						break
+				
+				emit_signal("put_down", self, position, original_position)
 				
 				scale = scaled_poly
 				dragging.drop_shadow.visible = false
